@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 09:42:40 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/26 10:49:13 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/26 14:59:31 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	get_texture_x_pos(t_draw *draw, t_dda dda, t_texture *texture,
 	t_win window)
 {
+	draw->line_height = (int)(window.height / dda.wall_dist);
 	if (dda.side == 0)
 		draw->wall_hit_pos = dda.y_map_pos + dda.wall_dist
 			* dda.y_ray_direction;
@@ -27,7 +28,6 @@ static void	get_texture_x_pos(t_draw *draw, t_dda dda, t_texture *texture,
 		draw->texture_x_pos = texture[0].width - draw->texture_x_pos - 1;
 	if (dda.side == 1 && dda.y_ray_direction < 0)
 		draw->texture_x_pos = texture[0].width - draw->texture_x_pos - 1;
-	draw->line_height = (int)(window.height / dda.wall_dist);
 }
 
 static void	get_start_end_pixel(t_draw *draw, t_win window)
