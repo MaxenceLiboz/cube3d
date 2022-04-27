@@ -6,22 +6,11 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:55:16 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/27 08:27:52 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/27 09:04:29 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cube3d.h>
-
-void	reset(t_win mlx, t_data *data)
-{
-	for(int x = 0; x < mlx.width; x++)
-	{
-		for(int y = 0; y < mlx.height; y++)
-		{
-			my_mlx_pixel_put(data, x, y, 0x000000);
-		}
-	}
-}
 
 void	exit_cube(t_prg *prg)
 {
@@ -130,7 +119,6 @@ int	key_pressed(int keycode, t_prg *prg)
 		left_rot(prg);
 	else if (keycode == 124)
 		right_rot(prg);
-	reset(prg->win, &prg->img);
 	write_map(prg, prg->world_map);
 	mlx_put_image_to_window(prg->win.mlx, prg->win.win, prg->img.img, 0, 0);
 	return (0);
