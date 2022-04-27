@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 07:39:35 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/26 14:59:44 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/27 08:19:51 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ bool	initialization(t_prg *prg)
 	if (init_texture(prg->win, &prg->texture[3], "./pics/mossy.xpm")
 		== false)
 		ft_error("Texture initialization error\n", false);
-	prg->player.x_pos = 12;
-	prg->player.y_pos = 10;
+	prg->player.x_pos = 11;
+	prg->player.y_pos = 12;
 	prg->player.x_dir = -1;
 	prg->player.y_dir = 0;
 	prg->player.x_plane = 0;

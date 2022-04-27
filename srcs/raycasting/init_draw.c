@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 09:42:40 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/27 07:37:48 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/27 08:11:50 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ static void	get_start_end_pixel(t_draw *draw, t_win window, t_dda dda)
 static void	get_texture_index(t_draw *draw, t_dda dda)
 {
 	if (dda.side == 0 && (int)dda.x_step == 1)
-		draw->texture_index = 1;
+		draw->texture_index = 0; // color stone
 	else if (dda.side == 0 && (int)dda.x_step == -1)
-		draw->texture_index = 0;
+		draw->texture_index = 1; // blue stone
 	else if (dda.side == 1 && (int)dda.y_step == -1)
-		draw->texture_index = 2;
+		draw->texture_index = 2; // eagle
 	else if (dda.side == 1 && (int)dda.y_step == 1)
-		draw->texture_index = 3;
+		draw->texture_index = 3; // mossy
 }
 
 void	init_draw(t_prg *prg, t_draw *draw)
