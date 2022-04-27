@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/27 09:04:41 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/27 13:54:50 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <libft.h>
+# include <sys/time.h>
 
 typedef struct s_win
 {
@@ -73,6 +74,10 @@ typedef struct s_player
 	double	y_dir;
 	double	x_plane;
 	double	y_plane;
+	double	move_speed;
+	double	rotation_speed;
+	int		x_mouse_pos;
+	int		use_mouse;
 }	t_player;
 
 /*
@@ -140,12 +145,29 @@ void	perform_dda(t_dda *dda, int world_map[24][24]);
 
 /***************** DRAW ***********************/
 void	init_draw(t_prg *prg, t_draw *draw);
+void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
 
 /***************** RAYCASTING ***********************/
 void	write_map(t_prg *prg, int world_map[24][24]);
 
 /***************** HOOKS ***********************/
 int		key_pressed(int keycode, t_prg *prg);
+void	exit_cube(t_prg *prg);
+void	up(t_prg *prg);
+void	down(t_prg *prg);
+void	left(t_prg *prg);
+void	right(t_prg *prg);
+void	left_rot(t_prg *prg);
+void	right_rot(t_prg *prg);
+
+
+int		mouse_move(int x, int y, t_prg *prg);
+void	rotate_left_w_mouse(t_prg *prg);
+void	rotate_right_w_mouse(t_prg *prg);
+void	check_mouse_pos(t_prg *prg, int x, int y);
+
+int		refresh(t_prg *prg);
+
 
 /***************** DRAW ***********************/
 void	draw_img(t_prg *prg, int x);

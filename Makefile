@@ -10,8 +10,10 @@ SRCS		=	main.c											\
 				srcs/raycasting/dda.c 							\
 				srcs/raycasting/raycasting.c 					\
 				srcs/raycasting/init_draw.c 					\
-				srcs/raycasting/draw.c 					\
-				srcs/hooks/moving.c 							\
+				srcs/raycasting/draw.c 							\
+				srcs/hooks/keys.c 								\
+				srcs/hooks/mouse.c 								\
+				srcs/hooks/hooks.c 								\
 
 OBJS		=	$(addprefix ${OBJS_DIR}/, ${SRCS:.c=.o})
 OBJS_DIR	=	objects
@@ -27,7 +29,7 @@ LIBINCLUDES	=	-Iincludes -Iminilibx -Ilibft/includes
 
 LIBFLAGS	=	-framework OpenGL -framework AppKit
 
-LIBS		=	minilibx/libmlx.a libft/libft.a
+LIBS		=	libft/libft.a minilibx/libmlx.a # minilibx/libmlx.a
 
 NAME		=	main
 

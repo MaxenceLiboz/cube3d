@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 07:39:35 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/27 09:00:48 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/27 13:55:00 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ bool	initialization(t_prg *prg)
 	prg->player.y_plane = 0.66;
 	prg->draw.sky_color = 0x000080;
 	prg->draw.floor_color = 0x808080;
+	prg->player.use_mouse = 1;
 	return (true);
 }

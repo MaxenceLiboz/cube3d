@@ -6,13 +6,13 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 09:02:14 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/27 09:04:38 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/27 13:06:42 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cube3d.h>
 
-static void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
+void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
 {
 	char	*dst;
 	int		pixel;
