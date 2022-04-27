@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 08:59:10 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/26 10:09:18 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/26 14:52:44 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	get_step_and_init_side_dist(t_dda *dda, t_player *player)
 	if (dda->x_ray_direction < 0)
 	{
 		dda->x_step = -1;
-		dda->x_side_ray_dist = (dda->x_map_pos - player->x_pos)
+		dda->x_side_ray_dist = (player->x_pos - dda->x_map_pos)
 			* dda->x_side_delta_ray_dist;
 	}
 	else
@@ -29,7 +29,7 @@ static void	get_step_and_init_side_dist(t_dda *dda, t_player *player)
 	if (dda->y_ray_direction < 0)
 	{
 		dda->y_step = -1;
-		dda->y_side_ray_dist = (dda->y_map_pos - player->y_pos)
+		dda->y_side_ray_dist = (player->y_pos - dda->y_map_pos)
 			* dda->y_side_delta_ray_dist;
 	}
 	else
