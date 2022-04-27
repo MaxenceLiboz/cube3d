@@ -10,7 +10,8 @@ SRCS		=	main.c											\
 				srcs/raycasting/dda.c 							\
 				srcs/raycasting/raycasting.c 					\
 				srcs/raycasting/init_draw.c 					\
-				srcs/hooks/moving.c 					\
+				srcs/raycasting/draw.c 					\
+				srcs/hooks/moving.c 							\
 
 OBJS		=	$(addprefix ${OBJS_DIR}/, ${SRCS:.c=.o})
 OBJS_DIR	=	objects

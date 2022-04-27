@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/27 07:34:49 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/27 09:04:41 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ typedef struct s_draw
 	int				texture_y_pos;
 	double			wall_hit_pos;
 	union u_color	color;
+	int				sky_color;
+	int				floor_color;
 }	t_draw;
 
 typedef struct s_prg
@@ -119,6 +121,7 @@ typedef struct s_prg
 	struct s_texture	texture[4];
 	struct s_player		player;
 	struct s_dda		dda;
+	struct s_draw		draw;
 	int					world_map[24][24];
 }	t_prg;
 
@@ -137,12 +140,14 @@ void	perform_dda(t_dda *dda, int world_map[24][24]);
 
 /***************** DRAW ***********************/
 void	init_draw(t_prg *prg, t_draw *draw);
-void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
 
 /***************** RAYCASTING ***********************/
 void	write_map(t_prg *prg, int world_map[24][24]);
 
 /***************** HOOKS ***********************/
 int		key_pressed(int keycode, t_prg *prg);
+
+/***************** DRAW ***********************/
+void	draw_img(t_prg *prg, int x);
 
 #endif
