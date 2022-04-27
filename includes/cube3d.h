@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/26 11:05:09 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/27 07:34:49 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	init_dda(t_player *player, t_win window, t_dda *dda, int x);
 void	perform_dda(t_dda *dda, int world_map[24][24]);
 
 /***************** DRAW ***********************/
-void	init_draw(t_draw *draw, t_dda dda, t_win window, t_texture *texture);
+void	init_draw(t_prg *prg, t_draw *draw);
 void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
 
 /***************** RAYCASTING ***********************/

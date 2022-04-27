@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 08:20:03 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/26 15:01:06 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/27 07:34:57 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	draw_img(t_prg *prg, int x)
 	t_draw	draw;
 	int		y;
 
-	init_draw(&draw, prg->dda, prg->win, prg->texture);
+	init_draw(prg, &draw);
 	y = draw.draw_start_pixel;
 	while (y < draw.draw_end_pixel)
 	{
