@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/27 13:55:13 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/27 15:53:26 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ int	mouse_move(int x, int y, t_prg *prg)
 		check_mouse_pos(prg, x, y);
 		mlx_mouse_hide();
 	}
-	else
-		mlx_mouse_show();
 	return (0);
 }
 
@@ -86,6 +84,8 @@ int	refresh(t_prg *prg)
 	str = ft_itoa(1 / time_sec);
 	mlx_string_put(prg->win.mlx, prg->win.win, 15, 15, 0xFFFFFF, str);
 	mlx_string_put(prg->win.mlx, prg->win.win, 50, 15, 0xFFFFFF, "fps");
+	if (prg->player.use_mouse == -1)
+		mlx_mouse_show();
 	free(str);
 	return (0);
 }

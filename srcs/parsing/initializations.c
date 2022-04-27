@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 07:39:35 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/27 13:55:00 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/27 16:03:11 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ bool	initialization(t_prg *prg)
 		ft_error("Window initialization error\n", false);
 	if (img_init(prg->win, &prg->img) == false)
 		ft_error("Image initialization error\n", false);
-	if (init_texture(prg->win, &prg->texture[0], "./pics/colorstone.xpm")
+	if (init_texture(prg->win, &prg->texture[0], "./pics/gw110.xpm")
 		== false)
 		ft_error("Texture initialization error\n", false);
 	if (init_texture(prg->win, &prg->texture[1], "./pics/bluestone.xpm")

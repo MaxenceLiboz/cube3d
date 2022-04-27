@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 08:59:10 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/26 14:52:44 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/27 15:56:06 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	perform_dda(t_dda *dda, int	world_map[24][24])
 			dda->y_map_pos += dda->y_step;
 			dda->side = 1;
 		}
-		if (world_map[dda->x_map_pos][dda->y_map_pos] > 0)
+		if (world_map[dda->x_map_pos][dda->y_map_pos] == 1)
 			hit = true;
 	}
 	if (dda->side == 0)
