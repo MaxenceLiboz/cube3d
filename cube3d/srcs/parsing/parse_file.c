@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 13:59:10 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/04/28 10:25:10 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/28 14:47:32 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 */
 bool	init_texture(t_win window, t_texture *texture, char *filename)
 {
-	texture->width = 64;
-	texture->height = 64;
 	texture->relative_path = filename;
 	texture->img = mlx_xpm_file_to_image(window.mlx, texture->relative_path,
 			&texture->width, &texture->height);

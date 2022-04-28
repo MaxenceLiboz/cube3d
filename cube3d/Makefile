@@ -25,7 +25,7 @@ INCLUDES	=	includes/cube3d.h
 
 CC			= 	gcc
 
-CFLAGS		= 	-Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS		= 	-Wall -Wextra -Werror -O3 #-g -fsanitize=address
 
 LIBINCLUDES	=	-Iincludes -Iminilibx -Ilibft/includes
 
