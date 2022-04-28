@@ -59,6 +59,10 @@ $(LIBS):	${INCLUDES}
 			@make -C libft
 			@printf "\n$(BLUE)[ LIBFT COMPILATION DONE ]$(END)\n\n"
 
+norm:
+	norminette -R CheckForbiddenSourceHeader srcs main_bonus.c includes/cube3d_bonus.h libft
+
+
 clean:
 			@${RM} ${OBJS}
 			@printf "\tDeleting $(RED)$ objetcs \$(END)\n"
@@ -74,4 +78,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY: 	all clean fclean re
+.PHONY: 	all clean fclean re norm

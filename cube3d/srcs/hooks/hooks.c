@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/28 08:28:50 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/28 08:52:52 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	exit_cube(t_prg *prg)
 	keycode == 125 => down
 	keycode == 123 => left
 	keycode == 124 => right
-	1: For each keycode press move on the position related to the arrow.
-	2: Add some condition to never let the image leave the entire screen
 */
 int	key_pressed(int keycode, t_prg *prg)
 {
