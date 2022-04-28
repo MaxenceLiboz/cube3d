@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:26:47 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/04/28 15:01:53 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/28 17:26:15 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ void	set_grid_cell(t_prg *prg, int x, int y)
 {
 	t_point	cell_pos;
 
-	// if (x < 0 || x >= prg->win_width || y < 0 || y >= prg->win_height)
-	// 	return ;
 	cell_pos.x = x / prg->edition.cell_width;
 	cell_pos.y = y / prg->edition.cell_height;
+	if (cell_pos.x >= prg->parser.width || cell_pos.y >= prg->parser.height
+			|| cell_pos.x < 0 || cell_pos.y < 0)
+		return ;
 	if (prg->edition.mouse_keycode == 1)
 		prg->world_map[cell_pos.y][cell_pos.x] = 1;
 	else if (prg->edition.mouse_keycode == 2)
@@ -46,7 +47,8 @@ void	print_grid(t_prg *prg)
 			if (prg->world_map[y][x] == 0)
 				draw_square_cell(prg, point1, point2, DARK_GRAY);
 			else
-				draw_square_cell(prg, point1, point2, PINK);
+				draw_square_cell(prg, point1, point2, BLUE);
+			// draw_line(&prg->img, point2, point1);
 			x++;
 		}
 		y++;

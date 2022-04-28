@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/28 15:04:38 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/28 17:44:00 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,19 @@
 # define CYAN 0x0000FFFF
 # define PINK 0x00DD88BB
 # define LIGHT_BLUE 0x00AAAAFF
+# define TERM_END "\x1b[0m"
+# define TERM_RED "\x1b[31m"
+# define TERM_GREEN "\x1b[32m"
+# define TERM_BLUE "\x1b[34m"
+# define TERM_ERASE "\033[2K\r"
+# define TERM_BCKG_END "\x1b[0m"
+# define TERM_BCKG_RED "\x1b[41m"
+# define TERM_BCKG_GREEN "\x1b[42m"
+# define TERM_BCKG_YELLOW "\x1b[43m"
+# define TERM_BCKG_BLUE "\x1b[44m"
+# define TERM_BCKG_MAGENTA "\x1b[45m"
+# define TERM_BCKG_CYAN "\x1b[46m"
+# define TERM_BCKG_WHITE "\x1b[47m"
 typedef struct s_win
 {
 	void	*mlx;
@@ -138,6 +151,7 @@ typedef struct s_parse
 typedef struct s_edition
 {
 	int			mouse_pressed;
+	int			mouse_button;
     t_point		mouse_position;
     int			mouse_keycode;
 	int			cell_height;
@@ -171,6 +185,7 @@ bool	parse_file(char *argv, t_prg *prg);
 int		fill_texture(char *line, t_prg *prg);
 int 	fill_FC(char *line, t_prg *prg);
 int		parse_line(char *line, t_prg *prg, int len);
+bool	is_valid_map(t_prg *prg, int player_check);
 
 bool	window_init(t_win *window);
 bool	img_init(t_win window, t_data *img);
@@ -185,7 +200,9 @@ void	set_grid_cell(t_prg *prg, int x, int y);
 void	print_grid(t_prg *prg);
 void	clear_window(t_prg *prg);
 void	draw_square_cell(t_prg *prg, t_point point1, t_point point2,  int color);
-
+void 	draw_line(t_data *data, t_point p1, t_point p2);
+int		mouse_hook(int keycode, int x, int y, t_prg *prg);
+void	is_valid_new_map(t_prg *prg);
 /***************** ERROR ***********************/
 int		ft_error(char *str, int return_value);
 

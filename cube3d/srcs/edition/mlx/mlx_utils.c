@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 09:50:27 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/04/28 14:55:53 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/28 17:32:11 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@
 bool	run_window(t_prg *prg)
 {
 	// init_map_cell(data);
-	prg->edition.cell_height = prg->win.height / prg->parser.height;
-	prg->edition.cell_width = prg->win.width / prg->parser.width;
+	prg->edition.cell_height = prg->win.height / prg->parser.height * 0.4;
+	prg->edition.cell_width = prg->win.width / prg->parser.width * 0.4;
+	mlx_hook(prg->win.win, 4, 1L << 2, mouse_hook, prg);
 	mlx_hook(prg->win.win, 4, 1L << 2, mouse_pressed, prg);
 	mlx_hook(prg->win.win, 5, 1L << 3, mouse_released, prg);
 	mlx_hook(prg->win.win, 6, 1L << 6, updated_mouse_pos, prg);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/27 13:59:10 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/04/28 15:19:43 by tarchimb         ###   ########.fr       */
+/*   Created: 2022/04/28 15:22:54 by tarchimb          #+#    #+#             */
+/*   Updated: 2022/04/28 15:47:51 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ bool	init_texture(t_win window, t_texture *texture, char *filename)
 {
 	texture->width = 1365;
 	texture->height = 2048;
+
 	texture->relative_path = filename;
 	texture->img = mlx_xpm_file_to_image(window.mlx, texture->relative_path,
+		&texture->width, &texture->height);
+	if (texture->img == NULL)
 		return (false);
 	texture->addr = mlx_get_data_addr(texture->img, &texture->bits_per_pixel,
 			&texture->line_length, &texture->endian);
@@ -107,7 +110,6 @@ int	parse_line(char *line, t_prg *prg, int len)
 	if (len > prg->parser.width)
 			prg->parser.width = len;
 	prg->parser.height += 1;
-	dprintf(2,"%s\n", line);
 	return (1);
 }
 
@@ -122,12 +124,15 @@ bool	parse_file(char *argv, t_prg *prg)
 		return(ft_error("Can't open infile", false));
 	line = get_next_line(fd);
 	tmp = ft_lstnew(line);
+	prg->lst = NULL;
 	while (line)
 	{
 		tmp = ft_lstnew(line);
 		prg->parser.start += 1;
 		if (parse_line(tmp->content, prg, tmp->len) == 1)
+		{
 			ft_lstadd_back(&prg->lst, tmp);
+		}
 		else
 			ft_lstdelone(tmp, free);
 		line = get_next_line(fd);

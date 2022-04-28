@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/28 15:20:01 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/28 17:48:24 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,13 @@ int	exit_cube(t_prg *prg)
 */
 int	key_pressed(int keycode, t_prg *prg)
 {
-	dprintf(2, "%d\n",keycode);
 	if (keycode == 14)
-		prg->edition_mode = !prg->edition_mode;
+	{
+		if (prg->edition_mode == 0)
+			prg->edition_mode = !prg->edition_mode;
+		else if (prg->edition_mode == 1)
+			is_valid_new_map(prg);
+	}
 	if (keycode == 53)
 		exit_cube(prg);
 	else if (keycode == 13 && prg->edition_mode == 0)
@@ -78,10 +82,6 @@ int	refresh(t_prg *prg)
 		free(str);
 	}
 	else if (prg->edition_mode == 1)
-	{
-		mlx_loop_hook(prg->win.mlx, update, prg);
-		dprintf(2,"I'm in edition mode\n");
-		usleep(110000);
-	}
+		run_window(prg);
 	return (0);
 }

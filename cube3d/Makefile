@@ -12,6 +12,7 @@ SRCS		=	main.c											\
 				srcs/parsing/parsing.c 							\
 				srcs/parsing/parse_file.c 						\
 				srcs/parsing/init_mlx.c 						\
+				srcs/parsing/valid_new_map.c					\
 				srcs/raycasting/draw.c 							\
 				srcs/hooks/keys_moves.c 						\
 				srcs/hooks/keys_rotations.c 					\

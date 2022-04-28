@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:49:09 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/04/28 15:06:40 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/28 17:50:36 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,21 +92,7 @@ static void	fill_world_map(t_prg *prg)
 	}
 }
 
-# define TERM_END "\x1b[0m"
-# define TERM_RED "\x1b[31m"
-# define TERM_GREEN "\x1b[32m"
-# define TERM_BLUE "\x1b[34m"
-# define TERM_ERASE "\033[2K\r"
-# define TERM_BCKG_END "\x1b[0m"
-# define TERM_BCKG_RED "\x1b[41m"
-# define TERM_BCKG_GREEN "\x1b[42m"
-# define TERM_BCKG_YELLOW "\x1b[43m"
-# define TERM_BCKG_BLUE "\x1b[44m"
-# define TERM_BCKG_MAGENTA "\x1b[45m"
-# define TERM_BCKG_CYAN "\x1b[46m"
-# define TERM_BCKG_WHITE "\x1b[47m"
-
-static void	print_wrong_position(t_prg *prg)
+static int	print_wrong_position(t_prg *prg)
 {
 	int	i;
 	int	j;
@@ -118,45 +104,31 @@ static void	print_wrong_position(t_prg *prg)
 		while (i < prg->parser.width)
 		{
 			if (is_valid_position(prg, i, j) == false && prg->world_map[j][i] == 0)
-				printf("\x1b[41m  \x1b[0m");
-			else if (prg->world_map[j][i] == 0)
-				printf("\x1b[42m  \x1b[0m");
-			else if (prg->world_map[j][i] == 1)
-				printf("\x1b[44m  \x1b[0m");
-			else if (prg->world_map[j][i] == 3)
-				printf("\x1b[43m  \x1b[0m");
-			else if (prg->world_map[j][i] == 2)
-				printf("  ");
+				return (0);
 			i++;
 		}
-		printf("\n");
 		i = 0;
 		j++;
 	}
+	return (1);
 }
 
-static bool	is_valid_map(t_prg *prg)
+bool	is_valid_map(t_prg *prg, int player_check)
 {
 	int	x;
 	int	y;
 
-	x = 0;
 	y = 0;
 	prg->parser.pos_player = 0;
 	while (y < prg->parser.height)
 	{
+		x = 0;
 		while (x < prg->parser.width)
 		{
-			// if (prg->world_map[y][x] == 0)
-			// {
-				// if (is_valid_position(prg, x, y) == false)
-				// {
-					// print_wrong_position(prg);
-					// dprintf(2,"\nError: Value-->%d x-->%d y-->%d\n", prg->world_map[y][x], x ,y);
-				// }
-			// }
+			if (prg->world_map[y][x] == 0 && is_valid_position(prg, x, y) == false)
+				return (false);
 			if (prg->world_map[y][x] != 1 && prg->world_map[y][x] != 0 
-				&& prg->world_map[y][x] != 2)
+				&& prg->world_map[y][x] != 2 && player_check == 1)
 			{
 				if (position_player(prg->world_map[y][x], x, y, prg) == false)
 					return (false);
@@ -165,11 +137,10 @@ static bool	is_valid_map(t_prg *prg)
 			}
 			x++;
 		}
-		x = 0;
 		y++;
 	}
 	print_wrong_position(prg);
-	if (prg->parser.pos_player > 1 || prg->parser.pos_player == 0)
+	if ((prg->parser.pos_player > 1 || prg->parser.pos_player == 0) && player_check == 1)
 	{
 		dprintf(2, "Wrong");
 		return (false);
@@ -199,12 +170,16 @@ static bool	init_map(t_prg *prg)
 		x++;
 	}
 	fill_world_map(prg);
-	is_valid_map(prg);
+	is_valid_map(prg, 1);
 	return (true);
 }
 
 bool	parsing(t_prg *prg, char **argv, int argc)
 {
+	prg->parser.height = 0;
+	prg->parser.pos_player = 0;
+	prg->parser.start = 0;
+	prg->parser.width = 0;
 	if (argc != 2)
 		return (false);
 	if (!parse_file(argv[1], prg))
