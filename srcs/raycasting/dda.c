@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 08:59:10 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/26 10:09:18 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/26 14:34:38 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	init_dda(t_player *player, t_win window, t_dda *dda, int x)
 	get_step_and_init_side_dist(dda, player);
 }
 
-void	perform_dda(t_dda *dda, int	world_map[24][24])
+void	perform_dda(t_dda *dda, int	**world_map)
 {
 	bool	hit;
 

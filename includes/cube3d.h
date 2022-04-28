@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/26 11:05:09 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/27 17:35:47 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,14 @@ typedef struct s_draw
 	union u_color	color;
 }	t_draw;
 
+typedef struct s_parse
+{
+	int		height;
+	int		width;
+	int		pos_player;
+	int		start; // Where the map is starting in the file
+}	t_parse;
+
 typedef struct s_prg
 {
 	struct s_win		win;
@@ -119,7 +127,9 @@ typedef struct s_prg
 	struct s_texture	texture[4];
 	struct s_player		player;
 	struct s_dda		dda;
-	int					world_map[24][24];
+	t_parse				parser;
+	t_list				*lst;
+	int					**world_map;
 }	t_prg;
 
 /***************** PARSING ***********************/
@@ -128,19 +138,26 @@ bool	img_init(t_win window, t_data *img);
 bool	init_texture(t_win window, t_texture *texture, char *filename);
 bool	initialization(t_prg *prg);
 
+bool	parsing(t_prg *prg, char **argv);
+bool	parse_file(char *argv, t_prg *prg);
+int		fill_texture(char *line, t_prg *prg);
+int 	fill_FC(char *line, t_prg *prg);
+int		parse_line(char *line, t_prg *prg, int len);
+
+
 /***************** ERROR ***********************/
 int		ft_error(char *str, int return_value);
 
 /***************** DDA ***********************/
 void	init_dda(t_player *player, t_win window, t_dda *dda, int x);
-void	perform_dda(t_dda *dda, int world_map[24][24]);
+void	perform_dda(t_dda *dda, int **world_map);
 
 /***************** DRAW ***********************/
 void	init_draw(t_draw *draw, t_dda dda, t_win window, t_texture *texture);
 void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
 
 /***************** RAYCASTING ***********************/
-void	write_map(t_prg *prg, int world_map[24][24]);
+void	write_map(t_prg *prg, int **world_map);
 
 /***************** HOOKS ***********************/
 int		key_pressed(int keycode, t_prg *prg);

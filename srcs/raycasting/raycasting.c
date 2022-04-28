@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 08:20:03 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/26 10:52:50 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/26 14:34:18 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	draw_img(t_prg *prg, int x)
 	}
 }
 
-void	write_map(t_prg *prg, int world_map[24][24])
+void	write_map(t_prg *prg, int **world_map)
 {
 	int		x;
 
