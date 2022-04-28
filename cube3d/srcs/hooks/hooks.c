@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/28 15:03:33 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/28 15:20:01 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	key_pressed(int keycode, t_prg *prg)
 		left(prg);
 	else if (keycode == 2 && prg->edition_mode == 0)
 		right(prg);
+	refresh(prg);
 	return (0);
 }
 

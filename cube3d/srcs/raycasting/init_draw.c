@@ -6,7 +6,11 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 09:42:40 by mliboz            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/04/28 13:34:38 by tarchimb         ###   ########.fr       */
+=======
+/*   Updated: 2022/04/28 14:03:02 by mliboz           ###   ########.fr       */
+>>>>>>> 4069446dfe5dac0a30362920ca2c8e5d55c39a44
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +34,23 @@ static void	get_texture_x_pos(t_draw *draw, t_prg *prg)
 
 static void	get_start_end_pixel(t_draw *draw, t_win window, t_dda dda)
 {
-	draw->line_height = (int)(window.height / dda.wall_dist);
-	draw->draw_start_pixel = -draw->line_height / 2 + window.height / 2;
-	draw->draw_end_pixel = draw->line_height / 2 + window.height / 2;
+	if (dda.wall_dist < 0.1)
+	{
+		draw->line_height = window.height;
+		draw->draw_start_pixel = 0;
+		draw->draw_end_pixel = window.height;
+	}
+	else
+	{
+		draw->line_height = (int)(window.height / dda.wall_dist);
+		draw->draw_start_pixel = -draw->line_height / 2 + window.height / 2;
+		draw->draw_end_pixel = draw->line_height / 2 + window.height / 2;
+	}
 	if (draw->draw_start_pixel < 0)
 		draw->draw_start_pixel = 0;
 	if (draw->draw_end_pixel >= window.height)
 		draw->draw_end_pixel = window.height - 1;
+	// dprintf(2, "End pixel: %d, Line_height: %d, wall_dist: %f\n", draw->draw_end_pixel, draw->line_height, dda.wall_dist);
 }
 
 /*
