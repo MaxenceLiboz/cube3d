@@ -1,9 +1,9 @@
-NO ./pics/mossy.xpm
-SO ./pics/mossy.xpm
-WE ./pics/mossy.xpm
-EA ./pics/mossy.xpm
-F 220,100,0
-C 225,30,0
+NO ./pics/gw110.xpm
+SO ./pics/colorstone.xpm
+WE ./pics/bluestone.xpm
+EA ./pics/eagle.xpm
+F 120,120,120
+C 120,120,230
 
         1111111111111111111111111
         1000000000110000000000001

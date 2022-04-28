@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_draw.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 09:42:40 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/28 08:26:10 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/28 13:34:38 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	get_texture_x_pos(t_draw *draw, t_prg *prg)
 		draw->wall_hit_pos = prg->player.x_pos + prg->dda.wall_dist
 			* prg->dda.x_ray_direction;
 	draw->wall_hit_pos -= floor((draw->wall_hit_pos));
-	draw->texture_x_pos = (int)(draw->wall_hit_pos * (prg->texture[0].width));
+	draw->texture_x_pos = (int)(draw->wall_hit_pos * (prg->texture[0].height));
 	if (prg->dda.side == 0 && prg->dda.x_ray_direction > 0)
 		draw->texture_x_pos = prg->texture[0].width - draw->texture_x_pos - 1;
 	if (prg->dda.side == 1 && prg->dda.y_ray_direction < 0)

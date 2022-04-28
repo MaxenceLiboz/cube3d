@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 13:59:10 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/04/28 10:25:10 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/28 15:15:55 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 */
 bool	init_texture(t_win window, t_texture *texture, char *filename)
 {
-	texture->width = 64;
-	texture->height = 64;
+	texture->width = 1365;
+	texture->height = 2048;
 	texture->relative_path = filename;
 	texture->img = mlx_xpm_file_to_image(window.mlx, texture->relative_path,
 			&texture->width, &texture->height);
@@ -109,6 +109,7 @@ int	parse_line(char *line, t_prg *prg, int len)
 	if (len > prg->parser.width)
 			prg->parser.width = len;
 	prg->parser.height += 1;
+	dprintf(2,"%s\n", line);
 	return (1);
 }
 

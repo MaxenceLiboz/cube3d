@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/28 09:54:05 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/28 15:04:38 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,17 @@
 # include <libft.h>
 # include <sys/time.h>
 
+# define WHITE 0x00FFFFFF
+# define DARK_GRAY 0x00222222
+# define BLACK 0x00000000
+# define RED 0x00FF0000
+# define GREEN 0x0000FF00
+# define BLUE 0x000000FF
+# define PURPLE 0x00FF00FF
+# define YELLOW 0x00FFFF00
+# define CYAN 0x0000FFFF
+# define PINK 0x00DD88BB
+# define LIGHT_BLUE 0x00AAAAFF
 typedef struct s_win
 {
 	void	*mlx;
@@ -124,6 +135,15 @@ typedef struct s_parse
 	int		start; // Where the map is starting in the file
 }	t_parse;
 
+typedef struct s_edition
+{
+	int			mouse_pressed;
+    t_point		mouse_position;
+    int			mouse_keycode;
+	int			cell_height;
+	int			cell_width;
+}	t_edition;
+
 typedef struct s_prg
 {
 	struct s_win		win;
@@ -136,6 +156,8 @@ typedef struct s_prg
 	t_parse				parser;
 	t_list				*lst;
 	int					**world_map;
+	int					edition_mode;
+	t_edition			edition;
 }	t_prg;
 
 /***************** PARSING ***********************/
@@ -144,7 +166,7 @@ bool	img_init(t_win window, t_data *img);
 bool	init_texture(t_win window, t_texture *texture, char *filename);
 bool	initialization(t_prg *prg);
 
-bool	parsing(t_prg *prg, char **argv);
+bool	parsing(t_prg *prg, char **argv, int argc);
 bool	parse_file(char *argv, t_prg *prg);
 int		fill_texture(char *line, t_prg *prg);
 int 	fill_FC(char *line, t_prg *prg);
@@ -152,6 +174,17 @@ int		parse_line(char *line, t_prg *prg, int len);
 
 bool	window_init(t_win *window);
 bool	img_init(t_win window, t_data *img);
+
+/***************** EDITION ***********************/
+bool	run_window(t_prg *prg);
+int		update(t_prg *prg);
+int		mouse_pressed(int keycode, int x, int y, t_prg *prg);
+int		mouse_released(int keycode, int x, int y, t_prg *prg);
+int		updated_mouse_pos(int x, int y, t_prg *prg);
+void	set_grid_cell(t_prg *prg, int x, int y);
+void	print_grid(t_prg *prg);
+void	clear_window(t_prg *prg);
+void	draw_square_cell(t_prg *prg, t_point point1, t_point point2,  int color);
 
 /***************** ERROR ***********************/
 int		ft_error(char *str, int return_value);
