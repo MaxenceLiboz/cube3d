@@ -5,14 +5,13 @@ PURPLE		=	\033[35m
 BLUE		= 	\033[0;34m
 
 SRCS		=	main.c											\
-				srcs/parsing/initializations.c					\
 				srcs/error/error_utils.c 						\
 				srcs/raycasting/dda.c 							\
 				srcs/raycasting/raycasting.c 					\
 				srcs/raycasting/init_draw.c 					\
-				srcs/hooks/moving.c 							\
 				srcs/parsing/parsing.c 							\
 				srcs/parsing/parse_file.c 						\
+				srcs/parsing/init_mlx.c 						\
 				srcs/raycasting/draw.c 							\
 				srcs/hooks/keys_moves.c 						\
 				srcs/hooks/keys_rotations.c 					\

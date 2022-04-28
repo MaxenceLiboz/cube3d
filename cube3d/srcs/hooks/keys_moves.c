@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:55:16 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/28 08:31:15 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/28 11:16:32 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,40 @@
 
 void	up(t_prg *prg)
 {
-	if (prg->player.x_pos + prg->player.x_dir * prg->player.move_speed < 23
+	if (prg->player.x_pos + prg->player.x_dir * prg->player.move_speed < prg->parser.width - 1
 		&& prg->player.x_pos + prg->player.x_dir * prg->player.move_speed >= 1)
 		prg->player.x_pos += prg->player.x_dir * prg->player.move_speed;
-	if (prg->player.y_pos + prg->player.y_dir * prg->player.move_speed < 23
+	if (prg->player.y_pos + prg->player.y_dir * prg->player.move_speed < prg->parser.height - 1
 		&& prg->player.y_pos + prg->player.y_dir * prg->player.move_speed >= 1)
 		prg->player.y_pos += prg->player.y_dir * prg->player.move_speed;
 }
 
 void	down(t_prg *prg)
 {
-	if (prg->player.x_pos - prg->player.x_dir * prg->player.move_speed < 23
+	if (prg->player.x_pos - prg->player.x_dir * prg->player.move_speed < prg->parser.width - 1
 		&& prg->player.x_pos - prg->player.x_dir * prg->player.move_speed >= 1)
 		prg->player.x_pos -= prg->player.x_dir * prg->player.move_speed;
-	if (prg->player.y_pos - prg->player.y_dir * prg->player.move_speed < 23
+	if (prg->player.y_pos - prg->player.y_dir * prg->player.move_speed < prg->parser.height - 1
 		&& prg->player.y_pos - prg->player.y_dir * prg->player.move_speed >= 1)
 		prg->player.y_pos -= prg->player.y_dir * prg->player.move_speed;
 }
 
 void	left(t_prg *prg)
 {
-	if (prg->player.x_pos - prg->player.y_dir * prg->player.move_speed < 23
+	if (prg->player.x_pos - prg->player.y_dir * prg->player.move_speed < prg->parser.width - 1
 		&& prg->player.x_pos - prg->player.y_dir * prg->player.move_speed >= 1)
 		prg->player.x_pos -= prg->player.y_dir * prg->player.move_speed;
-	if (prg->player.y_pos + prg->player.x_dir * prg->player.move_speed < 23
+	if (prg->player.y_pos + prg->player.x_dir * prg->player.move_speed < prg->parser.height - 1
 		&& prg->player.y_pos + prg->player.x_dir * prg->player.move_speed >= 1)
 		prg->player.y_pos += prg->player.x_dir * prg->player.move_speed;
 }
 
 void	right(t_prg *prg)
 {
-	if (prg->player.x_pos + prg->player.y_dir * prg->player.move_speed < 23
+	if (prg->player.x_pos + prg->player.y_dir * prg->player.move_speed < prg->parser.width - 1
 		&& prg->player.x_pos + prg->player.y_dir * prg->player.move_speed >= 1)
 		prg->player.x_pos += prg->player.y_dir * prg->player.move_speed;
-	if (prg->player.y_pos - prg->player.x_dir * prg->player.move_speed < 23
+	if (prg->player.y_pos - prg->player.x_dir * prg->player.move_speed < prg->parser.height - 1
 		&& prg->player.y_pos - prg->player.x_dir * prg->player.move_speed >= 1)
 		prg->player.y_pos -= prg->player.x_dir * prg->player.move_speed;
 }

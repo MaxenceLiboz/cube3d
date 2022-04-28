@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 08:59:10 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/28 08:25:41 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/28 11:16:21 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,12 @@ void	init_dda(t_player *player, t_win window, t_dda *dda, int x)
 	get_step_and_init_side_dist(dda, player);
 }
 
-void	perform_dda(t_dda *dda, int world_map[24][24])
+void	perform_dda(t_prg *prg, t_dda *dda, int **world_map)
 {
 	bool	hit;
 
 	hit = false;
+	(void)prg;
 	while (hit == false)
 	{
 		if (dda->x_side_ray_dist < dda->y_side_ray_dist)
@@ -77,7 +78,7 @@ void	perform_dda(t_dda *dda, int world_map[24][24])
 			dda->y_map_pos += dda->y_step;
 			dda->side = 1;
 		}
-		if (world_map[dda->x_map_pos][dda->y_map_pos] == 1)
+		if (world_map[dda->y_map_pos][dda->x_map_pos] > 0)
 			hit = true;
 	}
 	if (dda->side == 0)

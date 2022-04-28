@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/28 09:31:36 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/28 09:54:05 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ typedef struct s_prg
 	struct s_texture	texture[4];
 	struct s_player		player;
 	struct s_dda		dda;
+	struct s_draw		draw;
 	t_parse				parser;
 	t_list				*lst;
 	int					**world_map;
@@ -149,17 +150,20 @@ int		fill_texture(char *line, t_prg *prg);
 int 	fill_FC(char *line, t_prg *prg);
 int		parse_line(char *line, t_prg *prg, int len);
 
+bool	window_init(t_win *window);
+bool	img_init(t_win window, t_data *img);
 
 /***************** ERROR ***********************/
 int		ft_error(char *str, int return_value);
 
 /***************** DDA ***********************/
 void	init_dda(t_player *player, t_win window, t_dda *dda, int x);
-void	perform_dda(t_dda *dda, int **world_map);
+void	perform_dda(t_prg *prg, t_dda *dda, int **world_map);
 
 /***************** DRAW ***********************/
 void	init_draw(t_prg *prg, t_draw *draw);
 void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
+void	draw_background(int x, t_prg *prg);
 
 /***************** RAYCASTING ***********************/
 void	write_map(t_prg *prg, int **world_map);
