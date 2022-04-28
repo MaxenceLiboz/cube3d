@@ -6,13 +6,13 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:19:18 by mliboz            #+#    #+#             */
-/*   Updated: 2022/02/16 16:47:00 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/28 08:57:04 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_lstnew(char *content)
 {
 	t_list	*lst;
 
@@ -20,6 +20,9 @@ t_list	*ft_lstnew(void *content)
 	if (!lst)
 		return (0);
 	lst->content = content;
+	lst->len = ft_strlen(content);
+	if (lst->content[lst->len - 1] == '\n')
+		lst->len -= 1;
 	lst->next = 0;
 	return (lst);
 }

@@ -10,6 +10,9 @@ SRCS		=	main.c											\
 				srcs/raycasting/dda.c 							\
 				srcs/raycasting/raycasting.c 					\
 				srcs/raycasting/init_draw.c 					\
+				srcs/hooks/moving.c 							\
+				srcs/parsing/parsing.c 							\
+				srcs/parsing/parse_file.c 						\
 				srcs/raycasting/draw.c 							\
 				srcs/hooks/keys_moves.c 						\
 				srcs/hooks/keys_rotations.c 					\

@@ -3,10 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD:srcs/raycasting/raycasting.c
+/*   Created: 2022/04/26 08:20:03 by mliboz            #+#    #+#             */
+/*   Updated: 2022/04/26 14:34:18 by tarchimb         ###   ########.fr       */
+=======
 /*   Created: 2022/04/27 09:02:14 by mliboz            #+#    #+#             */
 /*   Updated: 2022/04/28 08:25:53 by mliboz           ###   ########.fr       */
+>>>>>>> 86f6068c1dc06de6414c0d8f0375bcf26792ef1b:cube3d/srcs/raycasting/draw.c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +74,22 @@ void	draw_img(t_prg *prg, int x)
 		prg->draw.texture_start_pos += prg->draw.texture_step;
 		y++;
 	}
+<<<<<<< HEAD:srcs/raycasting/raycasting.c
+}
+
+void	write_map(t_prg *prg, int **world_map)
+{
+	int		x;
+
+	x = 0;
+	while (x < prg->win.width)
+	{
+		init_dda(&prg->player, prg->win, &prg->dda, x);
+		perform_dda(&prg->dda, world_map);
+		draw_img(prg, x);
+		x++;
+	}
+=======
 	draw_background(x, prg);
+>>>>>>> 86f6068c1dc06de6414c0d8f0375bcf26792ef1b:cube3d/srcs/raycasting/draw.c
 }
