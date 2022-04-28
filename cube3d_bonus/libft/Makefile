@@ -1,0 +1,93 @@
+END			=	\033[0m
+RED			=	\033[31m
+GREEN		=	\033[0;32m
+PURPLE		=	\033[35m
+BLUE		= 	\033[0;34m
+
+SRCS		=	./srcs/ft_atoi.c					\
+				./srcs/is_atoi.c					\
+				./srcs/ft_atoi_base.c				\
+				./srcs/ft_calloc.c					\
+				./srcs/ft_isalpha.c 				\
+				./srcs/ft_isdigit.c 				\
+				./srcs/ft_itoa.c					\
+      			./srcs/ft_memcmp.c 					\
+				./srcs/ft_memmove.c 				\
+				./srcs/ft_split.c 					\
+				./srcs/ft_strdup.c 					\
+				./srcs/ft_strjoin.c 				\
+				./srcs/ft_strlcpy.c 				\
+				./srcs/ft_strmapi.c 				\
+				./srcs/ft_strnstr.c 				\
+				./srcs/ft_strtrim.c 				\
+				./srcs/ft_tolower.c 				\
+				./srcs/ft_bzero.c 					\
+				./srcs/ft_isalnum.c 				\
+				./srcs/ft_isascii.c 				\
+				./srcs/ft_isprint.c 				\
+				./srcs/ft_memchr.c 					\
+				./srcs/ft_memcpy.c 					\
+				./srcs/ft_memset.c 					\
+				./srcs/ft_strchr.c 					\
+				./srcs/ft_striteri.c 				\
+				./srcs/ft_strlcat.c 				\
+				./srcs/ft_strlen.c 					\
+				./srcs/ft_strncmp.c 				\
+				./srcs/ft_strrchr.c 				\
+				./srcs/ft_substr.c 					\
+				./srcs/ft_toupper.c					\
+				./srcs/ft_lstnew.c 					\
+				./srcs/ft_lstadd_front.c 			\
+				./srcs/ft_lstsize.c 				\
+				./srcs/ft_lstlast.c					\
+				./srcs/ft_lstadd_back.c 			\
+				./srcs/ft_lstdelone.c 				\
+				./srcs/ft_lstclear.c	 			\
+				./srcs/ft_lstiter.c 				\
+				./srcs/ft_lstmap.c					\
+				./srcs/get_next_line.c				\
+				./srcs/ft_convert_base_fd.c 		\
+				./srcs/ft_putchar_fd.c 				\
+				./srcs/ft_putnbr_fd.c 				\
+				./srcs/ft_putunbr_fd.c 				\
+				./srcs/ft_putendl_fd.c 				\
+				./srcs/ft_putstr_fd.c 				\
+				./srcs/ft_putptr_fd.c 				\
+
+OBJS		=	${SRCS:.c=.o}
+
+INCLUDES	=	./includes/libft.h
+
+CC			= 	gcc
+
+CFLAGS		= 	-Wall -Wextra -Werror -g
+
+LIBNAME		=	libft.a
+
+RM			=	rm -f
+
+A			=  1
+
+B			=	1
+
+all:		${LIBNAME}
+
+%.o : 		%.c ${INCLUDES}
+			@${CC} ${CFLAGS} -I includes -c $< -o $@
+			@printf "\r\033[K\tCompilation of $(GREEN)$ $< ==> $ $@\$(END)"
+
+$(LIBNAME):	${OBJS} ${INCLUDES}
+			@printf "\r\033[K\tCompilation :.c=.o $(GREEN)done\$(END)"
+			@ar rcs ${LIBNAME} ${OBJS}
+			@printf "\n\tCreating $(GREEN)$ $(LIBNAME) \$(END)\n"
+
+clean:
+			@${RM} ${OBJS}
+
+fclean:		clean
+			@${RM} ${LIBNAME}
+			@printf "\tDeleting $(RED)$ ${LIBNAME} \$(END)\n"
+
+re:			fclean all
+
+.PHONY: 	all clean fclean re
