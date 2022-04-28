@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   valid_new_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 14:44:04 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/28 15:41:27 by tarchimb         ###   ########.fr       */
+/*   Created: 2022/04/28 17:39:56 by tarchimb          #+#    #+#             */
+/*   Updated: 2022/04/28 17:54:57 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-#include <stdio.h>
+#include "cube3d.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int		mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string);
+
+void	is_valid_new_map(t_prg *prg)
 {
-	t_list	*last;
-
-	if (!new)
-		return ;
-	new->next = 0;
-	if (!*lst)
-	{
-		*lst = new;
-	}
+	prg->edition_mode = 2;
+	if (is_valid_map(prg, 0) == true)
+		prg->edition_mode = 0;
 	else
 	{
-		last = *lst;
-		while (last->next)
-			last = last->next;
-		last->next = new;
+		
+		mlx_string_put(prg->win.mlx, prg->win.win, 1000, 500, RED, "Fuck Off\n");
+		printf("wrong map\n");
+		prg->edition_mode = 1;
 	}
 }

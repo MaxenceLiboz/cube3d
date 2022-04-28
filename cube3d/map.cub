@@ -1,7 +1,7 @@
-NO ./pics/tarch.xpm
-SO ./pics/azanane.xpm
-WE ./pics/mliboz.xpm
-EA ./pics/bbischof.xpm
+NO ./pics/gw110.xpm
+SO ./pics/colorstone.xpm
+WE ./pics/bluestone.xpm
+EA ./pics/eagle.xpm
 F 120,120,120
 C 120,120,230
 

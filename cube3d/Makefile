@@ -12,10 +12,14 @@ SRCS		=	main.c											\
 				srcs/parsing/parsing.c 							\
 				srcs/parsing/parse_file.c 						\
 				srcs/parsing/init_mlx.c 						\
+				srcs/parsing/valid_new_map.c					\
 				srcs/raycasting/draw.c 							\
 				srcs/hooks/keys_moves.c 						\
 				srcs/hooks/keys_rotations.c 					\
 				srcs/hooks/hooks.c 								\
+				srcs/edition/draw/print_utils.c					\
+				srcs/edition/mlx/mlx_hooks.c					\
+				srcs/edition/mlx/mlx_utils.c					\
 
 OBJS		=	$(addprefix ${OBJS_DIR}/, ${SRCS:.c=.o})
 OBJS_DIR	=	objects

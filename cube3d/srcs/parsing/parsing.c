@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:49:09 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/04/28 11:15:11 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/28 17:50:36 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static void	fill_world_map(t_prg *prg)
 	}
 }
 
-static void	print_wrong_position(t_prg *prg)
+static int	print_wrong_position(t_prg *prg)
 {
 	int	i;
 	int	j;
@@ -104,53 +104,43 @@ static void	print_wrong_position(t_prg *prg)
 		while (i < prg->parser.width)
 		{
 			if (is_valid_position(prg, i, j) == false && prg->world_map[j][i] == 0)
-			{
-				dprintf(2, "\033[31m%d\033[0m",prg->world_map[j][i]);
-			}
-			else
-				dprintf(2, "%d",prg->world_map[j][i]);
+				return (0);
 			i++;
 		}
-		dprintf(2, "\n");
 		i = 0;
 		j++;
 	}
+	return (1);
 }
 
-static bool	is_valid_map(t_prg *prg)
+bool	is_valid_map(t_prg *prg, int player_check)
 {
 	int	x;
 	int	y;
 
-	x = 0;
 	y = 0;
+	prg->parser.pos_player = 0;
 	while (y < prg->parser.height)
 	{
+		x = 0;
 		while (x < prg->parser.width)
 		{
-			if (prg->world_map[y][x] == 0)
-			{
-				if (is_valid_position(prg, x, y) == false)
-				{
-					print_wrong_position(prg);
-					dprintf(2,"\nError: Value-->%d x-->%d y-->%d\n", prg->world_map[y][x], x ,y);
-					exit(0);
-				}
-			}
+			if (prg->world_map[y][x] == 0 && is_valid_position(prg, x, y) == false)
+				return (false);
 			if (prg->world_map[y][x] != 1 && prg->world_map[y][x] != 0 
-				&& prg->world_map[y][x] != 2)
+				&& prg->world_map[y][x] != 2 && player_check == 1)
 			{
 				if (position_player(prg->world_map[y][x], x, y, prg) == false)
 					return (false);
 				prg->parser.pos_player += 1;
-				prg->world_map[y][x] = 0;
+				prg->world_map[y][x] = 3;
 			}
 			x++;
 		}
-		x = 0;
 		y++;
 	}
-	if (prg->parser.pos_player > 1 || prg->parser.pos_player == 0)
+	print_wrong_position(prg);
+	if ((prg->parser.pos_player > 1 || prg->parser.pos_player == 0) && player_check == 1)
 	{
 		dprintf(2, "Wrong");
 		return (false);
@@ -180,12 +170,18 @@ static bool	init_map(t_prg *prg)
 		x++;
 	}
 	fill_world_map(prg);
-	is_valid_map(prg);
+	is_valid_map(prg, 1);
 	return (true);
 }
 
-bool	parsing(t_prg *prg, char **argv)
+bool	parsing(t_prg *prg, char **argv, int argc)
 {
+	prg->parser.height = 0;
+	prg->parser.pos_player = 0;
+	prg->parser.start = 0;
+	prg->parser.width = 0;
+	if (argc != 2)
+		return (false);
 	if (!parse_file(argv[1], prg))
 		return (false);
 	if (!init_map(prg))
