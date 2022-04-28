@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/28 11:16:25 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/04/28 11:33:40 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	key_pressed(int keycode, t_prg *prg)
 		left(prg);
 	else if (keycode == 2)
 		right(prg);
+	refresh(prg);
 	return (0);
 }
 
