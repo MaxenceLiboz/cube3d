@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:26:47 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/04/28 18:47:45 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/29 09:43:29 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,32 @@ void	set_grid_cell(t_prg *prg, int x, int y)
 	if (cell_pos.x >= prg->parser.width || cell_pos.y >= prg->parser.height
 			|| cell_pos.x < 0 || cell_pos.y < 0)
 		return ;
-	if (prg->edition.mouse_keycode == 2)
+	if (prg->edition.mouse_keycode == 2 && ((int)prg->player.x_pos != cell_pos.x
+		|| (int)prg->player.y_pos != cell_pos.y))
 		prg->world_map[cell_pos.y][cell_pos.x] = 0;
-	else if (prg->edition.mouse_keycode == 1)
+	else if (prg->edition.mouse_keycode == 1 && ((int)prg->player.x_pos
+		!= cell_pos.x || (int)prg->player.y_pos != cell_pos.y))
 		prg->world_map[cell_pos.y][cell_pos.x] = 1;
-	else if (prg->edition.mouse_keycode == 3)
+	else if (prg->edition.mouse_keycode == 3 && ((int)prg->player.x_pos
+		!= cell_pos.x || (int)prg->player.y_pos != cell_pos.y))
 		prg->world_map[cell_pos.y][cell_pos.x] = 2;
+}
+
+void draw_circle(t_data *data, t_point center)
+{
+	t_point pos;
+	int radius = 5;
+
+	for (int y = center.y - radius; y < center.y + radius; y++)
+	{
+			for (int x = center.x - radius; x < center.x + radius; x++)
+			{
+					pos.y = (center.y - y) * (center.y - y);
+					pos.x = (center.x - x) * (center.x - x);
+					if ((float)(pos.x + pos.y) - (radius * radius) < 0.1f)
+							my_mlx_pixel_put(data, x, y, YELLOW);
+			}
+	}
 }
 
 void	print_grid(t_prg *prg)
@@ -62,18 +82,12 @@ void	print_grid(t_prg *prg)
 		y++;
 		x = 0;
 	}
+	point1.x = prg->player.x_pos * prg->edition.cell_width;
+	point1.y = prg->player.y_pos * prg->edition.cell_height;
+	point2.x = point1.x + prg->edition.cell_width;
+	point2.y = point1.y + prg->edition.cell_height;
+	draw_circle(&prg->img, point1);
 }
-
-// void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-// {
-// 	char	*dst;
-
-// 	if (x >= prg->win_width || y >= data->win_height || x < 0 || y < 0)
-// 		return ;
-// 	dst = data->addr + (y * data->line_length + x
-// 			* (data->bits_per_pixels / 8));
-// 	*(unsigned int *)dst = color;
-// }
 
 void	clear_window(t_prg *prg)
 {
