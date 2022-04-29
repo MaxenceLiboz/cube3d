@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:22:54 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/04/28 15:47:51 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/28 18:31:49 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	fill_texture(char *line, t_prg *prg)
 
 	tmp = ft_substr(line, 3, ft_strlen(line) - 4);
 	tmp = ft_strtrim(tmp, " ");
-	// if (!tmp || open(tmp, O_RDONLY) == -1)
-	// 	return (-1);
+	if (!tmp || open(tmp, O_RDONLY) == -1)
+		return (-1);
 	if (line[0] == 'N')
 	{
 		if (init_texture(prg->win, &prg->texture[0], tmp) == false)

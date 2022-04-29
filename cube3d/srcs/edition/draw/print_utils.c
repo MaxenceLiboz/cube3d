@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:26:47 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/04/28 17:26:15 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/28 18:47:45 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ void	set_grid_cell(t_prg *prg, int x, int y)
 	if (cell_pos.x >= prg->parser.width || cell_pos.y >= prg->parser.height
 			|| cell_pos.x < 0 || cell_pos.y < 0)
 		return ;
-	if (prg->edition.mouse_keycode == 1)
-		prg->world_map[cell_pos.y][cell_pos.x] = 1;
-	else if (prg->edition.mouse_keycode == 2)
+	if (prg->edition.mouse_keycode == 2)
 		prg->world_map[cell_pos.y][cell_pos.x] = 0;
+	else if (prg->edition.mouse_keycode == 1)
+		prg->world_map[cell_pos.y][cell_pos.x] = 1;
+	else if (prg->edition.mouse_keycode == 3)
+		prg->world_map[cell_pos.y][cell_pos.x] = 2;
 }
 
 void	print_grid(t_prg *prg)
@@ -45,10 +47,16 @@ void	print_grid(t_prg *prg)
 			point2.x = point1.x + prg->edition.cell_width;
 			point2.y = point1.y + prg->edition.cell_height;
 			if (prg->world_map[y][x] == 0)
-				draw_square_cell(prg, point1, point2, DARK_GRAY);
-			else
+			{
+				if (is_valid_position(prg, x, y) == true)
+					draw_square_cell(prg, point1, point2, BLACK);
+				else
+					draw_square_cell(prg, point1, point2, RED);
+			}
+			else if (prg->world_map[y][x] == 1)
 				draw_square_cell(prg, point1, point2, BLUE);
-			// draw_line(&prg->img, point2, point1);
+			else 
+				draw_square_cell(prg, point1, point2, GREEN);
 			x++;
 		}
 		y++;
