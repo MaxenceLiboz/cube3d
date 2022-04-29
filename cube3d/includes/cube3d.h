@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/28 18:50:32 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/29 13:59:52 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 
 # define WHITE 0x00FFFFFF
 # define DARK_GRAY 0xFF222222
-# define BLACK 0x55000000
-# define RED 0x55FF0000
-# define GREEN 0x5500FF00
+# define BLACK 0x00000000
+# define RED 0x00FF0000
+# define GREEN 0x00566573
 # define BLUE 0x000000FF
 # define PURPLE 0x00FF00FF
 # define YELLOW 0x00FFFF00
@@ -154,10 +154,19 @@ typedef struct s_edition
 	int			mouse_button;
     t_point		mouse_position;
     int			mouse_keycode;
-	int			cell_height;
-	int			cell_width;
+	double		offset_in;
+	double		offset_out;
+	int			cell_size;
 }	t_edition;
 
+typedef struct s_map
+{
+	int	width;
+	int	height;
+	int	max_cell;
+	int	cell_width;
+	int	cell_height;
+}	t_map;
 typedef struct s_prg
 {
 	struct s_win		win;
@@ -172,6 +181,8 @@ typedef struct s_prg
 	int					**world_map;
 	int					edition_mode;
 	t_edition			edition;
+	t_map				*map;
+	t_map				*mini_map;
 }	t_prg;
 
 /***************** PARSING ***********************/
@@ -204,6 +215,7 @@ void	draw_square_cell(t_prg *prg, t_point point1, t_point point2,  int color);
 void 	draw_line(t_data *data, t_point p1, t_point p2);
 int		mouse_hook(int keycode, int x, int y, t_prg *prg);
 void	is_valid_new_map(t_prg *prg);
+void	draw_grid(t_prg *prg);
 /***************** ERROR ***********************/
 int		ft_error(char *str, int return_value);
 

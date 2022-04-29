@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:49:09 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/04/29 08:53:17 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/29 13:31:23 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 int	position_player(char position, int x, int y, t_prg *prg)
 {
-	if (position == 'N')
+	if (position == 'W')
 	{
 		prg->player.x_dir = -1;
 		prg->player.y_dir = 0;
 		prg->player.x_plane = 0;
 		prg->player.y_plane = 0.66;
 	}
-	else if (position == 'S')
+	else if (position == 'E')
 	{
 		prg->player.x_dir = 1;
 		prg->player.y_dir = 0;
 		prg->player.x_plane = 0;
 		prg->player.y_plane = -0.66;
 	}
-	else if (position == 'W')
+	else if (position == 'N')
 	{
 		prg->player.x_dir = 0;
 		prg->player.y_dir = 1;
 		prg->player.x_plane = 0.66;
 		prg->player.y_plane = 0;
 	}
-	else if (position == 'E')
+	else if (position == 'S')
 	{
 		prg->player.x_dir = 0;
 		prg->player.y_dir = 1;
@@ -126,8 +126,6 @@ bool	is_valid_map(t_prg *prg, int player_check)
 		x = 0;
 		while (x < prg->parser.width)
 		{
-			if (x == 32)
-				dprintf(2,"%d\n", y);
 			if (prg->world_map[y][x] == 0 && is_valid_position(prg, x, y) == false)
 				return (false);
 			if (prg->world_map[y][x] != 1 && prg->world_map[y][x] != 0 
@@ -146,6 +144,7 @@ bool	is_valid_map(t_prg *prg, int player_check)
 	if ((prg->parser.pos_player > 1 || prg->parser.pos_player == 0) && player_check == 1)
 	{
 		dprintf(2, "Wrong");
+		exit(0);
 		return (false);
 	}
 	return (true);

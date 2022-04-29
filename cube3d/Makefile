@@ -18,8 +18,7 @@ SRCS		=	main.c											\
 				srcs/hooks/keys_rotations.c 					\
 				srcs/hooks/hooks.c 								\
 				srcs/edition/draw/print_utils.c					\
-				srcs/edition/mlx/mlx_hooks.c					\
-				srcs/edition/mlx/mlx_utils.c					\
+				srcs/edition/mlx_hooks.c						\
 
 OBJS		=	$(addprefix ${OBJS_DIR}/, ${SRCS:.c=.o})
 OBJS_DIR	=	objects
