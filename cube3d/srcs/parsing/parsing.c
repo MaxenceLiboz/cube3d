@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:49:09 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/04/28 18:40:40 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/29 08:53:17 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	position_player(char position, int x, int y, t_prg *prg)
 	}
 	else
 		return (false);
-	prg->player.x_pos = x;
-	prg->player.y_pos = y;
+	prg->player.x_pos = x + 0.5;
+	prg->player.y_pos = y + 0.5;
 	return (true);
 }
 
@@ -136,7 +136,7 @@ bool	is_valid_map(t_prg *prg, int player_check)
 				if (position_player(prg->world_map[y][x], x, y, prg) == false)
 					return (false);
 				prg->parser.pos_player += 1;
-				prg->world_map[y][x] = 3;
+				prg->world_map[y][x] = 0;
 			}
 			x++;
 		}
