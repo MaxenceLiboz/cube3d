@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/28 17:44:00 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/28 18:50:32 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 # include <sys/time.h>
 
 # define WHITE 0x00FFFFFF
-# define DARK_GRAY 0x00222222
-# define BLACK 0x00000000
-# define RED 0x00FF0000
-# define GREEN 0x0000FF00
+# define DARK_GRAY 0xFF222222
+# define BLACK 0x55000000
+# define RED 0x55FF0000
+# define GREEN 0x5500FF00
 # define BLUE 0x000000FF
 # define PURPLE 0x00FF00FF
 # define YELLOW 0x00FFFF00
@@ -186,6 +186,7 @@ int		fill_texture(char *line, t_prg *prg);
 int 	fill_FC(char *line, t_prg *prg);
 int		parse_line(char *line, t_prg *prg, int len);
 bool	is_valid_map(t_prg *prg, int player_check);
+int		is_valid_position(t_prg *prg, int x, int y);
 
 bool	window_init(t_win *window);
 bool	img_init(t_win window, t_data *img);

@@ -1,7 +1,7 @@
-NO ./pics/gw110.xpm
-SO ./pics/colorstone.xpm
-WE ./pics/bluestone.xpm
-EA ./pics/eagle.xpm
+NO ./pics/ycurbill.xpm
+SO ./pics/tarch.xpm
+WE ./pics/tarch.xpm
+EA ./pics/ycurbill.xpm
 F 120,120,120
 C 120,120,230
 
