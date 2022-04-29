@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:26:47 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/04/29 09:43:29 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/29 13:23:21 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	set_grid_cell(t_prg *prg, int x, int y)
 {
 	t_point	cell_pos;
 
-	cell_pos.x = x / prg->edition.cell_width;
-	cell_pos.y = y / prg->edition.cell_height;
+	cell_pos.x = x / prg->edition.cell_size;
+	cell_pos.y = y / prg->edition.cell_size;
 	if (cell_pos.x >= prg->parser.width || cell_pos.y >= prg->parser.height
 			|| cell_pos.x < 0 || cell_pos.y < 0)
 		return ;
@@ -62,10 +62,10 @@ void	print_grid(t_prg *prg)
 	{
 		while (x < prg->parser.width)
 		{
-			point1.x = x * prg->edition.cell_width;
-			point1.y = y * prg->edition.cell_height;
-			point2.x = point1.x + prg->edition.cell_width;
-			point2.y = point1.y + prg->edition.cell_height;
+			point1.x = x * prg->edition.cell_size;
+			point1.y = y * prg->edition.cell_size;
+			point2.x = point1.x + prg->edition.cell_size;
+			point2.y = point1.y + prg->edition.cell_size;
 			if (prg->world_map[y][x] == 0)
 			{
 				if (is_valid_position(prg, x, y) == true)
@@ -82,10 +82,10 @@ void	print_grid(t_prg *prg)
 		y++;
 		x = 0;
 	}
-	point1.x = prg->player.x_pos * prg->edition.cell_width;
-	point1.y = prg->player.y_pos * prg->edition.cell_height;
-	point2.x = point1.x + prg->edition.cell_width;
-	point2.y = point1.y + prg->edition.cell_height;
+	point1.x = prg->player.x_pos * prg->edition.cell_size;
+	point1.y = prg->player.y_pos * prg->edition.cell_size;
+	point2.x = point1.x + prg->edition.cell_size;
+	point2.y = point1.y + prg->edition.cell_size;
 	draw_circle(&prg->img, point1);
 }
 

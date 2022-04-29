@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/28 18:52:19 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/29 13:15:37 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ int	key_pressed(int keycode, t_prg *prg)
 	if (keycode == 14)
 	{
 		if (prg->edition_mode == 0)
+		{
+			prg->edition.cell_size = prg->win.height / prg->parser.height * prg->edition.offset_in;
 			prg->edition_mode = !prg->edition_mode;
+			update(prg);
+		}
 		else if (prg->edition_mode == 1)
 			is_valid_new_map(prg);
 	}
@@ -73,7 +77,9 @@ int	refresh(t_prg *prg)
 	gettimeofday(&start, NULL);
 	if (prg->edition_mode == 0)
 	{
+		// prg->edition.cell_size = prg->win.height / prg->parser.height * prg->edition.offset_out;
 		write_map(prg, prg->world_map);
+		print_grid(prg);
 		mlx_put_image_to_window(prg->win.mlx, prg->win.win, prg->img.img, 0, 0);
 		time_sec = (double)time_diff(start) / 1000;
 		str = ft_itoa(1 / time_sec);
@@ -81,7 +87,5 @@ int	refresh(t_prg *prg)
 		mlx_string_put(prg->win.mlx, prg->win.win, 50, 15, 0xFFFFFF, "fps");
 		free(str);
 	}
-	else if (prg->edition_mode == 1)
-		run_window(prg);
 	return (0);
 }
