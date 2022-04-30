@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/29 13:59:52 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/30 12:20:28 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,16 +157,20 @@ typedef struct s_edition
 	double		offset_in;
 	double		offset_out;
 	int			cell_size;
+	t_point		center;
 }	t_edition;
 
 typedef struct s_map
 {
-	int	width;
-	int	height;
-	int	max_cell;
-	int	cell_width;
-	int	cell_height;
+	t_point	end_point;
+	int		cell_size;
+	int		max_cell_width;
+	int		max_cell_height;
+	t_point	center;
+	bool	big_map_height;
+	bool	big_map_width;
 }	t_map;
+
 typedef struct s_prg
 {
 	struct s_win		win;
@@ -181,7 +185,7 @@ typedef struct s_prg
 	int					**world_map;
 	int					edition_mode;
 	t_edition			edition;
-	t_map				*map;
+	t_map				map;
 	t_map				*mini_map;
 }	t_prg;
 
@@ -204,18 +208,20 @@ bool	img_init(t_win window, t_data *img);
 
 /***************** EDITION ***********************/
 bool	run_window(t_prg *prg);
-int		update(t_prg *prg);
+int		update(t_prg *prg, int keycode);
 int		mouse_pressed(int keycode, int x, int y, t_prg *prg);
 int		mouse_released(int keycode, int x, int y, t_prg *prg);
 int		updated_mouse_pos(int x, int y, t_prg *prg);
 void	set_grid_cell(t_prg *prg, int x, int y);
-void	print_grid(t_prg *prg);
+// void	print_grid(t_prg *prg);
 void	clear_window(t_prg *prg);
 void	draw_square_cell(t_prg *prg, t_point point1, t_point point2,  int color);
-void 	draw_line(t_data *data, t_point p1, t_point p2);
+void 	draw_line(t_data *data, t_point p1, t_point p2, int color);
 int		mouse_hook(int keycode, int x, int y, t_prg *prg);
 void	is_valid_new_map(t_prg *prg);
 void	draw_grid(t_prg *prg);
+void	draw_new_map(t_prg *prg, int keycode);
+
 /***************** ERROR ***********************/
 int		ft_error(char *str, int return_value);
 

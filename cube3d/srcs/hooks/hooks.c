@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/29 13:15:37 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/30 12:21:16 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	key_pressed(int keycode, t_prg *prg)
 	{
 		if (prg->edition_mode == 0)
 		{
-			prg->edition.cell_size = prg->win.height / prg->parser.height * prg->edition.offset_in;
+			prg->map.cell_size = 40;
 			prg->edition_mode = !prg->edition_mode;
-			update(prg);
+			update(prg, keycode);
 		}
 		else if (prg->edition_mode == 1)
 			is_valid_new_map(prg);
@@ -47,10 +47,22 @@ int	key_pressed(int keycode, t_prg *prg)
 		up(prg);
 	else if (keycode == 1 && prg->edition_mode == 0)
 		down(prg);
-	else if (keycode == 123 && prg->edition_mode == 0)
-		left_rot(prg);
-	else if (keycode == 124 && prg->edition_mode == 0)
-		right_rot(prg);
+	else if (keycode == 123)
+	{
+		if (prg->edition_mode == 0)
+			left_rot(prg);
+		if (prg->edition_mode == 1)
+			update(prg, keycode);
+	}
+	else if (keycode == 124)
+	{
+		if (prg->edition_mode == 0)
+			right_rot(prg);
+		if (prg->edition_mode == 1)
+			update(prg, keycode);
+	}
+	else if ((keycode == 125 || keycode == 126) && prg->edition_mode == 1)
+		update(prg, keycode);
 	else if (keycode == 0 && prg->edition_mode == 0)
 		left(prg);
 	else if (keycode == 2 && prg->edition_mode == 0)
@@ -77,9 +89,9 @@ int	refresh(t_prg *prg)
 	gettimeofday(&start, NULL);
 	if (prg->edition_mode == 0)
 	{
-		// prg->edition.cell_size = prg->win.height / prg->parser.height * prg->edition.offset_out;
+		prg->map.cell_size = 10;
 		write_map(prg, prg->world_map);
-		print_grid(prg);
+		draw_new_map(prg, 0);
 		mlx_put_image_to_window(prg->win.mlx, prg->win.win, prg->img.img, 0, 0);
 		time_sec = (double)time_diff(start) / 1000;
 		str = ft_itoa(1 / time_sec);

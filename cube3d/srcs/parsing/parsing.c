@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:49:09 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/04/29 13:31:23 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/30 12:27:15 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	position_player(char position, int x, int y, t_prg *prg)
 
 int	is_valid_position(t_prg *prg, int x, int y)
 {
-	// dprintf(2,"%d %d %d %d\n", x, y, prg->parser.width, prg->parser.height);
 	if (x == 0 || x == prg->parser.width - 1 || y == 0 || y == prg->parser.height - 1)
 		return (false);
 	if (prg->world_map[y - 1][x] == 2 || prg->world_map[y + 1][x] == 2 
@@ -153,10 +152,8 @@ bool	is_valid_map(t_prg *prg, int player_check)
 static bool	init_map(t_prg *prg)
 {
 	int		x;
-	int		y;
 
 	x = 0;
-	y = 0;
 	prg->parser.pos_player = 0;
 	prg->world_map = malloc(sizeof(int *) * prg->parser.height);
 	if (!prg->world_map)

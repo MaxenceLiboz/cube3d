@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 09:42:40 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/29 08:56:58 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/30 12:27:23 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static void	get_start_end_pixel(t_draw *draw, t_win window, t_dda dda)
 		draw->draw_start_pixel = 0;
 	if (draw->draw_end_pixel >= window.height)
 		draw->draw_end_pixel = window.height - 1;
-	// dprintf(2, "End pixel: %d, Line_height: %d, wall_dist: %f\n", draw->draw_end_pixel, draw->line_height, dda.wall_dist);
 }
 
 /*

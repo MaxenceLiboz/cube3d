@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 08:20:03 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/28 18:38:35 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/30 12:27:19 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,6 @@ void	draw_img(t_prg *prg, int x)
 	while (y < prg->draw.draw_end_pixel)
 	{
 		prg->draw.texture_y_pos = (int)prg->draw.texture_start_pos;
-		// if (x == prg->win.width / 2)
-		// {
-			// dprintf(2, "tstart: %f, tH: %d, tStep: %f, tY: %d\n", prg->draw.texture_start_pos, prg->texture[0].height, prg->draw.texture_step, prg->draw.texture_y_pos);
-		// }
 		get_color(prg->texture, &prg->draw, prg->draw.texture_index);
 		my_mlx_pixel_put(&prg->img, x, y, prg->draw.color.uint_color);
 		prg->draw.texture_start_pos += prg->draw.texture_step;
