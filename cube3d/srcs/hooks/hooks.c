@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/30 12:21:16 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/30 22:42:11 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,14 @@ int	key_pressed(int keycode, t_prg *prg)
 		left(prg);
 	else if (keycode == 2 && prg->edition_mode == 0)
 		right(prg);
+	else if (keycode == 24)
+	{
+		//Zoom
+	}
+	else if (keycode == 27)
+	{
+		//Dezoom
+	}
 	refresh(prg);
 	return (0);
 }
@@ -89,9 +97,9 @@ int	refresh(t_prg *prg)
 	gettimeofday(&start, NULL);
 	if (prg->edition_mode == 0)
 	{
-		prg->map.cell_size = 10;
+		prg->map.cell_size = 16;
 		write_map(prg, prg->world_map);
-		draw_new_map(prg, 0);
+		draw_new_mini_map(prg);
 		mlx_put_image_to_window(prg->win.mlx, prg->win.win, prg->img.img, 0, 0);
 		time_sec = (double)time_diff(start) / 1000;
 		str = ft_itoa(1 / time_sec);

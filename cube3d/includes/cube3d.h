@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/30 12:20:28 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/30 22:09:15 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,7 @@ int		mouse_hook(int keycode, int x, int y, t_prg *prg);
 void	is_valid_new_map(t_prg *prg);
 void	draw_grid(t_prg *prg);
 void	draw_new_map(t_prg *prg, int keycode);
+void	draw_new_mini_map(t_prg *prg);
 
 /***************** ERROR ***********************/
 int		ft_error(char *str, int return_value);

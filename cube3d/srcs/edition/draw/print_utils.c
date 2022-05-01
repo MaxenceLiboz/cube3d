@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:26:47 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/04/30 13:08:44 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/04/30 22:46:48 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,23 +145,60 @@ void	draw_new_map(t_prg *prg, int keycode)
 		// draw_circle(&prg->img, point1);
 }
 
-void	clear_window(t_prg *prg)
+void	draw_new_mini_map(t_prg *prg)
 {
-	int	x;
-	int	y;
+	t_point	point1;
+	t_point	point2;
+	int			x;
+	int			x_map;
+	int			y;
+	int			y_map;
 
 	x = 0;
 	y = 0;
-	while (y < prg->win.height)
+	y_map = prg->player.y_pos - (prg->map.max_cell_height / 2);
+	if (y_map < 0)
+		y_map = 0;
+	if (y_map + prg->map.max_cell_height > prg->parser.height)
+			y_map = prg->parser.height - prg->map.max_cell_height;
+	// dprintf(2, "x :  %f, y :%f\n", prg->player.x_pos, prg->player.y_pos);
+	while (y < prg->parser.height && y < prg->map.max_cell_height && y_map < prg->parser.height)
 	{
-		while (x < prg->win.width)
+		x_map = prg->player.x_pos - (prg->map.max_cell_width / 2);
+		if (x_map < 0)
+			x_map = 0;
+		if (x_map + prg->map.max_cell_width > prg->parser.width)
+			x_map = prg->parser.width - prg->map.max_cell_width;
+		while (x < prg->parser.width && x < prg->map.max_cell_width && x_map < prg->parser.width)
 		{
-			my_mlx_pixel_put(&prg->img, x, y, DARK_GRAY);
+			point1.x = x * prg->map.cell_size;
+			point1.y = y * prg->map.cell_size;
+			point2.x = point1.x + prg->map.cell_size;
+			point2.y = point1.y + prg->map.cell_size;
+			if (prg->world_map[y_map][x_map] == 0)
+			{
+				if (is_valid_position(prg, x_map, y_map) == true)
+					draw_square_cell(prg, point1, point2, BLACK);
+				else
+					draw_square_cell(prg, point1, point2, RED);
+			}
+			else if (prg->world_map[y_map][x_map] == 1)
+				draw_square_cell(prg, point1, point2, BLUE);
+			else 
+				draw_square_cell(prg, point1, point2, GREEN);
 			x++;
+			x_map++;
 		}
 		y++;
+		y_map++;
 		x = 0;
 	}
+	// point1.x = prg->player.x_pos * prg->map.cell_size;
+	// point1.y = prg->player.y_pos * prg->map.cell_size;
+	// if (keycode != 0)
+	// dprintf(2, "x: %d, y: %d\n", point1.x, point1.y);
+	// if (point1.x < prg->win.width)
+		draw_circle(&prg->img, point1);
 }
 
 void	draw_square_cell(t_prg *prg, t_point point1, t_point point2,
