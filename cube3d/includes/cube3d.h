@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/30 22:09:15 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/02 10:49:56 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ typedef struct s_prg
 	int					edition_mode;
 	t_edition			edition;
 	t_map				map;
-	t_map				*mini_map;
+	t_map				mini_map;
 }	t_prg;
 
 /***************** PARSING ***********************/

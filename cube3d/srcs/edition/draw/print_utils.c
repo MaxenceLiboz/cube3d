@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:26:47 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/04/30 22:46:48 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/02 13:30:44 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,19 @@ void	draw_new_map(t_prg *prg, int keycode)
 			if (prg->world_map[y_map][x_map] == 0)
 			{
 				if (is_valid_position(prg, x_map, y_map) == true)
+				{
 					draw_square_cell(prg, point1, point2, BLACK);
+					if ((int)prg->player.x_pos == x_map && (int)prg->player.y_pos == y_map)
+					{
+						float	tmp_w = (double)prg->map.max_cell_width / (double)prg->parser.width;
+						float	tmp_h = (double)prg->map.max_cell_height / (double)prg->parser.height;
+						dprintf(2, "%f %f\n", tmp_w, tmp_h);
+						point1.x = prg->player.x_pos * prg->map.cell_size * tmp_w - 40;
+						point1.y = prg->player.y_pos * prg->map.cell_size * tmp_h + 40;
+						dprintf(2, "x: %f, y: %d, %d, %d \n", prg->player.x_pos, prg->map.cell_size,prg->map.max_cell_width,prg->parser.width);
+						draw_circle(&prg->img, point1);
+					}
+				}
 				else
 					draw_square_cell(prg, point1, point2, RED);
 			}
@@ -137,12 +149,12 @@ void	draw_new_map(t_prg *prg, int keycode)
 		y_map++;
 		x = 0;
 	}
-	// point1.x = prg->player.x_pos * prg->map.cell_size;
-	// point1.y = prg->player.y_pos * prg->map.cell_size;
+	// point1.x = prg->player.x_pos * prg->map.cell_size * 0.4f;
+	// point1.y = prg->player.y_pos * prg->map.cell_size * 0.4f;
 	// if (keycode != 0)
-	// dprintf(2, "x: %d, y: %d\n", point1.x, point1.y);
+	// dprintf(2, "x: %f, y: %f\n", prg->player.x_pos, prg->player.y_pos);
 	// if (point1.x < prg->win.width)
-		// draw_circle(&prg->img, point1);
+	// draw_circle(&prg->img, point1);
 }
 
 void	draw_new_mini_map(t_prg *prg)
@@ -193,10 +205,10 @@ void	draw_new_mini_map(t_prg *prg)
 		y_map++;
 		x = 0;
 	}
-	// point1.x = prg->player.x_pos * prg->map.cell_size;
-	// point1.y = prg->player.y_pos * prg->map.cell_size;
+	point1.x = prg->player.x_pos / 10;
+	point1.y = prg->player.y_pos / 10;
 	// if (keycode != 0)
-	// dprintf(2, "x: %d, y: %d\n", point1.x, point1.y);
+	// dprintf(2, "x: %f, y: %f\n", prg->player.x_pos, prg->player.y_pos);
 	// if (point1.x < prg->win.width)
 		draw_circle(&prg->img, point1);
 }

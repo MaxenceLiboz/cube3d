@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/30 22:42:11 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/02 10:45:29 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ int	key_pressed(int keycode, t_prg *prg)
 		right(prg);
 	else if (keycode == 24)
 	{
-		//Zoom
+		// prg->map.max_cell_width += 2;
+		// prg->map.max_cell_height += 1;
+		// prg->map.cell_size -=  1;
+		// update(prg, keycode);
 	}
 	else if (keycode == 27)
 	{
@@ -97,7 +100,7 @@ int	refresh(t_prg *prg)
 	gettimeofday(&start, NULL);
 	if (prg->edition_mode == 0)
 	{
-		prg->map.cell_size = 16;
+		prg->map.cell_size = 10;
 		write_map(prg, prg->world_map);
 		draw_new_mini_map(prg);
 		mlx_put_image_to_window(prg->win.mlx, prg->win.win, prg->img.img, 0, 0);
