@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:01:14 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/04/30 13:10:10 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/02 16:51:30 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void	draw_grid(t_prg *prg)
 
 	for (int x = 0; x <= prg->parser.width && x <= prg->map.max_cell_width; x++)
 	{
-		start.x = prg->map.cell_size * x;
-		start.y = 0;
+		start.x = prg->map.cell_size * x + prg->map.center.x;
+		start.y = prg->map.center.y;
 
 		end.x = start.x;
 		if (prg->map.big_map_height == false)
-			end.y = prg->map.cell_size * prg->parser.height;
+			end.y = prg->map.cell_size * prg->parser.height + prg->map.center.y;
 		else
-			end.y = prg->map.cell_size * prg->map.max_cell_height;
+			end.y = prg->map.cell_size * prg->map.max_cell_height + prg->map.center.y;
 		if (!((x == prg->map.max_cell_width && prg->map.end_point.x == prg->parser.width) 
 			|| (x == 0 && prg->map.end_point.x == prg->map.max_cell_width)))
 			draw_line(&prg->img, start, end, WHITE);
@@ -47,14 +47,14 @@ void	draw_grid(t_prg *prg)
 
 	for (int y = 0; y <= prg->parser.height && y <= prg->map.max_cell_height; y++)
 	{
-		start.x = 0;
-		start.y = y * prg->map.cell_size;
+		start.x = prg->map.center.x;
+		start.y = y * prg->map.cell_size + prg->map.center.y;
 		
 		end.y = start.y;
 		if (prg->map.big_map_width == false)
-			end.x = prg->map.cell_size * prg->parser.width;
+			end.x = prg->map.cell_size * prg->parser.width + prg->map.center.x;
 		else
-			end.x = prg->map.cell_size * prg->map.max_cell_width;
+			end.x = prg->map.cell_size * prg->map.max_cell_width + prg->map.center.x;
 		if (!((y == prg->map.max_cell_height && prg->map.end_point.y == prg->parser.height)
 			|| (y == 0 && prg->map.end_point.y == prg->map.max_cell_height)))
 			draw_line(&prg->img, start, end, WHITE);
@@ -71,7 +71,7 @@ int	update(t_prg *prg, int keycode)
 	draw_new_map(prg, keycode);
 	draw_grid(prg);
 	mlx_put_image_to_window(prg->win.mlx, prg->win.win, prg->img.img,
-		prg->map.center.x, prg->map.center.y);
+		0, 0);
 	return (0);
 }
 
