@@ -3,90 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:22:54 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/04/28 18:31:49 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/03 15:01:22 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-/*
-	Create a single texture
-*/
-bool	init_texture(t_win window, t_texture *texture, char *filename)
+static bool	fill_texture(char *line, t_prg *prg)
 {
-	texture->width = 1365;
-	texture->height = 2048;
+	char	*tmp;
+	char	*tmp1;
+	bool	result;
 
-	texture->relative_path = filename;
-	texture->img = mlx_xpm_file_to_image(window.mlx, texture->relative_path,
-		&texture->width, &texture->height);
-	if (texture->img == NULL)
+	tmp1 = ft_substr(line, 3, ft_strlen(line) - 4);
+	tmp = ft_strtrim(tmp1, " ");
+	result = false;
+	if (!tmp || open(tmp, O_RDONLY) == -1)
 		return (false);
-	texture->addr = mlx_get_data_addr(texture->img, &texture->bits_per_pixel,
-			&texture->line_length, &texture->endian);
+	if (line[0] == 'N')
+		result = init_texture(prg->win, &prg->texture[0], tmp);
+	else if (line[0] == 'S')
+		result = init_texture(prg->win, &prg->texture[1], tmp);
+	else if (line[0] == 'W')
+		result = init_texture(prg->win, &prg->texture[2], tmp);
+	else if (line[0] == 'E')
+		result = init_texture(prg->win, &prg->texture[3], tmp);
+	free(tmp);
+	free(tmp1);
+	free(line);
+	if (result == false)
+		return (ft_error("MLX xpm to file error", false));
 	return (true);
 }
 
-int	fill_texture(char *line, t_prg *prg)
-{
-	char	*tmp;
-
-	tmp = ft_substr(line, 3, ft_strlen(line) - 4);
-	tmp = ft_strtrim(tmp, " ");
-	if (!tmp || open(tmp, O_RDONLY) == -1)
-		return (-1);
-	if (line[0] == 'N')
-	{
-		if (init_texture(prg->win, &prg->texture[0], tmp) == false)
-			printf("NULLLLLLLLL\n");
-	}
-	else if (line[0] == 'S')
-	{
-		if (init_texture(prg->win, &prg->texture[1], tmp) == false)
-			printf("NULLLLLLLLL\n");
-	}
-	else if (line[0] == 'W')
-	{
-		if (init_texture(prg->win, &prg->texture[2], tmp) == false)
-			printf("NULLLLLLLLL\n");
-	}
-	else if (line[0] == 'E')
-	{
-		if (init_texture(prg->win, &prg->texture[3], tmp) == false)
-			printf("NULLLLLLLLL\n");
-	}
-	return (0);
-}
-
-int fill_FC(char *line, t_prg *prg)
+static int	fill_fc(char *line, t_prg *prg)
 {
 	char	**tmp;
 	int		value[3];
 
-	tmp = ft_split(line, ',');
-	if (!tmp || !tmp[1] || !tmp[2])
-	{
-		//Free everything
-		return (-1);
-	}
+	tmp = ft_split(line + 1, ',');
+	if (!tmp || !tmp[1] || !tmp[2] || is_color_num(tmp) == false)
+		return (ft_error("Wrong color format", -1));
 	value[0] = ft_atoi(&tmp[0][1]);
 	value[1] = ft_atoi(tmp[1]);
 	value[2] = ft_atoi(tmp[2]);
 	if (value[0] < 0 || value[0] > 255 || value[1] < 0 || value[1] > 255
 		|| value[2] < 0 || value[2] > 255)
-		return (-1);
-	if (tmp[0][0] == 'F')
+		return (ft_error("Wrong color format", -1));
+	if (line[0] == 'F')
 		prg->draw.floor_color = value[0] << 16 | value[1] << 8 | value[2];
 	else
 		prg->draw.sky_color = value[0] << 16 | value[1] << 8 | value[2];
-	//Free tmp
+	free_2d_tab(tmp);
+	free(value);
+	free(line);
 	return (0);
 }
 
-int	parse_line(char *line, t_prg *prg, int len)
+static int	parse_line(char *line, t_prg *prg, int len)
 {
 	int	i;
 
@@ -96,13 +73,13 @@ int	parse_line(char *line, t_prg *prg, int len)
 	if (!line || line[i] == '\0' || line[0] == '\n')
 		return (0);
 	line = ft_strtrim(line, " ");
-	if (line[0] == 'F' || line[0] == 'C')
-		return (fill_FC(line, prg));
-	else if (prg->parser.start <= 6)
+	if (is_fc(line) == true)
+		return (fill_fc(line, prg));
+	else if (is_texture(line) == true)
 	{
-		if (fill_texture(line, prg) == -1)
+		if (fill_texture(line, prg) == false)
 		{
-			//Error to open texture file
+			dprintf(2, "Wrong texture path: %s", line);
 			return (-1);
 		}
 		return (0);
@@ -113,30 +90,47 @@ int	parse_line(char *line, t_prg *prg, int len)
 	return (1);
 }
 
-bool	parse_file(char *argv, t_prg *prg)
+static bool	loop_parse_file(t_prg *prg, int fd)
 {
-	int		fd;
-	t_list	*tmp;
+	int		parse_line_result;
 	char	*line;
+	t_list	*tmp;
 
-	fd = open(argv, O_RDONLY);
-	if (!fd)
-		return(ft_error("Can't open infile", false));
 	line = get_next_line(fd);
-	tmp = ft_lstnew(line);
-	prg->lst = NULL;
+	if (line == NULL)
+		return (false);
 	while (line)
 	{
 		tmp = ft_lstnew(line);
+		if (tmp == NULL)
+			return (false);
 		prg->parser.start += 1;
-		if (parse_line(tmp->content, prg, tmp->len) == 1)
-		{
+		parse_line_result = parse_line(tmp->content, prg, tmp->len);
+		if (parse_line_result == 1)
 			ft_lstadd_back(&prg->lst, tmp);
-		}
+		else if (parse_line_result == -1)
+			return (false);
 		else
 			ft_lstdelone(tmp, free);
 		line = get_next_line(fd);
 	}
+	return (true);
+}
+
+bool	parse_file(char *file_path, t_prg *prg)
+{
+	int		fd;
+	bool	result;
+
+	fd = open(file_path, O_RDONLY);
+	if (fd < 0)
+		return (ft_error("Can't open map", false));
+	prg->lst = NULL;
+	result = loop_parse_file(prg, fd);
 	close(fd);
+	if (result == false)
+		return (false);
+	if (check_texture_and_color_init(prg->texture, prg->draw) == false)
+		return (ft_error("Wrong file format", false));
 	return (true);
 }

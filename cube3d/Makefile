@@ -11,14 +11,19 @@ SRCS		=	main.c											\
 				srcs/raycasting/init_draw.c 					\
 				srcs/parsing/parsing.c 							\
 				srcs/parsing/parse_file.c 						\
+				srcs/parsing/parse_file_utils.c 				\
 				srcs/parsing/init_mlx.c 						\
 				srcs/parsing/valid_new_map.c					\
+				srcs/parsing/parsing_map.c						\
+				srcs/parsing/parsing_map_utils.c				\
+				srcs/parsing/parsing_map_utils2.c				\
 				srcs/raycasting/draw.c 							\
 				srcs/hooks/keys_moves.c 						\
 				srcs/hooks/keys_rotations.c 					\
 				srcs/hooks/hooks.c 								\
 				srcs/edition/draw/print_utils.c					\
 				srcs/edition/mlx_hooks.c						\
+				srcs/utils/utils.c						\
 
 OBJS		=	$(addprefix ${OBJS_DIR}/, ${SRCS:.c=.o})
 OBJS_DIR	=	objects
@@ -28,7 +33,7 @@ INCLUDES	=	includes/cube3d.h
 
 CC			= 	gcc
 
-CFLAGS		= 	-Wall -Wextra -Werror -O3 #-g -fsanitize=address
+CFLAGS		= 	-Wall -Wextra -Werror -O3 -g #-fsanitize=address
 
 LIBINCLUDES	=	-Iincludes -Iminilibx -Ilibft/includes
 
@@ -66,6 +71,35 @@ $(LIBS):	${INCLUDES}
 
 norm:
 	norminette -R CheckForbiddenSourceHeader srcs main.c includes/cube3d.h libft
+
+parsing:	${EXEC}
+	@printf "${BLUE}[ Testing extension ]${END}\n"
+	@printf "${BLUE}maps/.cub => ${END}"
+	@./${EXEC} maps/.cub
+	@printf "${BLUE}maps/.cube => ${END}"
+	@./${EXEC} maps/.cube
+	@printf "${BLUE}maps/wext.cube => ${END}"
+	@./${EXEC} maps/wext.cube
+	@printf "${BLUE}maps/wext.map => ${END}"
+	@./${EXEC} maps/wext1.map
+
+	@printf "\n${BLUE}[ Testing file ]${END}\n"
+	@printf "${BLUE}maps/file.cub => ${END}"
+	@./${EXEC} maps/file.cub
+	@printf "${BLUE}maps/file1.cub => ${END}"
+	@./${EXEC} maps/file1.cub
+	@printf "${BLUE}maps/file2.cub => ${END}"
+	@./${EXEC} maps/file2.cub
+	@printf "${BLUE}maps/file3.cub => ${END}"
+	@./${EXEC} maps/file3.cub
+	@printf "${BLUE}maps/file4.cub => ${END}"
+	@./${EXEC} maps/file4.cub
+	@printf "${BLUE}maps/file5.cub => ${END}"
+	@./${EXEC} maps/file5.cub
+	@printf "${BLUE}maps/file6.cub => ${END}"
+	@./${EXEC} maps/file6.cub
+	@printf "${BLUE}maps/file7.cub => ${END}"
+	@./${EXEC} maps/file7.cub
 
 clean:
 			@${RM} ${OBJS}

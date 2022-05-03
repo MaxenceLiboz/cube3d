@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 08:01:43 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/28 08:24:38 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/03 08:02:36 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	ft_error(char *str, int return_value)
 {
 	if (str == NULL)
 		ft_error("Error, send empty string", false);
-	write(2, str, sizeof(str));
+	write(2, str, ft_strlen(str));
+	write(2, "\n", 1);
 	return (return_value);
 }
