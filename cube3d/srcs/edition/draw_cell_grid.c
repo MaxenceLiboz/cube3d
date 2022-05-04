@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_cell_grid.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:24:37 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/04 12:55:30 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/04 14:22:08 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	get_circle_position(t_prg *prg, t_map *map, int x_map)
 	if (prg->edition_mode == 1 && (int)prg->player.x_pos == x_map
 		&& (int)prg->player.y_pos == map->y_map)
 	{
-		dprintf(2,"test\n");
+		// dprintf(2,"test\n");
 		pt1.x = prg->player.x_pos * map->cell_size
 				+ map->center.x - ((map->end_point.x
 					- map->max_cell_width) * map->cell_size);
@@ -124,8 +124,8 @@ void	get_map_pos_init(t_prg *prg)
 void	get_map_pos(t_prg *prg, int *x_map, int *y_map)
 {
 	
-	dprintf(2, "%d %d\n", prg->mini_map.x_map, prg->mini_map.y_map);
-	dprintf(2, "%f %f\n", prg->player.x_pos, prg->player.y_pos);
+	// dprintf(2, "%d %d\n", prg->mini_map.x_map, prg->mini_map.y_map);
+	// dprintf(2, "%f %f\n", prg->player.x_pos, prg->player.y_pos);
 	if ((int)prg->player.x_pos == (prg->mini_map.x_map + prg->mini_map.max_cell_width) - 1
 		&& prg->mini_map.x_map + (prg->mini_map.max_cell_width / 2) <= prg->parser.width)
 		prg->mini_map.x_map += prg->mini_map.max_cell_width / 2;
