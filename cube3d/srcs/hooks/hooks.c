@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/02 10:45:29 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/03 11:37:25 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,32 +52,35 @@ int	key_pressed(int keycode, t_prg *prg)
 		if (prg->edition_mode == 0)
 			left_rot(prg);
 		if (prg->edition_mode == 1)
+		{
+			if (prg->map.end_point.x - prg->map.max_cell_width > 0)
+				prg->map.end_point.x -= 1;
 			update(prg, keycode);
+		}
 	}
 	else if (keycode == 124)
 	{
 		if (prg->edition_mode == 0)
 			right_rot(prg);
 		if (prg->edition_mode == 1)
+		{
+			if (prg->map.end_point.x < prg->parser.width)
+				prg->map.end_point.x += 1;
 			update(prg, keycode);
+		}
 	}
 	else if ((keycode == 125 || keycode == 126) && prg->edition_mode == 1)
+	{
+		if (keycode == 125 && prg->map.end_point.y < prg->parser.height)
+			prg->map.end_point.y += 1;
+		if (keycode == 126 && prg->map.end_point.y - prg->map.max_cell_height > 0)
+			prg->map.end_point.y -= 1;
 		update(prg, keycode);
+	}
 	else if (keycode == 0 && prg->edition_mode == 0)
 		left(prg);
 	else if (keycode == 2 && prg->edition_mode == 0)
 		right(prg);
-	else if (keycode == 24)
-	{
-		// prg->map.max_cell_width += 2;
-		// prg->map.max_cell_height += 1;
-		// prg->map.cell_size -=  1;
-		// update(prg, keycode);
-	}
-	else if (keycode == 27)
-	{
-		//Dezoom
-	}
 	refresh(prg);
 	return (0);
 }
@@ -102,7 +105,7 @@ int	refresh(t_prg *prg)
 	{
 		prg->map.cell_size = 10;
 		write_map(prg, prg->world_map);
-		draw_new_mini_map(prg);
+		draw_new_mini_map(prg, -1, -1);
 		mlx_put_image_to_window(prg->win.mlx, prg->win.win, prg->img.img, 0, 0);
 		time_sec = (double)time_diff(start) / 1000;
 		str = ft_itoa(1 / time_sec);
