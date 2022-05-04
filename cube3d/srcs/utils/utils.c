@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_new_map.c                                    :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 17:39:56 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/03 14:01:42 by mliboz           ###   ########.fr       */
+/*   Created: 2022/05/03 08:29:52 by mliboz            #+#    #+#             */
+/*   Updated: 2022/05/03 08:36:37 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include <cube3d.h>
 
-void	is_valid_new_map(t_prg *prg)
+void	free_2d_tab(char **tab)
 {
-	prg->edition_mode = 2;
-	if (is_valid_map(prg, 0) == true)
+	int		i;
+
+	i = 0;
+	while (tab[i])
 	{
-		prg->map.cell_size = 10;
-		prg->edition_mode = 0;
+		free(tab[i]);
+		i++;
 	}
-	else
-	{
-		mlx_string_put(prg->win.mlx, prg->win.win, 1000, 900, RED, "TEST");
-		printf("wrong map\n");
-		prg->edition_mode = 1;
-	}
+	free(tab);
 }

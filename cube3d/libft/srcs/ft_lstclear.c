@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 15:38:32 by mliboz            #+#    #+#             */
-/*   Updated: 2022/02/16 18:53:48 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/04 08:52:01 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_lstclear(t_list **lst, void (*del)(void*))
 
 	if (!*lst)
 		return (0);
-	while ((*lst)->next)
+	while ((*lst))
 	{
 		save = (*lst)->next;
 		if ((*lst)->content)

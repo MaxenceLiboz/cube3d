@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/02 10:49:56 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/04 09:08:05 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define TERM_BCKG_MAGENTA "\x1b[45m"
 # define TERM_BCKG_CYAN "\x1b[46m"
 # define TERM_BCKG_WHITE "\x1b[47m"
+
 typedef struct s_win
 {
 	void	*mlx;
@@ -197,14 +198,25 @@ bool	initialization(t_prg *prg);
 
 bool	parsing(t_prg *prg, char **argv, int argc);
 bool	parse_file(char *argv, t_prg *prg);
-int		fill_texture(char *line, t_prg *prg);
-int 	fill_FC(char *line, t_prg *prg);
-int		parse_line(char *line, t_prg *prg, int len);
+
+bool	init_map(t_prg *prg);
 bool	is_valid_map(t_prg *prg, int player_check);
+
+/***************** PARSING UTILS ***********************/
+int		position_player(char position, int x, int y, t_prg *prg);
 int		is_valid_position(t_prg *prg, int x, int y);
+void	fill_with_2(t_prg *prg, int y, int x);
+void	free_world_map(int **world_map, int size);
 
 bool	window_init(t_win *window);
 bool	img_init(t_win window, t_data *img);
+bool	is_color_num(char **str);
+bool	check_texture_and_color_init(t_texture *texture, t_draw draw);
+bool	is_texture(char *line);
+bool	is_fc(char *line);
+bool	init_texture(t_win window, t_texture *texture, char *filename);
+void	init_map_variable(t_prg *prg);
+void	init_map_variable2(t_prg *prg);
 
 /***************** EDITION ***********************/
 bool	run_window(t_prg *prg);
@@ -224,7 +236,8 @@ void	draw_new_map(t_prg *prg, int keycode);
 void	draw_new_mini_map(t_prg *prg);
 
 /***************** ERROR ***********************/
-int		ft_error(char *str, int return_value);
+int		ft_error(int return_value, int size, char *str, ...);
+int		ft_free(int return_value, int size, ...);
 
 /***************** DDA ***********************/
 void	init_dda(t_player *player, t_win window, t_dda *dda, int x);
@@ -252,5 +265,9 @@ int		refresh(t_prg *prg);
 
 /***************** DRAW ***********************/
 void	draw_img(t_prg *prg, int x);
+
+/***************** UTILS ***********************/
+void	free_2d_tab(char **tab);
+
 
 #endif
