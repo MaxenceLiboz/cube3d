@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/02 10:49:56 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/03 11:44:29 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,8 +167,12 @@ typedef struct s_map
 	int		max_cell_width;
 	int		max_cell_height;
 	t_point	center;
+	t_point	pt1;
+	t_point	pt2;
 	bool	big_map_height;
 	bool	big_map_width;
+	int		x_map;
+	int		y_map;
 }	t_map;
 
 typedef struct s_prg
@@ -220,8 +224,11 @@ void 	draw_line(t_data *data, t_point p1, t_point p2, int color);
 int		mouse_hook(int keycode, int x, int y, t_prg *prg);
 void	is_valid_new_map(t_prg *prg);
 void	draw_grid(t_prg *prg);
-void	draw_new_map(t_prg *prg, int keycode);
-void	draw_new_mini_map(t_prg *prg);
+void	draw_new_map(t_prg *prg);
+void	draw_new_mini_map(t_prg *prg, int x, int y);
+void	draw_vertical_line_grid(t_prg *prg);
+void	draw_horizontal_line_grid(t_prg *prg);
+void	draw_circle(t_data *data, t_point center);
 
 /***************** ERROR ***********************/
 int		ft_error(char *str, int return_value);

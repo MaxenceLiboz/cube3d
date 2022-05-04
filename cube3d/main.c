@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 07:36:27 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/30 22:36:02 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/03 11:19:47 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,15 @@ void	init_map(t_prg *prg)
 		prg->map.end_point.x = prg->parser.width;
 	else
 		prg->map.end_point.x = prg->map.max_cell_width;
+	prg->mini_map.big_map_height = prg->map.big_map_height;
+	prg->mini_map.big_map_width = prg->map.big_map_width;
+	prg->mini_map.cell_size = 10;
+	prg->mini_map.center = prg->map.center;
+	prg->mini_map.max_cell_height = prg->map.max_cell_height;
+	prg->mini_map.max_cell_width = prg->map.max_cell_width;
+	prg->mini_map.end_point.x = prg->mini_map.max_cell_width;
+	prg->mini_map.end_point.y = prg->mini_map.max_cell_height;
+	
 }
 
 void	init_edition(t_prg *prg)

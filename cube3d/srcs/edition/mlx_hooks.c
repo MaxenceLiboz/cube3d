@@ -6,72 +6,21 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:01:14 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/02 16:51:30 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/03 13:37:34 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
-
-void draw_line(t_data *data, t_point p1, t_point p2, int color)
-{
-	for (float i = 0.0f; i < 1.0f; i += .0005f)
-	{
-		int	x = p1.x + (p2.x - p1.x) * i;
-		int y = p1.y + (p2.y - p1.y) * i;
-		if (!(x < 0 || x >= 1920 || y < 0 || y >= 1080))
-			my_mlx_pixel_put(data, x, y, color);
-	}
-}
-
-void	draw_grid(t_prg *prg)
-{
-	t_point start;
-	t_point end;
-
-	for (int x = 0; x <= prg->parser.width && x <= prg->map.max_cell_width; x++)
-	{
-		start.x = prg->map.cell_size * x + prg->map.center.x;
-		start.y = prg->map.center.y;
-
-		end.x = start.x;
-		if (prg->map.big_map_height == false)
-			end.y = prg->map.cell_size * prg->parser.height + prg->map.center.y;
-		else
-			end.y = prg->map.cell_size * prg->map.max_cell_height + prg->map.center.y;
-		if (!((x == prg->map.max_cell_width && prg->map.end_point.x == prg->parser.width) 
-			|| (x == 0 && prg->map.end_point.x == prg->map.max_cell_width)))
-			draw_line(&prg->img, start, end, WHITE);
-		else
-			draw_line(&prg->img, start, end, RED);
-	}
-
-	for (int y = 0; y <= prg->parser.height && y <= prg->map.max_cell_height; y++)
-	{
-		start.x = prg->map.center.x;
-		start.y = y * prg->map.cell_size + prg->map.center.y;
-		
-		end.y = start.y;
-		if (prg->map.big_map_width == false)
-			end.x = prg->map.cell_size * prg->parser.width + prg->map.center.x;
-		else
-			end.x = prg->map.cell_size * prg->map.max_cell_width + prg->map.center.x;
-		if (!((y == prg->map.max_cell_height && prg->map.end_point.y == prg->parser.height)
-			|| (y == 0 && prg->map.end_point.y == prg->map.max_cell_height)))
-			draw_line(&prg->img, start, end, WHITE);
-		else
-			draw_line(&prg->img, start, end, RED);
-	}
-}
 
 int	update(t_prg *prg, int keycode)
 {
 	if (keycode != 123 && keycode != 124 && keycode != 125 && keycode != 126)
 		set_grid_cell(prg, prg->edition.mouse_position.x,
 			prg->edition.mouse_position.y);
-	draw_new_map(prg, keycode);
-	draw_grid(prg);
-	mlx_put_image_to_window(prg->win.mlx, prg->win.win, prg->img.img,
-		0, 0);
+	draw_new_map(prg);
+	draw_vertical_line_grid(prg);
+	draw_horizontal_line_grid(prg);
+	mlx_put_image_to_window(prg->win.mlx, prg->win.win, prg->img.img, 0, 0);
 	return (0);
 }
 
@@ -80,6 +29,7 @@ int	mouse_pressed(int keycode, int x, int y, t_prg *prg)
 	(void)keycode;
 	if (prg->edition_mode == 1)
 	{
+		dprintf(2, "x: %d, y: %d\n", x, y);
 		prg->edition.mouse_pressed = 1;
 		prg->edition.mouse_position.x = x;
 		prg->edition.mouse_position.y = y;
