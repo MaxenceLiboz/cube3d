@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/04 11:17:57 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/04 15:52:04 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,6 +276,6 @@ void	draw_img(t_prg *prg, int x);
 
 /***************** UTILS ***********************/
 void	free_2d_tab(char **tab);
-
+void	rotation_matrix(t_prg *prg, double rotation);
 
 #endif

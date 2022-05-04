@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:55:16 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/28 14:47:28 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/04 15:04:19 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	down(t_prg *prg)
 		prg->player.y_pos -= prg->player.y_dir * prg->player.move_speed;
 }
 
-void	left(t_prg *prg)
+void	right(t_prg *prg)
 {
 	if (prg->player.x_pos - prg->player.y_dir * prg->player.move_speed < prg->parser.width - 1
 		&& prg->player.x_pos - prg->player.y_dir * prg->player.move_speed >= 1)
@@ -42,7 +42,7 @@ void	left(t_prg *prg)
 		prg->player.y_pos += prg->player.x_dir * prg->player.move_speed;
 }
 
-void	right(t_prg *prg)
+void	left(t_prg *prg)
 {
 	if (prg->player.x_pos + prg->player.y_dir * prg->player.move_speed < prg->parser.width - 1
 		&& prg->player.x_pos + prg->player.y_dir * prg->player.move_speed >= 1)

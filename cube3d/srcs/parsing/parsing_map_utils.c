@@ -3,56 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:48:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/04 13:02:32 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/04 15:51:37 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cube3d.h>
 
-static int	position_player2(char position, int x, int y, t_prg *prg)
-{
-	if (position == 'S')
-	{
-		prg->player.x_dir = 0;
-		prg->player.y_dir = 1;
-		prg->player.x_plane = 0.66;
-		prg->player.y_plane = 0;
-	}
-	else if (position == 'N')
-	{
-		prg->player.x_dir = 0;
-		prg->player.y_dir = 1;
-		prg->player.x_plane = -0.66;
-		prg->player.y_plane = 0;
-	}
-	else
-		return (false);
-	prg->player.x_pos = x + 0.5;
-	prg->player.y_pos = y + 0.5;
-	return (true);
-}
-
 int	position_player(char position, int x, int y, t_prg *prg)
 {
+	prg->player.x_dir = 0;
+	prg->player.y_dir = -1;
+	prg->player.x_plane = 0.66;
+	prg->player.y_plane = 0;
+	if (position == 'E')
+		rotation_matrix(prg, 2);
+	if (position == 'S')
+		rotation_matrix(prg, 1);
 	if (position == 'W')
-	{
-		prg->player.x_dir = -1;
-		prg->player.y_dir = 0;
-		prg->player.x_plane = 0;
-		prg->player.y_plane = 0.66;
-	}
-	else if (position == 'E')
-	{
-		prg->player.x_dir = 1;
-		prg->player.y_dir = 0;
-		prg->player.x_plane = 0;
-		prg->player.y_plane = -0.66;
-	}
-	else
-		return (position_player2(position, x, y, prg));
+		rotation_matrix(prg, -2);
+	prg->player.x_pos = x + 0.5;
+	prg->player.y_pos = y + 0.5;
 	return (true);
 }
 
