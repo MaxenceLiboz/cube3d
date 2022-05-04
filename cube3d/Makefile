@@ -72,34 +72,38 @@ $(LIBS):	${INCLUDES}
 norm:
 	norminette -R CheckForbiddenSourceHeader srcs main.c includes/cube3d.h libft
 
-parsing:	${EXEC}
+parsing:	all
 	@printf "${BLUE}[ Testing extension ]${END}\n"
 	@printf "${BLUE}maps/.cub => ${END}"
-	@./${EXEC} maps/.cub
+	@leaks -atExit -q -- ./${EXEC} maps/.cub
 	@printf "${BLUE}maps/.cube => ${END}"
-	@./${EXEC} maps/.cube
+	@leaks -atExit -q -- ./${EXEC} maps/.cube
 	@printf "${BLUE}maps/wext.cube => ${END}"
-	@./${EXEC} maps/wext.cube
+	@leaks -atExit -q -- ./${EXEC} maps/wext.cube
 	@printf "${BLUE}maps/wext.map => ${END}"
-	@./${EXEC} maps/wext1.map
+	@leaks -atExit -q -- ./${EXEC} maps/wext1.map
 
 	@printf "\n${BLUE}[ Testing file ]${END}\n"
 	@printf "${BLUE}maps/file.cub => ${END}"
-	@./${EXEC} maps/file.cub
+	@leaks -atExit -q -- ./${EXEC} maps/file.cub
 	@printf "${BLUE}maps/file1.cub => ${END}"
-	@./${EXEC} maps/file1.cub
+	@leaks -atExit -q -- ./${EXEC} maps/file1.cub
 	@printf "${BLUE}maps/file2.cub => ${END}"
-	@./${EXEC} maps/file2.cub
+	@leaks -atExit -q -- ./${EXEC} maps/file2.cub
 	@printf "${BLUE}maps/file3.cub => ${END}"
-	@./${EXEC} maps/file3.cub
+	@leaks -atExit -q -- ./${EXEC} maps/file3.cub
 	@printf "${BLUE}maps/file4.cub => ${END}"
-	@./${EXEC} maps/file4.cub
+	@leaks -atExit -q -- ./${EXEC} maps/file4.cub
 	@printf "${BLUE}maps/file5.cub => ${END}"
-	@./${EXEC} maps/file5.cub
+	@leaks -atExit -q -- ./${EXEC} maps/file5.cub
 	@printf "${BLUE}maps/file6.cub => ${END}"
-	@./${EXEC} maps/file6.cub
+	@leaks -atExit -q -- ./${EXEC} maps/file6.cub
 	@printf "${BLUE}maps/file7.cub => ${END}"
-	@./${EXEC} maps/file7.cub
+	@leaks -atExit -q -- ./${EXEC} maps/file7.cub
+	@printf "${BLUE}maps/file8.cub => ${END}"
+	@leaks -atExit -q -- ./${EXEC} maps/file8.cub
+	@printf "${BLUE}maps/file9.cub => ${END}"
+	@leaks -atExit -q -- ./${EXEC} maps/file9.cub
 
 clean:
 			@${RM} ${OBJS}

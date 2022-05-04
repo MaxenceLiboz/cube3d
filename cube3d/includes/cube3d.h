@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/03 14:00:12 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/04 09:08:05 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,8 @@ void	draw_new_map(t_prg *prg, int keycode);
 void	draw_new_mini_map(t_prg *prg);
 
 /***************** ERROR ***********************/
-int		ft_error(char *str, int return_value);
+int		ft_error(int return_value, int size, char *str, ...);
+int		ft_free(int return_value, int size, ...);
 
 /***************** DDA ***********************/
 void	init_dda(t_player *player, t_win window, t_dda *dda, int x);

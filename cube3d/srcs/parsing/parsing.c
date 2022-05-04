@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:49:09 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/03 14:11:00 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/04 08:16:25 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ bool	parsing(t_prg *prg, char **argv, int argc)
 	prg->parser.start = 0;
 	prg->parser.width = 0;
 	if (argc != 2)
-		return (ft_error("Use: ./cube [MAP_PATH]", false));
+		return (ft_error(false, 1, "Use: ./cube [MAP_PATH]"));
 	if (cub_extension(argv[1]) == false)
-		return (ft_error("Wrong map extension", false));
+		return (ft_error(false, 1, "Wrong map extension"));
 	if (parse_file(argv[1], prg) == false)
 		return (false);
 	if (init_map(prg) == false)
