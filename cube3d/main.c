@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 07:36:27 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/04 10:17:44 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/04 11:18:03 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,13 @@ void	init_map2(t_prg *prg)
 	prg->mini_map.center = prg->map.center;
 	prg->mini_map.max_cell_height = prg->map.max_cell_height;
 	prg->mini_map.max_cell_width = prg->map.max_cell_width;
-	prg->mini_map.end_point.x = prg->mini_map.max_cell_width;
-	prg->mini_map.end_point.y = prg->mini_map.max_cell_height;
+	prg->mini_map.end_point.x = prg->player.x_pos + (prg->mini_map.max_cell_width / 2);
+	if (prg->mini_map.end_point.x > prg->parser.width)
+		prg->mini_map.end_point.x = prg->parser.width;
+	prg->mini_map.end_point.y = prg->player.y_pos + (prg->mini_map.max_cell_height / 2);
+	if (prg->mini_map.end_point.y > prg->parser.height)
+		prg->mini_map.end_point.y = prg->parser.height;
+	get_map_pos_init(prg);
 	
 }
 

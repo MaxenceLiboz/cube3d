@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/04 10:16:03 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/04 11:17:57 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,6 +241,7 @@ void	draw_new_mini_map(t_prg *prg, int x, int y);
 void	draw_vertical_line_grid(t_prg *prg);
 void	draw_horizontal_line_grid(t_prg *prg);
 void	draw_circle(t_data *data, t_point center);
+void	get_map_pos_init(t_prg *prg);
 
 /***************** ERROR ***********************/
 int		ft_error(int return_value, int size, char *str, ...);

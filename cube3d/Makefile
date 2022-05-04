@@ -21,7 +21,6 @@ SRCS		=	main.c											\
 				srcs/hooks/keys_moves.c 						\
 				srcs/hooks/keys_rotations.c 					\
 				srcs/hooks/hooks.c 								\
-				srcs/edition/print_utils.c						\
 				srcs/edition/mlx_hooks.c						\
 				srcs/edition/draw_grid.c						\
 				srcs/edition/draw_utils.c						\
