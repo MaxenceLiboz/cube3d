@@ -6,13 +6,13 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 07:36:27 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/03 11:19:47 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/04 10:17:44 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void	init_map(t_prg *prg)
+void	init_map2(t_prg *prg)
 {
 	prg->map.cell_size = 40;
 	if (prg->parser.width <= 40)
@@ -71,15 +71,26 @@ void	init_edition(t_prg *prg)
 		* prg->edition.offset_out;
 }
 
+void	init_textures_color(t_prg *prg)
+{
+	prg->texture[0].relative_path = NULL;
+	prg->texture[1].relative_path = NULL;
+	prg->texture[2].relative_path = NULL;
+	prg->texture[3].relative_path = NULL;
+	prg->draw.sky_color = -1;
+	prg->draw.floor_color = -1;
+}
+
 int	main(int argc, char **argv)
 {
 	t_prg	prg;
 
 	window_init(&prg.win);
+	init_textures_color(&prg);
 	if (parsing(&prg, argv, argc) == false)
-		return (0);
-	init_map(&prg);
+		exit(0);
 	init_edition(&prg);
+	init_map2(&prg);
 	img_init(prg.win, &prg.img);
 	prg.win.win = mlx_new_window(prg.win.mlx, prg.win.width, prg.win.height,
 			"Cube 3D");
