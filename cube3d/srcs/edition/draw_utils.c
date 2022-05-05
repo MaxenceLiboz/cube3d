@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:24:28 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/03 10:29:44 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/04 14:44:53 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	draw_circle(t_data *data, t_point center)
 {
 	t_point	pos;
-	int 	radius;
+	int		radius;
 	int		x;
 	int		y;
 
@@ -37,22 +37,45 @@ void	draw_circle(t_data *data, t_point center)
 	}
 }
 
-
-void	draw_square_cell(t_prg *prg, t_point point1, t_point point2, int color)
+void	draw_square_cell(t_prg *prg, t_point *point1, t_point *point2, int color)
 {
 	int	x;
 	int	y;
 
-	x = point1.x;
-	y = point1.y;
-	while (y < point2.y)
+	x = point1->x;
+	y = point1->y;
+	while (y < point2->y)
 	{
-		while (x < point2.x)
+		while (x < point2->x)
 		{
 			my_mlx_pixel_put(&prg->img, x, y, color);
 			x++;
 		}
 		y++;
-		x = point1.x;
+		x = point1->x;
 	}
+}
+
+void	set_grid_cell(t_prg *prg, int x, int y)
+{
+	t_point	cell_pos;
+
+	x -= prg->map.center.x;
+	y -= prg->map.center.y;
+	cell_pos.x = x / prg->map.cell_size
+		+ (prg->map.end_point.x - prg->map.max_cell_width);
+	cell_pos.y = y / prg->map.cell_size
+		+ (prg->map.end_point.y - prg->map.max_cell_height);
+	if (cell_pos.x >= prg->parser.width || cell_pos.y >= prg->parser.height
+		|| cell_pos.x < 0 || cell_pos.y < 0)
+		return ;
+	if (prg->mouse.mouse_keycode == 2 && ((int)prg->player.x_pos != cell_pos.x
+			|| (int)prg->player.y_pos != cell_pos.y))
+		prg->world_map[cell_pos.y][cell_pos.x] = 0;
+	else if (prg->mouse.mouse_keycode == 1 && ((int)prg->player.x_pos
+			!= cell_pos.x || (int)prg->player.y_pos != cell_pos.y))
+		prg->world_map[cell_pos.y][cell_pos.x] = 1;
+	else if (prg->mouse.mouse_keycode == 3 && ((int)prg->player.x_pos
+			!= cell_pos.x || (int)prg->player.y_pos != cell_pos.y))
+		prg->world_map[cell_pos.y][cell_pos.x] = 2;
 }
