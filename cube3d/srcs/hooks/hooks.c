@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/05 12:37:14 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 14:20:26 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,17 @@ static int	edition_key_code(int keycode, t_prg *prg)
 int	key_released(int keycode, t_prg *prg)
 {
 	if (keycode == KEY_W)
-		prg->player.keyboard[KEY_W] = 0;
+		prg->player.keyboard[KEY_W_TAB] = 0;
 	else if (keycode == KEY_S)
-		prg->player.keyboard[KEY_S] = 0;
+		prg->player.keyboard[KEY_S_TAB] = 0;
 	else if (keycode == KEY_A)
-		prg->player.keyboard[KEY_A] = 0;
+		prg->player.keyboard[KEY_A_TAB] = 0;
 	else if (keycode == KEY_D)
-		prg->player.keyboard[KEY_D] = 0;
+		prg->player.keyboard[KEY_D_TAB] = 0;
 	else if (keycode == KEY_LEFT)
-		prg->player.keyboard[KEY_LEFT] = 0;
+		prg->player.keyboard[KEY_LEFT_TAB] = 0;
 	else if (keycode == KEY_RIGHT)
-		prg->player.keyboard[KEY_RIGHT] = 0;
+		prg->player.keyboard[KEY_RIGHT_TAB] = 0;
 	// printf("RELEASE: %d\n", keycode);
 	return (0);
 }
@@ -80,17 +80,17 @@ int	key_pressed(int keycode, t_prg *prg)
 	else
 	{
 		if (keycode == KEY_W)
-			prg->player.keyboard[KEY_W] = 1;
+			prg->player.keyboard[KEY_W_TAB] = 1;
 		else if (keycode == KEY_S)
-			prg->player.keyboard[KEY_S] = 1;
+			prg->player.keyboard[KEY_S_TAB] = 1;
 		else if (keycode == KEY_A)
-			prg->player.keyboard[KEY_A] = 1;
+			prg->player.keyboard[KEY_A_TAB] = 1;
 		else if (keycode == KEY_D)
-			prg->player.keyboard[KEY_D] = 1;
+			prg->player.keyboard[KEY_D_TAB] = 1;
 		else if (keycode == KEY_LEFT)
-			prg->player.keyboard[KEY_LEFT] = 1;
+			prg->player.keyboard[KEY_LEFT_TAB] = 1;
 		else if (keycode == KEY_RIGHT)
-			prg->player.keyboard[KEY_RIGHT] = 1;
+			prg->player.keyboard[KEY_RIGHT_TAB] = 1;
 		if (keycode == 14)
 		{
 			prg->map.cell_size = 40;
@@ -100,7 +100,6 @@ int	key_pressed(int keycode, t_prg *prg)
 	}
 	return (0);
 }
-
 
 int	time_diff(struct timeval start)
 {
@@ -113,17 +112,17 @@ int	time_diff(struct timeval start)
 
 void	move_player(t_prg *prg)
 {
-	if (prg->player.keyboard[KEY_W] == 1)
+	if (prg->player.keyboard[KEY_W_TAB] == 1)
 		up(prg);
-	if (prg->player.keyboard[KEY_S] == 1)
+	if (prg->player.keyboard[KEY_S_TAB] == 1)
 		down(prg);
-	if (prg->player.keyboard[KEY_A] == 1)
+	if (prg->player.keyboard[KEY_A_TAB] == 1)
 		left(prg);
-	if (prg->player.keyboard[KEY_D] == 1)
+	if (prg->player.keyboard[KEY_D_TAB] == 1)
 		right(prg);
-	if (prg->player.keyboard[KEY_LEFT] == 1)
+	if (prg->player.keyboard[KEY_LEFT_TAB] == 1)
 		left_rot(prg);
-	if (prg->player.keyboard[KEY_RIGHT] == 1)
+	if (prg->player.keyboard[KEY_RIGHT_TAB] == 1)
 		right_rot(prg);
 }
 
@@ -142,9 +141,10 @@ int	refresh(t_prg *prg)
 		draw_new_mini_map(prg);
 		mlx_put_image_to_window(prg->win.mlx, prg->win.win, prg->img.img, 0, 0);
 		time_sec = (double)time_diff(start) / 1000;
+		prg->player.delta = time_sec;
 		str = ft_itoa(1 / time_sec);
-		mlx_string_put(prg->win.mlx, prg->win.win, 15, 15, 0xFFFFFF, str);
-		mlx_string_put(prg->win.mlx, prg->win.win, 50, 15, 0xFFFFFF, "fps");
+		mlx_string_put(prg->win.mlx, prg->win.win, 1855, 15, 0xFFFFFF, str);
+		mlx_string_put(prg->win.mlx, prg->win.win, 1880, 15, 0xFFFFFF, "fps");
 		free(str);
 	}
 	return (0);

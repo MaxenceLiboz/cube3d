@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:55:16 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/05 08:39:54 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/05 14:03:45 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	up(t_prg *prg)
 	double	new_x_pos;
 	double	new_y_pos;
 
-	new_x_pos = prg->player.x_pos + prg->player.x_dir * MOVE_SPEED;
-	new_y_pos = prg->player.y_pos + prg->player.y_dir * MOVE_SPEED;
+	new_x_pos = prg->player.x_pos + prg->player.x_dir * MOVE_SPEED * prg->player.delta;
+	new_y_pos = prg->player.y_pos + prg->player.y_dir * MOVE_SPEED * prg->player.delta;
 	if (prg->world_map[(int)prg->player.y_pos][(int)(prg->player.x_pos
-		+ prg->player.x_dir * (MOVE_SPEED + SAFE_COL))] == 0)
+		+ prg->player.x_dir * (MOVE_SPEED * prg->player.delta + SAFE_COL))] == 0)
 		prg->player.x_pos = new_x_pos;
 	if (prg->world_map[(int)(prg->player.y_pos + prg->player.y_dir
-			* (MOVE_SPEED + SAFE_COL))]
+			* (MOVE_SPEED * prg->player.delta + SAFE_COL))]
 			[(int)prg->player.x_pos] == 0)
 		prg->player.y_pos = new_y_pos;
 }
@@ -39,13 +39,13 @@ void	down(t_prg *prg)
 	double	new_x_pos;
 	double	new_y_pos;
 
-	new_x_pos = prg->player.x_pos - prg->player.x_dir * MOVE_SPEED;
-	new_y_pos = prg->player.y_pos - prg->player.y_dir * MOVE_SPEED;
+	new_x_pos = prg->player.x_pos - prg->player.x_dir * MOVE_SPEED * prg->player.delta;
+	new_y_pos = prg->player.y_pos - prg->player.y_dir * MOVE_SPEED * prg->player.delta;
 	if (prg->world_map[(int)prg->player.y_pos][(int)(prg->player.x_pos
-		- prg->player.x_dir * (MOVE_SPEED + SAFE_COL))] == 0)
+		- prg->player.x_dir * (MOVE_SPEED * prg->player.delta + SAFE_COL))] == 0)
 		prg->player.x_pos = new_x_pos;
 	if (prg->world_map[(int)(prg->player.y_pos - prg->player.y_dir
-			* (MOVE_SPEED + SAFE_COL))]
+			* (MOVE_SPEED * prg->player.delta + SAFE_COL))]
 			[(int)prg->player.x_pos] == 0)
 		prg->player.y_pos = new_y_pos;
 }
@@ -55,13 +55,13 @@ void	right(t_prg *prg)
 	double	new_x_pos;
 	double	new_y_pos;
 
-	new_x_pos = prg->player.x_pos - prg->player.y_dir * MOVE_SPEED;
-	new_y_pos = prg->player.y_pos + prg->player.x_dir * MOVE_SPEED;
+	new_x_pos = prg->player.x_pos - prg->player.y_dir * MOVE_SPEED / 2 * prg->player.delta;
+	new_y_pos = prg->player.y_pos + prg->player.x_dir * MOVE_SPEED / 2 * prg->player.delta;
 	if (prg->world_map[(int)prg->player.y_pos][(int)(prg->player.x_pos
-		- prg->player.y_dir * (MOVE_SPEED + SAFE_COL))] == 0)
+		- prg->player.y_dir * (MOVE_SPEED / 2 * prg->player.delta + SAFE_COL))] == 0)
 		prg->player.x_pos = new_x_pos;
 	if (prg->world_map[(int)(prg->player.y_pos + prg->player.x_dir
-			* (MOVE_SPEED + SAFE_COL))]
+			* (MOVE_SPEED / 2 * prg->player.delta + SAFE_COL))]
 			[(int)prg->player.x_pos] == 0)
 		prg->player.y_pos = new_y_pos;
 }
@@ -71,13 +71,13 @@ void	left(t_prg *prg)
 	double	new_x_pos;
 	double	new_y_pos;
 
-	new_x_pos = prg->player.x_pos + prg->player.y_dir * MOVE_SPEED;
-	new_y_pos = prg->player.y_pos - prg->player.x_dir * MOVE_SPEED;
+	new_x_pos = prg->player.x_pos + prg->player.y_dir * MOVE_SPEED / 2 * prg->player.delta;
+	new_y_pos = prg->player.y_pos - prg->player.x_dir * MOVE_SPEED / 2 * prg->player.delta;
 	if (prg->world_map[(int)prg->player.y_pos][(int)(prg->player.x_pos
-		+ prg->player.y_dir * (MOVE_SPEED + SAFE_COL))] == 0)
+		+ prg->player.y_dir * (MOVE_SPEED / 2 * prg->player.delta + SAFE_COL))] == 0)
 		prg->player.x_pos = new_x_pos;
 	if (prg->world_map[(int)(prg->player.y_pos - prg->player.x_dir
-			* (MOVE_SPEED + SAFE_COL))]
+			* (MOVE_SPEED / 2 * prg->player.delta + SAFE_COL))]
 			[(int)prg->player.x_pos] == 0)
 		prg->player.y_pos = new_y_pos;
 }
