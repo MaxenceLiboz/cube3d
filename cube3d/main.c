@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 07:36:27 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/04 15:35:56 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 11:21:50 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(int argc, char **argv)
 	write_map(&prg, prg.world_map);
 	mlx_put_image_to_window(prg.win.mlx, prg.win.win, prg.img.img, 0, 0);
 	mlx_hook(prg.win.win, 2, 1L << 0, key_pressed, &prg);
+	mlx_hook(prg.win.win, 3, 1L << 1, key_released, &prg);
 	mlx_hook(prg.win.win, 4, 1L << 2, mouse_pressed, &prg);
 	mlx_hook(prg.win.win, 5, 1L << 3, mouse_released, &prg);
 	mlx_hook(prg.win.win, 6, 1L << 6, updated_mouse_pos, &prg);
