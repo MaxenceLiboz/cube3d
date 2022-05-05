@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/05 11:41:04 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/05 11:42:46 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ typedef struct s_prg
 	t_parse				parser;
 	t_list				*lst;
 	int					**world_map;
-	int					edition_mode;
+	bool				edition_mode;
 	t_mouse				mouse;
 	t_map				map;
 	t_minimap			mini_map;
@@ -223,6 +223,7 @@ void	draw_circle(t_data *data, t_point center);
 void	get_map_pos_init(t_prg *prg);
 // void	cell_up(t_prg *prg, t_map *map, int x_map, int y_map);
 void	cell_up(t_prg *prg, t_point *pt1, t_point *pt2, t_point *index);
+void	position_point(t_prg *prg, t_point *index);
 
 /***************** ERROR ***********************/
 int		ft_error(int return_value, int size, char *str, ...);

@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:01:14 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/05 09:31:42 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 11:13:36 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ int	update(t_prg *prg, int keycode)
 int	mouse_pressed(int keycode, int x, int y, t_prg *prg)
 {
 	(void)keycode;
-	if (prg->edition_mode == 1)
+	if (prg->edition_mode == true)
 	{
-		dprintf(2, "x: %d, y: %d\n", x, y);
 		prg->mouse.mouse_pressed = 1;
 		prg->mouse.mouse_position.x = x;
 		prg->mouse.mouse_position.y = y;
@@ -44,7 +43,7 @@ int	mouse_released(int keycode, int x, int y, t_prg *prg)
 	(void)keycode;
 	(void)x;
 	(void)y;
-	if (prg->edition_mode == 1)
+	if (prg->edition_mode == true)
 		prg->mouse.mouse_pressed = 0;
 	return (0);
 }
@@ -67,7 +66,7 @@ bool	new_cell_pos(t_prg *prg, int x, int y)
 
 int	updated_mouse_pos(int x, int y, t_prg *prg)
 {
-	if (prg->edition_mode == 1)
+	if (prg->edition_mode == true)
 		if (prg->mouse.mouse_pressed == 1)
 			if (new_cell_pos(prg, x, y) == true)
 				update(prg, 0);

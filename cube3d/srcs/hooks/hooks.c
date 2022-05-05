@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/05 11:42:07 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/05 11:52:22 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	key_pressed(int keycode, t_prg *prg)
 	// printf("PRESS: %d\n", keycode);
 	if (keycode == 53)
 		exit_cube(prg);
-	if (prg->edition_mode == 1)
+	if (prg->edition_mode == true)
 		edition_key_code(keycode, prg);
 	else
 	{
@@ -134,7 +134,7 @@ int	refresh(t_prg *prg)
 	char			*str;
 
 	gettimeofday(&start, NULL);
-	if (prg->edition_mode == 0)
+	if (prg->edition_mode == false)
 	{
 		move_player(prg);
 		prg->map.cell_size = 10;
