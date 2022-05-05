@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:01:14 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/05 11:13:36 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 12:41:31 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	mouse_released(int keycode, int x, int y, t_prg *prg)
 	(void)keycode;
 	(void)x;
 	(void)y;
-	if (prg->edition_mode == true)
-		prg->mouse.mouse_pressed = 0;
+	prg->mouse.mouse_pressed = 0;
+	prg->mouse.mouse_keycode = 0;
 	return (0);
 }
 

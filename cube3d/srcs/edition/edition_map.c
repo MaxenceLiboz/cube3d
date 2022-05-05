@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edition_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 13:55:31 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/05 11:58:34 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/05 12:12:53 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	cell_up(t_prg *prg, t_point *pt1, t_point *pt2, t_point *index)
 		if (prg->edition_mode == false)
 			draw_square_cell(prg, pt1, pt2, TRANS);
 		else
-			draw_square_cell(prg, pt1, pt2, GREEN);
+			draw_square_cell(prg, pt1, pt2, TRANS);
 	}
 	if (prg->edition_mode == true)
 		get_circle_position(prg, &prg->map, index->x);
@@ -89,7 +89,7 @@ void	draw_new_map(t_prg *prg)
 			&& index_map.x < prg->parser.width)
 		{
 			position_point(prg, &index);
-			cell_up(prg, &prg->map.pt1, &prg->map.pt2, &index);
+			cell_up(prg, &prg->map.pt1, &prg->map.pt2, &index_map);
 			index.x++;
 			index_map.x++;
 		}

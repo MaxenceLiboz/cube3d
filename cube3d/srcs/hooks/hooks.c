@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/05 11:52:22 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/05 12:37:14 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	exit_cube(t_prg *prg)
 */
 static int	edition_key_code(int keycode, t_prg *prg)
 {
-	// printf("%d\n", keycode);
 	if (keycode == 14)
 		is_valid_new_map(prg);
 	else if (keycode == 123)
@@ -48,7 +47,8 @@ static int	edition_key_code(int keycode, t_prg *prg)
 	else if (keycode == 126 && prg->map.end_point.y - prg->map.max_cell_height
 		> 0)
 		prg->map.end_point.y -= 1;
-	update(prg, keycode);
+	if (keycode != 14)
+		update(prg, keycode);
 	return (0);
 }
 
@@ -139,7 +139,7 @@ int	refresh(t_prg *prg)
 		move_player(prg);
 		prg->map.cell_size = 10;
 		write_map(prg, prg->world_map);
-		draw_new_mini_map(prg, -1, -1);
+		draw_new_mini_map(prg);
 		mlx_put_image_to_window(prg->win.mlx, prg->win.win, prg->img.img, 0, 0);
 		time_sec = (double)time_diff(start) / 1000;
 		str = ft_itoa(1 / time_sec);

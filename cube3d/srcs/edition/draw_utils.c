@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:24:28 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/04 14:44:53 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 12:33:45 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	draw_square_cell(t_prg *prg, t_point *point1, t_point *point2, int color)
 	}
 }
 
+// dprintf(2,"%f %d %f %d\n", prg->player.x_pos, cell_pos.x, prg->player.y_pos, cell_pos.y);
 void	set_grid_cell(t_prg *prg, int x, int y)
 {
 	t_point	cell_pos;
