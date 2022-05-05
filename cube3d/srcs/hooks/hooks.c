@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/05 09:32:04 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 11:42:07 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,34 +52,52 @@ static int	edition_key_code(int keycode, t_prg *prg)
 	return (0);
 }
 
+int	key_released(int keycode, t_prg *prg)
+{
+	if (keycode == KEY_W)
+		prg->player.keyboard[KEY_W] = 0;
+	else if (keycode == KEY_S)
+		prg->player.keyboard[KEY_S] = 0;
+	else if (keycode == KEY_A)
+		prg->player.keyboard[KEY_A] = 0;
+	else if (keycode == KEY_D)
+		prg->player.keyboard[KEY_D] = 0;
+	else if (keycode == KEY_LEFT)
+		prg->player.keyboard[KEY_LEFT] = 0;
+	else if (keycode == KEY_RIGHT)
+		prg->player.keyboard[KEY_RIGHT] = 0;
+	// printf("RELEASE: %d\n", keycode);
+	return (0);
+}
+
 int	key_pressed(int keycode, t_prg *prg)
 {
+	// printf("PRESS: %d\n", keycode);
 	if (keycode == 53)
 		exit_cube(prg);
 	if (prg->edition_mode == 1)
 		edition_key_code(keycode, prg);
 	else
 	{
+		if (keycode == KEY_W)
+			prg->player.keyboard[KEY_W] = 1;
+		else if (keycode == KEY_S)
+			prg->player.keyboard[KEY_S] = 1;
+		else if (keycode == KEY_A)
+			prg->player.keyboard[KEY_A] = 1;
+		else if (keycode == KEY_D)
+			prg->player.keyboard[KEY_D] = 1;
+		else if (keycode == KEY_LEFT)
+			prg->player.keyboard[KEY_LEFT] = 1;
+		else if (keycode == KEY_RIGHT)
+			prg->player.keyboard[KEY_RIGHT] = 1;
 		if (keycode == 14)
 		{
 			prg->map.cell_size = 40;
 			prg->edition_mode = !prg->edition_mode;
 			update(prg, keycode);
 		}
-		else if (keycode == 13)
-			up(prg);
-		else if (keycode == 1)
-			down(prg);
-		else if (keycode == 123)
-			left_rot(prg);
-		else if (keycode == 124)
-			right_rot(prg);
-		else if (keycode == 0)
-			left(prg);
-		else if (keycode == 2)
-			right(prg);
 	}
-	refresh(prg);
 	return (0);
 }
 
@@ -93,6 +111,22 @@ int	time_diff(struct timeval start)
 		+ 1e-3 * (end.tv_usec - start.tv_usec));
 }
 
+void	move_player(t_prg *prg)
+{
+	if (prg->player.keyboard[KEY_W] == 1)
+		up(prg);
+	if (prg->player.keyboard[KEY_S] == 1)
+		down(prg);
+	if (prg->player.keyboard[KEY_A] == 1)
+		left(prg);
+	if (prg->player.keyboard[KEY_D] == 1)
+		right(prg);
+	if (prg->player.keyboard[KEY_LEFT] == 1)
+		left_rot(prg);
+	if (prg->player.keyboard[KEY_RIGHT] == 1)
+		right_rot(prg);
+}
+
 int	refresh(t_prg *prg)
 {
 	struct timeval	start;
@@ -102,6 +136,7 @@ int	refresh(t_prg *prg)
 	gettimeofday(&start, NULL);
 	if (prg->edition_mode == 0)
 	{
+		move_player(prg);
 		prg->map.cell_size = 10;
 		write_map(prg, prg->world_map);
 		draw_new_mini_map(prg, -1, -1);
