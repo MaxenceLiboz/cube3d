@@ -31,7 +31,7 @@ OBJS		=	$(addprefix ${OBJS_DIR}/, ${SRCS:.c=.o})
 OBJS_DIR	=	objects
 MKDIR		=	mkdir -p
 
-INCLUDES	=	includes/cube3d.h
+INCLUDES	=	includes/cube3d.h includes/alias.h libft/includes/libft.h
 
 CC			= 	gcc
 

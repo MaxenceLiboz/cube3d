@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/04 15:52:04 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/05 09:01:27 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,31 +21,7 @@
 # include <stdio.h>
 # include <libft.h>
 # include <sys/time.h>
-
-# define WHITE 0x00FFFFFF
-# define DARK_GRAY 0xFF222222
-# define BLACK 0x00000000
-# define RED 0x00FF0000
-# define GREEN 0x00566573
-# define BLUE 0x000000FF
-# define PURPLE 0x00FF00FF
-# define YELLOW 0x00FFFF00
-# define CYAN 0x0000FFFF
-# define PINK 0x00DD88BB
-# define LIGHT_BLUE 0x00AAAAFF
-# define TERM_END "\x1b[0m"
-# define TERM_RED "\x1b[31m"
-# define TERM_GREEN "\x1b[32m"
-# define TERM_BLUE "\x1b[34m"
-# define TERM_ERASE "\033[2K\r"
-# define TERM_BCKG_END "\x1b[0m"
-# define TERM_BCKG_RED "\x1b[41m"
-# define TERM_BCKG_GREEN "\x1b[42m"
-# define TERM_BCKG_YELLOW "\x1b[43m"
-# define TERM_BCKG_BLUE "\x1b[44m"
-# define TERM_BCKG_MAGENTA "\x1b[45m"
-# define TERM_BCKG_CYAN "\x1b[46m"
-# define TERM_BCKG_WHITE "\x1b[47m"
+# include <alias.h>
 
 typedef struct s_win
 {
@@ -99,8 +75,6 @@ typedef struct s_player
 	double	y_dir;
 	double	x_plane;
 	double	y_plane;
-	double	move_speed;
-	double	rotation_speed;
 }	t_player;
 
 /*

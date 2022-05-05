@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:24:37 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/04 14:22:08 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/05 09:01:15 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,8 @@ static void	cell_up(t_prg *prg, t_map *map, int x_map, int y_map)
 	else if (prg->world_map[y_map][x_map] == 1)
 		draw_square_cell(prg, map->pt1, map->pt2, BLUE);
 	else
-		draw_square_cell(prg, map->pt1, map->pt2, GREEN);
+		draw_square_cell(prg, map->pt1, map->pt2, prg->draw.sky_color);
 }
-
 
 void	draw_new_map(t_prg *prg)
 {
