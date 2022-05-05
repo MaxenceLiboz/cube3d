@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:48:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/04 13:02:32 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/04 13:51:41 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static int	position_player2(char position, int x, int y, t_prg *prg)
 {
-	if (position == 'S')
+	if (position == 'N')
 	{
 		prg->player.x_dir = 0;
 		prg->player.y_dir = 1;
 		prg->player.x_plane = 0.66;
 		prg->player.y_plane = 0;
 	}
-	else if (position == 'N')
+	else if (position == 'S')
 	{
 		prg->player.x_dir = 0;
 		prg->player.y_dir = 1;

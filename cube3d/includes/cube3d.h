@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/04 11:17:57 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/04 15:08:10 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,17 +149,13 @@ typedef struct s_parse
 	int		start; // Where the map is starting in the file
 }	t_parse;
 
-typedef struct s_edition
+typedef struct s_mouse
 {
 	int			mouse_pressed;
 	int			mouse_button;
     t_point		mouse_position;
     int			mouse_keycode;
-	double		offset_in;
-	double		offset_out;
-	int			cell_size;
-	t_point		center;
-}	t_edition;
+}	t_mouse;
 
 typedef struct s_map
 {
@@ -170,11 +166,19 @@ typedef struct s_map
 	t_point	center;
 	t_point	pt1;
 	t_point	pt2;
-	bool	big_map_height;
-	bool	big_map_width;
 	int		x_map;
 	int		y_map;
 }	t_map;
+
+typedef struct s_minimap
+{
+	int		cell_size;
+	t_point	center;
+	t_point	pt1;
+	t_point	pt2;
+	int		x_map;
+	int		y_map;
+}	t_minimap;
 
 typedef struct s_prg
 {
@@ -189,9 +193,9 @@ typedef struct s_prg
 	t_list				*lst;
 	int					**world_map;
 	int					edition_mode;
-	t_edition			edition;
+	t_mouse				mouse;
 	t_map				map;
-	t_map				mini_map;
+	t_minimap			mini_map;
 }	t_prg;
 
 /***************** PARSING ***********************/
@@ -231,7 +235,7 @@ int		updated_mouse_pos(int x, int y, t_prg *prg);
 void	set_grid_cell(t_prg *prg, int x, int y);
 // void	print_grid(t_prg *prg);
 void	clear_window(t_prg *prg);
-void	draw_square_cell(t_prg *prg, t_point point1, t_point point2,  int color);
+void	draw_square_cell(t_prg *prg, t_point *point1, t_point *point2,  int color);
 void 	draw_line(t_data *data, t_point p1, t_point p2, int color);
 int		mouse_hook(int keycode, int x, int y, t_prg *prg);
 void	is_valid_new_map(t_prg *prg);
@@ -242,6 +246,8 @@ void	draw_vertical_line_grid(t_prg *prg);
 void	draw_horizontal_line_grid(t_prg *prg);
 void	draw_circle(t_data *data, t_point center);
 void	get_map_pos_init(t_prg *prg);
+// void	cell_up(t_prg *prg, t_map *map, int x_map, int y_map);
+void	cell_up(t_prg *prg, t_point *pt1, t_point *pt2, t_point *index);
 
 /***************** ERROR ***********************/
 int		ft_error(int return_value, int size, char *str, ...);

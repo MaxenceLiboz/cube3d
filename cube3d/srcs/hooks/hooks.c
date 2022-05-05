@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/03 11:37:25 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/04 16:03:29 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,62 +28,60 @@ int	exit_cube(t_prg *prg)
 	keycode == 123 => left
 	keycode == 124 => right
 */
-int	key_pressed(int keycode, t_prg *prg)
+static int	edition_key_code(int keycode, t_prg *prg)
 {
 	if (keycode == 14)
+		is_valid_new_map(prg);
+	else if (keycode == 123)
 	{
-		if (prg->edition_mode == 0)
+		if (prg->map.end_point.x - prg->map.max_cell_width > 0)
+			prg->map.end_point.x -= 1;
+	}
+	else if (keycode == 124)
+	{
+		if (prg->map.end_point.x < prg->parser.width)
+				prg->map.end_point.x += 1;
+	}
+	else if (keycode == 125 && prg->map.end_point.y < prg->parser.height)
+		prg->map.end_point.y += 1;
+	else if (keycode == 126 && prg->map.end_point.y - prg->map.max_cell_height
+		> 0)
+		prg->map.end_point.y -= 1;
+	update(prg, keycode);
+	return (0);
+}
+
+int	key_pressed(int keycode, t_prg *prg)
+{
+	if (keycode == 53)
+		exit_cube(prg);
+	if (prg->edition_mode == 1)
+		edition_key_code(keycode, prg);
+	else
+	{
+		if (keycode == 14)
 		{
 			prg->map.cell_size = 40;
 			prg->edition_mode = !prg->edition_mode;
 			update(prg, keycode);
 		}
-		else if (prg->edition_mode == 1)
-			is_valid_new_map(prg);
-	}
-	if (keycode == 53)
-		exit_cube(prg);
-	else if (keycode == 13 && prg->edition_mode == 0)
-		up(prg);
-	else if (keycode == 1 && prg->edition_mode == 0)
-		down(prg);
-	else if (keycode == 123)
-	{
-		if (prg->edition_mode == 0)
+		else if (keycode == 13)
+			up(prg);
+		else if (keycode == 1)
+			down(prg);
+		else if (keycode == 123)
 			left_rot(prg);
-		if (prg->edition_mode == 1)
-		{
-			if (prg->map.end_point.x - prg->map.max_cell_width > 0)
-				prg->map.end_point.x -= 1;
-			update(prg, keycode);
-		}
-	}
-	else if (keycode == 124)
-	{
-		if (prg->edition_mode == 0)
+		else if (keycode == 124)
 			right_rot(prg);
-		if (prg->edition_mode == 1)
-		{
-			if (prg->map.end_point.x < prg->parser.width)
-				prg->map.end_point.x += 1;
-			update(prg, keycode);
-		}
+		else if (keycode == 0)
+			left(prg);
+		else if (keycode == 2)
+			right(prg);
 	}
-	else if ((keycode == 125 || keycode == 126) && prg->edition_mode == 1)
-	{
-		if (keycode == 125 && prg->map.end_point.y < prg->parser.height)
-			prg->map.end_point.y += 1;
-		if (keycode == 126 && prg->map.end_point.y - prg->map.max_cell_height > 0)
-			prg->map.end_point.y -= 1;
-		update(prg, keycode);
-	}
-	else if (keycode == 0 && prg->edition_mode == 0)
-		left(prg);
-	else if (keycode == 2 && prg->edition_mode == 0)
-		right(prg);
 	refresh(prg);
 	return (0);
 }
+
 
 int	time_diff(struct timeval start)
 {

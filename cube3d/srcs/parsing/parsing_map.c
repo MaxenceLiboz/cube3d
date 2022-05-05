@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:47:59 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/04 10:17:09 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/04 14:28:33 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ bool	init_map(t_prg *prg)
 		return (false);
 	if (is_valid_map(prg, 1) == false)
 		return (false);
-	// init_map_variable(prg);
-	// init_map_variable2(prg);
+	init_map_variable(prg);
+	init_map_variable2(prg);
+	get_map_pos_init(prg);
 	return (true);
 }
