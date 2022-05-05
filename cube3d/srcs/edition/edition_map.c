@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 13:55:31 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/04 17:05:25 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 10:37:10 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,12 @@ void	cell_up(t_prg *prg, t_point *pt1, t_point *pt2, t_point *index)
 	else if (prg->world_map[index->y][index->x] == 1)
 		draw_square_cell(prg, pt1, pt2, BLUE);
 	else
-		draw_square_cell(prg, pt1, pt2, GREEN);
+	{
+		if (prg->edition_mode == 0)
+			draw_square_cell(prg, pt1, pt2, TRANS);
+		else
+			draw_square_cell(prg, pt1, pt2, GREEN);
+	}
 	if (prg->edition_mode == 1)
 		get_circle_position(prg, &prg->map, index->x);
 }

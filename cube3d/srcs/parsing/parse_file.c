@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:22:54 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/04 09:26:48 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/05 10:41:57 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	fill_fc(char *line, t_prg *prg)
 	else
 		prg->draw.sky_color = value[0] << 16 | value[1] << 8 | value[2];
 	free_2d_tab(tmp);
-	return (ft_free(0, 2, line));
+	return (ft_free(0, 1, line));
 }
 
 static int	parse_line(char *line, t_prg *prg, int len)

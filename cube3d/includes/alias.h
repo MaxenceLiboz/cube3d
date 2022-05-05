@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alias.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 10:00:41 by bbischof          #+#    #+#             */
-/*   Updated: 2022/05/05 09:04:26 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/05 10:37:41 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@
 # define CYAN 0x0000FFFF
 # define PINK 0x00DD88BB
 # define LIGHT_BLUE 0x00AAAAFF
+# define TRANS 0xFF000000
 
 // Palyer mouvment
 # define SAFE_COL 0.2
