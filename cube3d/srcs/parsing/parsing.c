@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:49:09 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/05 10:18:41 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 22:50:48 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ bool	cub_extension(char *file_path)
 	if (ft_strncmp(extension, ".cub", 5) != 0)
 		return (false);
 	return (true);
+}
+
+void	init_hooks(t_prg *prg)
+{
+	mlx_hook(prg->win.win, 2, 1L << 0, key_pressed, prg);
+	mlx_hook(prg->win.win, 3, 1L << 1, key_released, prg);
+	mlx_hook(prg->win.win, 4, 1L << 2, mouse_pressed, prg);
+	mlx_hook(prg->win.win, 5, 1L << 3, mouse_released, prg);
+	mlx_hook(prg->win.win, 6, 1L << 6, updated_mouse_pos, prg);
+	mlx_hook(prg->win.win, 17, 1L << 2, exit_cube, prg);
 }
 
 bool	parsing(t_prg *prg, char **argv, int argc)

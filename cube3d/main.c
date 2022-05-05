@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 07:36:27 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/05 12:24:41 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 22:56:05 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,22 @@ void	init_textures_color(t_prg *prg)
 
 int	main(int argc, char **argv)
 {
+	char	relative_path[100] = "./pics/cube6.xpm";
 	t_prg	prg;
 
+	ft_bzero(&prg, sizeof(t_prg));
 	window_init(&prg.win);
 	init_textures_color(&prg);
 	if (parsing(&prg, argv, argc) == false)
 		exit(0);
+	prg.background.img = mlx_xpm_file_to_image(&prg.win.mlx, relative_path,
+		&prg.win.width, &prg.win.height);
+	prg.background.addr = mlx_get_data_addr(&prg.img.img,
+		&prg.img.bits_per_pixel,&prg.img.line_length, &prg.img.endian);
 	img_init(prg.win, &prg.img);
 	prg.win.win = mlx_new_window(prg.win.mlx, prg.win.width, prg.win.height,
 			"Cube 3D");
-	write_map(&prg, prg.world_map);
-	mlx_put_image_to_window(prg.win.mlx, prg.win.win, prg.img.img, 0, 0);
-	mlx_hook(prg.win.win, 2, 1L << 0, key_pressed, &prg);
-	mlx_hook(prg.win.win, 3, 1L << 1, key_released, &prg);
-	mlx_hook(prg.win.win, 4, 1L << 2, mouse_pressed, &prg);
-	mlx_hook(prg.win.win, 5, 1L << 3, mouse_released, &prg);
-	mlx_hook(prg.win.win, 6, 1L << 6, updated_mouse_pos, &prg);
+	init_hooks(&prg);
 	mlx_loop_hook(prg.win.mlx, refresh, &prg);
-	mlx_hook(prg.win.win, 17, 1L << 2, exit_cube, &prg);
 	mlx_loop(prg.win.mlx);
 }

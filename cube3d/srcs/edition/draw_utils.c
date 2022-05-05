@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:24:28 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/05 12:33:45 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 22:39:28 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,21 @@ void	set_grid_cell(t_prg *prg, int x, int y)
 	else if (prg->mouse.mouse_keycode == 3 && ((int)prg->player.x_pos
 			!= cell_pos.x || (int)prg->player.y_pos != cell_pos.y))
 		prg->world_map[cell_pos.y][cell_pos.x] = 2;
+}
+
+void	clear_window(t_prg *prg)
+{
+	t_point	point;
+
+	point.y = 0;
+	while (point.y < prg->win.height)
+	{
+		point.x = 0;
+		while (point.x < prg->win.width)
+		{
+			my_mlx_pixel_put(&prg->img, point.x, point.y, DARK_GRAY);
+			point.x++;
+		}
+		point.y++;
+	}
 }
