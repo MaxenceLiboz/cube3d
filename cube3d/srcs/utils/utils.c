@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 08:29:52 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/05 07:33:57 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/05 11:13:32 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,4 @@ void	rotation_matrix(t_prg *prg, double rad)
 		- prg->player.y_plane * sin(rad);
 	prg->player.y_plane = old_x_plane * sin(rad)
 		+ prg->player.y_plane * cos(rad);
-	// dprintf(2, "xd: %f, yd: %f, xp: %f, yp: %f\n", prg->player.x_dir, prg->player.y_dir, prg->player.x_plane, prg->player.y_plane);
 }

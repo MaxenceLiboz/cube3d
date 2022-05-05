@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/05 09:32:04 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 11:11:39 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	key_pressed(int keycode, t_prg *prg)
 {
 	if (keycode == 53)
 		exit_cube(prg);
-	if (prg->edition_mode == 1)
+	if (prg->edition_mode == true)
 		edition_key_code(keycode, prg);
 	else
 	{
@@ -100,7 +100,7 @@ int	refresh(t_prg *prg)
 	char			*str;
 
 	gettimeofday(&start, NULL);
-	if (prg->edition_mode == 0)
+	if (prg->edition_mode == false)
 	{
 		prg->map.cell_size = 10;
 		write_map(prg, prg->world_map);

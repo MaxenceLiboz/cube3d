@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:36:20 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/04 15:35:41 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 11:12:35 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_map_variable(t_prg *prg)
 {
-	prg->edition_mode = 0;
+	prg->edition_mode = false;
 	prg->map.cell_size = 40;
 	if (prg->parser.width <= 40)
 		prg->map.max_cell_width = prg->parser.width;
