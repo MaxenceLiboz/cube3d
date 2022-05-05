@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 10:00:41 by bbischof          #+#    #+#             */
-/*   Updated: 2022/05/05 11:30:41 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 11:55:14 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@
 # define CYAN 0x0000FFFF
 # define PINK 0x00DD88BB
 # define LIGHT_BLUE 0x00AAAAFF
-# define TRANS 0x00FFFFFF
+# define TRANS 0xFFFFFFFF
 
 // Palyer mouvment
 # define SAFE_COL 0.2

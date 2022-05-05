@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 13:55:26 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/05 11:09:14 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 12:07:10 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,24 +58,26 @@ static void	draw_position(t_prg *prg)
 	draw_circle(&prg->img, prg->mini_map.pt1);
 }
 
-void	draw_new_mini_map(t_prg *prg, int x, int y)
+void	draw_new_mini_map(t_prg *prg)
 {
+	t_point	index_map;
 	t_point	index;
 
-	get_map_pos(prg, &index);
-	while (++y < prg->parser.height && y < prg->map.max_cell_height
-		&& index.y < prg->parser.height)
+	index.y = -1;
+	get_map_pos(prg, &index_map);
+	while (++index.y < prg->parser.height && index.y < prg->map.max_cell_height
+		&& index_map.y < prg->parser.height)
 	{
-		while (++x < prg->parser.width && x < prg->map.max_cell_width
-			&& index.x < prg->parser.width)
+		index.x = -1;
+		while (++index.x < prg->parser.width && index.x < prg->map.max_cell_width
+			&& index_map.x < prg->parser.width)
 		{
 			position_point(prg, &index);
-			cell_up(prg, &prg->mini_map.pt1, &prg->mini_map.pt2, &index);
-			index.x++;
+			cell_up(prg, &prg->mini_map.pt1, &prg->mini_map.pt2, &index_map);
+			index_map.x++;
 		}
-		index.x = prg->mini_map.x_map;
-		index.y++;
-		x = -1;
+		index_map.x = prg->mini_map.x_map;
+		index_map.y++;
 	}
 	draw_position(prg);
 }
