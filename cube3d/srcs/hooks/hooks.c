@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/04 16:03:29 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 09:32:04 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	exit_cube(t_prg *prg)
 */
 static int	edition_key_code(int keycode, t_prg *prg)
 {
+	// printf("%d\n", keycode);
 	if (keycode == 14)
 		is_valid_new_map(prg);
 	else if (keycode == 123)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:49:09 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/04 10:32:04 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 08:42:02 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,5 @@ bool	parsing(t_prg *prg, char **argv, int argc)
 		return (false);
 	if (init_map(prg) == false)
 		return (false);
-	prg->player.move_speed = 0.2;
-	prg->player.rotation_speed = 0.05;
 	return (true);
 }
