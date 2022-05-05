@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/05 12:01:58 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 12:08:11 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_player
 	double	y_dir;
 	double	x_plane;
 	double	y_plane;
+	int		keyboard[200];
 }	t_player;
 
 /*
@@ -242,6 +243,7 @@ void	write_map(t_prg *prg, int **world_map);
 
 /***************** HOOKS ***********************/
 int		key_pressed(int keycode, t_prg *prg);
+int		key_released(int keycode, t_prg *prg);
 int		exit_cube(t_prg *prg);
 void	up(t_prg *prg);
 void	down(t_prg *prg);
