@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 13:55:26 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/04 14:46:49 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 11:09:14 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,7 @@ void	draw_new_mini_map(t_prg *prg, int x, int y)
 		while (++x < prg->parser.width && x < prg->map.max_cell_width
 			&& index.x < prg->parser.width)
 		{
-			prg->mini_map.pt1.x = x * prg->map.cell_size;
-			prg->mini_map.pt1.y = y * prg->map.cell_size;
-			prg->mini_map.pt2.x = prg->mini_map.pt1.x + prg->map.cell_size;
-			prg->mini_map.pt2.y = prg->mini_map.pt1.y + prg->map.cell_size;
+			position_point(prg, &index);
 			cell_up(prg, &prg->mini_map.pt1, &prg->mini_map.pt2, &index);
 			index.x++;
 		}
