@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 13:55:31 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/05 12:08:20 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 12:10:47 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	draw_new_map(t_prg *prg)
 			&& index_map.x < prg->parser.width)
 		{
 			position_point(prg, &index);
-			cell_up(prg, &prg->map.pt1, &prg->map.pt2, &index);
+			cell_up(prg, &prg->map.pt1, &prg->map.pt2, &index_map);
 			index.x++;
 			index_map.x++;
 		}
