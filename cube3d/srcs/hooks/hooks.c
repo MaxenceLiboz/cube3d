@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/03 11:37:25 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/05 09:06:28 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	exit_cube(t_prg *prg)
 */
 int	key_pressed(int keycode, t_prg *prg)
 {
+	printf("%d\n", keycode);
 	if (keycode == 14)
 	{
 		if (prg->edition_mode == 0)
@@ -41,7 +42,7 @@ int	key_pressed(int keycode, t_prg *prg)
 		else if (prg->edition_mode == 1)
 			is_valid_new_map(prg);
 	}
-	if (keycode == 53)
+	if (keycode == KEY_ESC)
 		exit_cube(prg);
 	else if (keycode == 13 && prg->edition_mode == 0)
 		up(prg);

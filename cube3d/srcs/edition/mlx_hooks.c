@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:01:14 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/03 13:37:34 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/04 14:22:12 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	mouse_pressed(int keycode, int x, int y, t_prg *prg)
 	(void)keycode;
 	if (prg->edition_mode == 1)
 	{
-		dprintf(2, "x: %d, y: %d\n", x, y);
+		// dprintf(2, "x: %d, y: %d\n", x, y);
 		prg->edition.mouse_pressed = 1;
 		prg->edition.mouse_position.x = x;
 		prg->edition.mouse_position.y = y;
