@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 13:55:31 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/05 11:47:12 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/05 11:58:34 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ void	cell_up(t_prg *prg, t_point *pt1, t_point *pt2, t_point *index)
 	else
 	{
 		if (prg->edition_mode == false)
-		{
-			printf("ALED\n");
 			draw_square_cell(prg, pt1, pt2, TRANS);
-		}
 		else
 			draw_square_cell(prg, pt1, pt2, GREEN);
 	}
