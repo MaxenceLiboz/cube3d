@@ -6,13 +6,13 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 09:42:40 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/05 08:22:02 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/05 09:15:51 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cube3d.h>
 
-static void	get_texture_x_pos(t_draw *draw, t_prg *prg)
+static void	get_texture_x_pos(t_draw *draw, t_prg *prg, int i)
 {
 	if (prg->dda.side == 0)
 		draw->wall_hit_pos = prg->player.y_pos + prg->dda.wall_dist
@@ -21,11 +21,11 @@ static void	get_texture_x_pos(t_draw *draw, t_prg *prg)
 		draw->wall_hit_pos = prg->player.x_pos + prg->dda.wall_dist
 			* prg->dda.x_ray_direction;
 	draw->wall_hit_pos -= floor((draw->wall_hit_pos));
-	draw->texture_x_pos = (int)(draw->wall_hit_pos * (prg->texture[0].width));
+	draw->texture_x_pos = (int)(draw->wall_hit_pos * (prg->texture[i].width));
 	if (prg->dda.side == 0 && prg->dda.x_ray_direction > 0)
-		draw->texture_x_pos = prg->texture[0].width - draw->texture_x_pos - 1;
+		draw->texture_x_pos = prg->texture[i].width - draw->texture_x_pos - 1;
 	if (prg->dda.side == 1 && prg->dda.y_ray_direction < 0)
-		draw->texture_x_pos = prg->texture[0].width - draw->texture_x_pos - 1;
+		draw->texture_x_pos = prg->texture[i].width - draw->texture_x_pos - 1;
 }
 
 static void	get_start_end_pixel(t_draw *draw, t_win window, t_dda dda)
@@ -67,9 +67,9 @@ static void	get_texture_index(t_draw *draw, t_dda dda)
 void	init_draw(t_prg *prg, t_draw *draw)
 {
 	get_start_end_pixel(draw, prg->win, prg->dda);
-	get_texture_x_pos(draw, prg);
 	get_texture_index(draw, prg->dda);
-	draw->texture_step = 1.0 * prg->texture[0].height
+	get_texture_x_pos(draw, prg, prg->draw.texture_index);
+	draw->texture_step = 1.0 * prg->texture[draw->texture_index].height
 		/ draw->line_height;
 	draw->texture_start_pos = (draw->draw_start_pixel - prg->win.height / 2
 			+ draw->line_height / 2) * draw->texture_step;

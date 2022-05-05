@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:15:36 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/05 09:06:28 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/05 09:17:34 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	exit_cube(t_prg *prg)
 */
 int	key_pressed(int keycode, t_prg *prg)
 {
-	printf("%d\n", keycode);
+	// printf("%d\n", keycode);
 	if (keycode == 14)
 	{
 		if (prg->edition_mode == 0)
