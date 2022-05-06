@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   main_map_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 08:20:03 by mliboz            #+#    #+#             */
-/*   Updated: 2022/04/30 12:27:19 by tarchimb         ###   ########.fr       */
+/*   Created: 2022/05/06 10:37:58 by mliboz            #+#    #+#             */
+/*   Updated: 2022/05/06 10:42:58 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cube3d.h>
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
+void	draw_cross(t_prg *prg)
 {
-	char	*dst;
-	int		pixel;
+	int		x;
+	int		y;
 
-	pixel = (y * data->line_length + x * (data->bits_per_pixel / 8));
-	if (pixel < 0)
-		return ;
-	dst = data->addr + pixel;
-	*(unsigned int *)dst = color;
+	x = prg->win.width / 2 - 5;
+	y = prg->win.height / 2;
+	while (x <= prg->win.width / 2 + 5)
+	{
+		my_mlx_pixel_put(&prg->img, x, y, 0x000000);
+		my_mlx_pixel_put(&prg->img, x, y + 1, 0x000000);
+		x++;
+	}
+	x = prg->win.width / 2;
+	y = prg->win.height / 2 - 5;
+	while (y <= prg->win.height / 2 + 5)
+	{
+		my_mlx_pixel_put(&prg->img, x, y, 0x000000);
+		my_mlx_pixel_put(&prg->img, x + 1, y, 0x000000);
+		y++;
+	}
 }
 
 void	draw_background(int x, t_prg *prg)
@@ -54,7 +65,7 @@ static void	get_color(t_texture *texture, t_draw *draw, int index)
 	draw->color.ustr_color[3] = str[3];
 }
 
-void	draw_img(t_prg *prg, int x)
+void	draw_wall(t_prg *prg, int x)
 {
 	int		y;
 

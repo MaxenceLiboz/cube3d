@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 09:42:40 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/05 09:15:51 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/06 10:41:48 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,9 @@ static void	get_texture_x_pos(t_draw *draw, t_prg *prg, int i)
 
 static void	get_start_end_pixel(t_draw *draw, t_win window, t_dda dda)
 {
-	// if (dda.wall_dist < 0.0000000000001)
-	// {
-	// 	draw->line_height = window.height;
-	// 	draw->draw_start_pixel = 0;
-	// 	draw->draw_end_pixel = window.height;
-	// }
-	// else
-	// {
 	draw->line_height = (int)(window.height / dda.wall_dist);
 	draw->draw_start_pixel = -draw->line_height / 2 + window.height / 2;
 	draw->draw_end_pixel = draw->line_height / 2 + window.height / 2;
-	// }
 	if (draw->draw_start_pixel < 0)
 		draw->draw_start_pixel = 0;
 	if (draw->draw_end_pixel >= window.height)

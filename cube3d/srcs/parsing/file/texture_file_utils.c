@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_file_utils.c                                 :+:      :+:    :+:   */
+/*   file_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/03 10:34:18 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/03 14:00:43 by mliboz           ###   ########.fr       */
+/*   Created: 2022/05/06 11:09:37 by mliboz            #+#    #+#             */
+/*   Updated: 2022/05/06 11:12:36 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cube3d.h>
 
-bool	is_color_num(char **str)
+bool	fill_texture(char *line, t_prg *prg)
 {
-	int		i;
-	int		y;
+	char	*tmp;
+	char	*tmp1;
+	bool	result;
 
-	y = 0;
-	while (y < 3)
-	{
-		i = 0;
-		while (i < ft_strlen(str[y]))
-		{
-			if (ft_isdigit(str[y][i]) == false && str[y][i] != ' '
-				&& str[y][i] != '\n' && str[y][i] != '\t'
-				&& str[y][i] != '\v' && str[y][i] != '\f'
-				&& str[y][i] != '\r')
-				return (false);
-			i++;
-		}
-		y++;
-	}
+	tmp1 = ft_substr(line, 3, ft_strlen(line) - 4);
+	tmp = ft_strtrim(tmp1, " ");
+	result = false;
+	if (!tmp)
+		return (ft_free(false, 1, tmp));
+	if (open(tmp, O_RDONLY) == -1)
+		return (ft_free(false, 2, tmp, tmp1));
+	if (line[0] == 'N')
+		result = init_texture(prg->win, &prg->texture[0], tmp);
+	else if (line[0] == 'S')
+		result = init_texture(prg->win, &prg->texture[1], tmp);
+	else if (line[0] == 'W')
+		result = init_texture(prg->win, &prg->texture[2], tmp);
+	else if (line[0] == 'E')
+		result = init_texture(prg->win, &prg->texture[3], tmp);
+	ft_free(0, 2, tmp1, line);
+	if (result == false)
+		return (ft_error(false, 1, "MLX xpm to file error"));
 	return (true);
 }
 
@@ -62,13 +66,6 @@ bool	is_texture(char *line)
 	if (ft_strncmp(line, "SO", 2) == 0 && line[2] == ' ')
 		return (true);
 	if (ft_strncmp(line, "WE", 2) == 0 && line[2] == ' ')
-		return (true);
-	return (false);
-}
-
-bool	is_fc(char *line)
-{
-	if ((line[0] == 'F' || line[0] == 'C') && line[1] == ' ')
 		return (true);
 	return (false);
 }

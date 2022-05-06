@@ -1,73 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_file.c                                       :+:      :+:    :+:   */
+/*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:22:54 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/05 10:41:57 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/06 11:45:47 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
-
-static bool	fill_texture(char *line, t_prg *prg)
-{
-	char	*tmp;
-	char	*tmp1;
-	bool	result;
-
-	tmp1 = ft_substr(line, 3, ft_strlen(line) - 4);
-	tmp = ft_strtrim(tmp1, " ");
-	result = false;
-	if (!tmp)
-		return (ft_free(false, 1, tmp));
-	if (open(tmp, O_RDONLY) == -1)
-		return (ft_free(false, 2, tmp, tmp1));
-	if (line[0] == 'N')
-		result = init_texture(prg->win, &prg->texture[0], tmp);
-	else if (line[0] == 'S')
-		result = init_texture(prg->win, &prg->texture[1], tmp);
-	else if (line[0] == 'W')
-		result = init_texture(prg->win, &prg->texture[2], tmp);
-	else if (line[0] == 'E')
-		result = init_texture(prg->win, &prg->texture[3], tmp);
-	ft_free(0, 2, tmp1, line);
-	if (result == false)
-		return (ft_error(false, 1, "MLX xpm to file error"));
-	return (true);
-}
-
-static int	fill_fc(char *line, t_prg *prg)
-{
-	char	**tmp;
-	int		value[3];
-
-	tmp = ft_split(line + 1, ',');
-	if (!tmp)
-		return (ft_free(ft_error(-1, 1, "ft_split not working"), 1, line));
-	if (!tmp || !tmp[1] || !tmp[2] || is_color_num(tmp) == false)
-	{
-		free_2d_tab(tmp);
-		return (ft_free(ft_error(-1, 1, "Wrong color format"), 1, line));
-	}
-	value[0] = ft_atoi(&tmp[0][1]);
-	value[1] = ft_atoi(tmp[1]);
-	value[2] = ft_atoi(tmp[2]);
-	if (value[0] < 0 || value[0] > 255 || value[1] < 0 || value[1] > 255
-		|| value[2] < 0 || value[2] > 255)
-	{
-		free_2d_tab(tmp);
-		return (ft_free(ft_error(-1, 1, "Wrong color format"), 1, line));
-	}
-	if (line[0] == 'F')
-		prg->draw.floor_color = value[0] << 16 | value[1] << 8 | value[2];
-	else
-		prg->draw.sky_color = value[0] << 16 | value[1] << 8 | value[2];
-	free_2d_tab(tmp);
-	return (ft_free(0, 1, line));
-}
 
 static int	parse_line(char *line, t_prg *prg, int len)
 {
@@ -79,8 +22,8 @@ static int	parse_line(char *line, t_prg *prg, int len)
 	if (!line || line[i] == '\0' || line[0] == '\n')
 		return (0);
 	line = ft_strtrim(line, " ");
-	if (is_fc(line) == true)
-		return (fill_fc(line, prg));
+	if (is_background(line) == true)
+		return (fill_background(line, prg));
 	if (is_texture(line) == true)
 	{
 		if (fill_texture(line, prg) == false)
@@ -97,6 +40,19 @@ static int	parse_line(char *line, t_prg *prg, int len)
 			prg->parser.width = len;
 	prg->parser.height += 1;
 	return (1);
+}
+
+bool	cub_extension(char *file_path)
+{
+	char	*extension;
+
+	if (ft_strlen(file_path) < 6
+		|| ft_isalnum(file_path[ft_strlen(file_path) - 5]) == false)
+		return (false);
+	extension = file_path + ft_strlen(file_path) - 4;
+	if (ft_strncmp(extension, ".cub", 5) != 0)
+		return (false);
+	return (true);
 }
 
 static bool	loop_parse_file(t_prg *prg, int fd)

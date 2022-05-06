@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 07:36:27 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/05 14:56:19 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/06 11:01:12 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,13 @@ int	main(int argc, char **argv)
 	img_init(prg.win, &prg.img);
 	prg.win.win = mlx_new_window(prg.win.mlx, prg.win.width, prg.win.height,
 			"Cube 3D");
-	init_hooks(&prg);
-	write_map(&prg, prg.world_map);
+	// init_hooks(&prg);
+	// create(&prg, prg.world_map);
+	mlx_mouse_hide();
 	mlx_mouse_move(prg.win.win, prg.win.width / 2, prg.win.height / 2);
+	mlx_mouse_get_pos(prg.win.win, &prg.mouse.mouse_position.x,
+		&prg.mouse.mouse_position.y);
+	mlx_hooks_management(&prg);
 	mlx_put_image_to_window(prg.win.mlx, prg.win.win, prg.img.img, 0, 0);
-	mlx_loop_hook(prg.win.mlx, refresh, &prg);
 	mlx_loop(prg.win.mlx);
 }
