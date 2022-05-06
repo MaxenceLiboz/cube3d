@@ -26,6 +26,7 @@ SRCS		=	main.c											\
 				srcs/edition/draw_utils.c						\
 				srcs/edition/mini_map.c							\
 				srcs/edition/edition_map.c						\
+				srcs/edition/utils.c							\
 				srcs/utils/utils.c								\
 
 OBJS		=	$(addprefix ${OBJS_DIR}/, ${SRCS:.c=.o})

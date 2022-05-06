@@ -15,12 +15,19 @@
 int	update(t_prg *prg, int keycode)
 {
 	if (keycode != 123 && keycode != 124 && keycode != 125 && keycode != 126)
+	{
 		set_grid_cell(prg, prg->mouse.mouse_position.x,
 			prg->mouse.mouse_position.y);
+		clear_window(prg);
+	}
 	draw_new_map(prg);
 	draw_vertical_line_grid(prg);
 	draw_horizontal_line_grid(prg);
+	draw_info(prg);
+	mlx_put_image_to_window(prg->win.mlx, prg->win.win,
+		prg->background.img, 0, 0);
 	mlx_put_image_to_window(prg->win.mlx, prg->win.win, prg->img.img, 0, 0);
+	indications_strings(prg);
 	return (0);
 }
 

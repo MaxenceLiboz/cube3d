@@ -165,6 +165,7 @@ typedef struct s_prg
 	struct s_player		player;
 	struct s_dda		dda;
 	struct s_draw		draw;
+	t_data				background;
 	t_parse				parser;
 	t_list				*lst;
 	int					**world_map;
@@ -201,6 +202,7 @@ bool	is_fc(char *line);
 bool	init_texture(t_win window, t_texture *texture, char *filename);
 void	init_map_variable(t_prg *prg);
 void	init_map_variable2(t_prg *prg);
+void	init_hooks(t_prg *prg);
 
 /***************** EDITION ***********************/
 bool	run_window(t_prg *prg);
@@ -225,6 +227,9 @@ void	get_map_pos_init(t_prg *prg);
 // void	cell_up(t_prg *prg, t_map *map, int x_map, int y_map);
 void	cell_up(t_prg *prg, t_point *pt1, t_point *pt2, t_point *index);
 void	position_point(t_prg *prg, t_point *index);
+void	clear_window(t_prg *prg);
+void	indications_strings(t_prg *prg);
+void	draw_info(t_prg *prg);
 
 /***************** ERROR ***********************/
 int		ft_error(int return_value, int size, char *str, ...);

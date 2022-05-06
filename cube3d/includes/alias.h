@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 10:00:41 by bbischof          #+#    #+#             */
-/*   Updated: 2022/05/05 14:15:24 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/05 15:49:39 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@
 
 // Colors
 # define WHITE 0x00FFFFFF
-# define DARK_GRAY 0x00222222
+# define DARK_GRAY 0xFF333333
 # define BLACK 0x00000000
 # define RED 0x00FF0000
 # define GREEN 0x0000FF00
@@ -81,7 +81,7 @@
 # define CYAN 0x0000FFFF
 # define PINK 0x00DD88BB
 # define LIGHT_BLUE 0x00AAAAFF
-# define TRANS 0x00CCFFFF
+# define BACKGROUND 0xC0000000
 
 // Palyer mouvment
 # define SAFE_COL 0.2
