@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 12:17:10 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 12:18:07 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/06 19:21:40 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,16 +148,24 @@ typedef struct s_mini_map
 	int		y_map;
 }	t_mini_map;
 
+typedef struct s_help_map
+{
+	int		max_size;
+	bool	is_printable;
+	bool	help_mode;
+}	t_help_map;
+
 typedef struct s_prg
 {
 	struct s_win		win;
 	struct s_point		point;
 	struct s_data		img;
 	struct s_texture	texture[4];
+	struct s_texture	help_keys[13];
+	struct s_texture	background;
 	struct s_player		player;
 	struct s_dda		dda;
 	struct s_draw		draw;
-	t_data				background;
 	t_parse				parser;
 	t_list				*lst;
 	int					**world_map;
@@ -165,6 +173,7 @@ typedef struct s_prg
 	t_mouse				mouse;
 	t_edition_map		e_map;
 	t_mini_map			m_map;
+	t_help_map			h_map;
 }	t_prg;
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:24:28 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/06 10:30:46 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/06 17:01:46 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	clear_window(t_prg *prg)
 		point.x = 0;
 		while (point.x < prg->win.width)
 		{
-			my_mlx_pixel_put(&prg->img, point.x, point.y, DARK_GRAY);
+			my_mlx_pixel_put(&prg->img, point.x, point.y, TRANS);
 			point.x++;
 		}
 		point.y++;

@@ -8,6 +8,8 @@ SRCS		=	main.c											\
 				srcs/draw/draw_grid.c							\
 				srcs/draw/draw_utils.c							\
 																\
+				srcs/help/help.c								\
+																\
 				srcs/hooks/keys/exit_cube.c 					\
 				srcs/hooks/keys/keys_mouvements.c 				\
 				srcs/hooks/keys/keys_pressed.c 					\
@@ -35,10 +37,10 @@ SRCS		=	main.c											\
 				srcs/parsing/file/background_file_utils.c		\
 				srcs/parsing/file/texture_file_utils.c 			\
 																\
-				srcs/init/init_mlx.c 							\
-				srcs/init/init_main_map.c						\
-				srcs/init/init_edition_map.c					\
-				srcs/init/init_mini_map.c						\
+				srcs/parsing/init/init_mlx.c 					\
+				srcs/parsing/init/init_main_map.c				\
+				srcs/parsing/init/init_edition_map.c			\
+				srcs/parsing/init/init_mini_map.c				\
 																\
 				srcs/parsing/parsing_map.c 						\
 																\

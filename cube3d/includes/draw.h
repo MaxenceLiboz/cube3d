@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 11:50:04 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 12:18:36 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/06 19:54:41 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ void	draw_square_cell(t_prg *prg, t_point *point1, t_point *point2,
 			int color);
 void	clear_window(t_prg *prg);
 void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
+void	grid_for_unit_cell(t_prg *prg, t_point pt1);
 
 #endif

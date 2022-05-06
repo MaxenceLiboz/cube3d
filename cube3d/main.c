@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 07:36:27 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 11:01:12 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/06 17:17:53 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,19 @@ void	init_textures_color(t_prg *prg)
 
 int	main(int argc, char **argv)
 {
-	char	relative_path[100] = "./pics/cube6.xpm";
 	t_prg	prg;
 
 	ft_bzero(&prg, sizeof(t_prg));
+	prg.h_map.help_mode = 0;
+	prg.h_map.max_size = 0;
+	prg.h_map.help_mode = 0;
 	window_init(&prg.win);
 	init_textures_color(&prg);
 	if (parsing(&prg, argv, argc) == false)
 		exit(0);
-	prg.background.img = mlx_xpm_file_to_image(&prg.win.mlx, relative_path,
-		&prg.win.width, &prg.win.height);
-	prg.background.addr = mlx_get_data_addr(&prg.img.img,
-		&prg.img.bits_per_pixel,&prg.img.line_length, &prg.img.endian);
 	img_init(prg.win, &prg.img);
 	prg.win.win = mlx_new_window(prg.win.mlx, prg.win.width, prg.win.height,
 			"Cube 3D");
-	// init_hooks(&prg);
-	// create(&prg, prg.world_map);
 	mlx_mouse_hide();
 	mlx_mouse_move(prg.win.win, prg.win.width / 2, prg.win.height / 2);
 	mlx_mouse_get_pos(prg.win.win, &prg.mouse.mouse_position.x,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 11:50:47 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 12:19:07 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/06 17:12:12 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ bool	fill_texture(char *line, t_prg *prg);
 bool	check_texture_and_color_init(t_texture *texture, t_draw draw);
 bool	is_texture(char *line);
 bool	init_texture(t_win window, t_texture *texture, char *filename);
+bool	help_texture(t_prg *prg);
 
 #endif

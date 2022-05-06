@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:22:54 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/06 11:45:47 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/06 17:12:33 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ bool	parse_file(char *file_path, t_prg *prg)
 	result = loop_parse_file(prg, fd);
 	close(fd);
 	if (result == false)
+		return (false);
+	if (!help_texture(prg))
 		return (false);
 	if (check_texture_and_color_init(prg->texture, prg->draw) == false)
 	{

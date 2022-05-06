@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   refresh.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 08:55:38 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 11:33:33 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/06 19:26:05 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,12 @@ int	refresh_map(t_prg *prg)
 		prg->e_map.cell_size = 10;
 		create_main_map(prg, prg->world_map);
 		create_mini_map(prg);
+		if (prg->h_map.help_mode == true)
+			print_help_map(prg);
+		else
+			hide_help_map(prg);
 		mlx_put_image_to_window(prg->win.mlx, prg->win.win, prg->img.img, 0, 0);
+		draw_help_to_image(prg);
 		time_sec = (double)time_diff(start) / 1000;
 		prg->player.delta = time_sec;
 		str = ft_itoa(1 / time_sec);
@@ -50,11 +55,12 @@ int	refresh_edition(t_prg *prg, int keycode)
 	create_edition_map(prg);
 	draw_vertical_line_grid(prg);
 	draw_horizontal_line_grid(prg);
-	draw_info(prg);
 	mlx_put_image_to_window(prg->win.mlx, prg->win.win,
 		prg->background.img, 0, 0);
+	draw_image_top(prg);
+	draw_image_bot(prg);
 	mlx_put_image_to_window(prg->win.mlx, prg->win.win, prg->img.img, 0, 0);
-	indications_strings(prg);
+	edition_mode_str(prg);
 	return (0);
 }
 

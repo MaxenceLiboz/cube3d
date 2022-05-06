@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_grid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:16:35 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/06 12:13:35 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/06 19:55:08 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,22 @@ void	draw_horizontal_line_grid(t_prg *prg)
 			draw_line(&prg->img, start, end, RED);
 		y++;
 	}
+}
+
+void	grid_for_unit_cell(t_prg *prg, t_point pt1)
+{
+	t_point	pt2;
+	
+	pt2.x = pt1.x + prg->e_map.cell_size;
+	pt2.y = pt1.y;
+	draw_line(&prg->img, pt1, pt2, WHITE);
+	pt2.x = pt1.x;
+	pt2.y = pt1.y + prg->e_map.cell_size;
+	draw_line(&prg->img, pt1, pt2, WHITE);
+	pt1.x += prg->e_map.cell_size;
+	pt2.x += prg->e_map.cell_size;
+	draw_line(&prg->img, pt1, pt2, WHITE);
+	pt1.x -= prg->e_map.cell_size;
+	pt1.y += prg->e_map.cell_size;
+	draw_line(&prg->img, pt1, pt2, WHITE);
 }

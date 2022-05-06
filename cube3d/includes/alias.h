@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alias.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 10:00:41 by bbischof          #+#    #+#             */
-/*   Updated: 2022/05/06 10:09:22 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/06 19:22:39 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@
 # define KEY_D_TAB 3
 # define KEY_LEFT_TAB 4
 # define KEY_RIGHT_TAB 5
+# define KEY_UP_TAB 6
+# define KEY_DOWN_TAB 7
+# define KEY_H_TAB 8
+# define KEY_E_TAB 9
+# define KEY_LMB_TAB 10
+# define KEY_RMB_TAB 11
+# define KEY_CMB_TAB 12
 
 // Keycode
 // Mac
@@ -46,6 +53,7 @@
 # define KEY_A 0
 # define KEY_S 1
 # define KEY_D 2
+# define KEY_H 4
 # define KEY_C 8
 # define KEY_V 9
 # define KEY_B 11
@@ -71,7 +79,7 @@
 
 // Colors
 # define WHITE 0x00FFFFFF
-# define DARK_GRAY 0xFF333333
+# define DARK_GRAY 0x00333333
 # define BLACK 0x00000000
 # define RED 0x00FF0000
 # define GREEN 0x0000FF00
@@ -82,6 +90,9 @@
 # define PINK 0x00DD88BB
 # define LIGHT_BLUE 0x00AAAAFF
 # define BACKGROUND 0xC0000000
+# define TRANS 0xFF000000
+# define DARKLY_GRAY 0x002C3E50
+# define LIGHT_GRAY 0x00D5DBDB 
 
 // Palyer mouvment
 # define SAFE_COL 0.2

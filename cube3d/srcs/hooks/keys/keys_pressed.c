@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys_pressed.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 09:11:09 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 11:34:11 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/06 18:05:37 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ int	keys_pressed(int keycode, t_prg *prg)
 		exit_cube(prg);
 	if (prg->edition_mode == true)
 		edition_key_code(keycode, prg);
+	else if (keycode == KEY_H)
+	{
+		prg->h_map.help_mode = !prg->h_map.help_mode;
+		if (prg->h_map.help_mode == false)
+			prg->h_map.is_printable = false;
+	}
 	else
 	{
 		set_keyboard_pressed(prg, keycode);
