@@ -18,15 +18,22 @@ SRCS		=	main.c											\
 				srcs/parsing/parsing_map_utils.c				\
 				srcs/parsing/parsing_map_utils2.c				\
 				srcs/raycasting/draw.c 							\
-				srcs/hooks/keys_moves.c 						\
-				srcs/hooks/keys_rotations.c 					\
-				srcs/hooks/hooks.c 								\
-				srcs/edition/mlx_hooks.c						\
 				srcs/edition/draw_grid.c						\
 				srcs/edition/draw_utils.c						\
 				srcs/edition/mini_map.c							\
 				srcs/edition/edition_map.c						\
 				srcs/utils/utils.c								\
+				srcs/hooks/exit_cube.c 							\
+				srcs/hooks/hooks_management.c 					\
+				srcs/hooks/refresh_map.c 						\
+				srcs/hooks/refresh_edition.c 					\
+				srcs/hooks/player/keys_mouvements.c 			\
+				srcs/hooks/player/keys_pressed.c 				\
+				srcs/hooks/player/keys_released.c 				\
+				srcs/hooks/player/mouse_mouvements.c 			\
+				srcs/hooks/edition/mouse_pressed.c 				\
+				srcs/hooks/edition/mouse_released.c 			\
+				srcs/hooks/edition/update_mouse_pos.c 			\
 
 OBJS		=	$(addprefix ${OBJS_DIR}/, ${SRCS:.c=.o})
 OBJS_DIR	=	objects
@@ -36,7 +43,7 @@ INCLUDES	=	includes/cube3d.h includes/alias.h libft/includes/libft.h
 
 CC			= 	gcc
 
-CFLAGS		= 	-Wall -Wextra -Werror -O3 #-g #-fsanitize=address
+CFLAGS		= 	-Wall -Wextra -Werror #-O3 #-g #-fsanitize=address
 
 LIBINCLUDES	=	-Iincludes -Iminilibx -Ilibft/includes
 

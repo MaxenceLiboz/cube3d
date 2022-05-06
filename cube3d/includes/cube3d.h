@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/05 14:13:06 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/06 09:41:19 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,10 +205,8 @@ void	init_map_variable2(t_prg *prg);
 /***************** EDITION ***********************/
 bool	run_window(t_prg *prg);
 int		update(t_prg *prg, int keycode);
-int		mouse_pressed(int keycode, int x, int y, t_prg *prg);
-int		mouse_released(int keycode, int x, int y, t_prg *prg);
-int		updated_mouse_pos(int x, int y, t_prg *prg);
 void	set_grid_cell(t_prg *prg, int x, int y);
+
 // void	print_grid(t_prg *prg);
 void	clear_window(t_prg *prg);
 void	draw_square_cell(t_prg *prg, t_point *point1, t_point *point2,  int color);
@@ -243,23 +241,27 @@ void	draw_background(int x, t_prg *prg);
 void	write_map(t_prg *prg, int **world_map);
 
 /***************** HOOKS ***********************/
-int		key_pressed(int keycode, t_prg *prg);
-int		key_released(int keycode, t_prg *prg);
-int		exit_cube(t_prg *prg);
-void	up(t_prg *prg);
-void	down(t_prg *prg);
-void	left(t_prg *prg);
-void	right(t_prg *prg);
-void	left_rot(t_prg *prg);
-void	right_rot(t_prg *prg);
+void	mlx_hooks_management(t_prg *prg);
 
-int		refresh(t_prg *prg);
+int		keys_pressed(int keycode, t_prg *prg);
+int		keys_released(int keycode, t_prg *prg);
+void	keys_mouvements(t_prg *prg);
+
+int		mouse_pressed(int keycode, int x, int y, t_prg *prg);
+int		mouse_released(int keycode, int x, int y, t_prg *prg);
+void	mouse_mouvements(t_prg *prg);
+int		updated_mouse_pos(int x, int y, t_prg *prg);
+
+int		exit_cube(t_prg *prg);
+int		refresh_map(t_prg *prg);
+int		refresh_edition(t_prg *prg, int keycode);
 
 /***************** DRAW ***********************/
 void	draw_img(t_prg *prg, int x);
 
 /***************** UTILS ***********************/
 void	free_2d_tab(char **tab);
+int		time_diff(struct timeval start);
 void	rotation_matrix(t_prg *prg, double rotation);
 
 #endif

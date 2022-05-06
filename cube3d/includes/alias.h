@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 10:00:41 by bbischof          #+#    #+#             */
-/*   Updated: 2022/05/05 14:15:24 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/06 08:16:33 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@
 # define SAFE_COL 0.2
 # define MOVE_SPEED 5
 # define ROT_SPEED M_PI
+# define ROT_MOUSE_SPEED 0.06
 
 #endif

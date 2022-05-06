@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_new_map.c                                    :+:      :+:    :+:   */
+/*   exit_cube.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 17:39:56 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/06 08:14:10 by mliboz           ###   ########.fr       */
+/*   Created: 2022/05/06 09:12:12 by mliboz            #+#    #+#             */
+/*   Updated: 2022/05/06 09:12:39 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include <cube3d.h>
 
-void	is_valid_new_map(t_prg *prg)
+// FREE EVERYTHING
+int	exit_cube(t_prg *prg)
 {
-	prg->edition_mode = 2;
-	if (is_valid_map(prg, 0) == true)
-	{
-		prg->map.cell_size = 10;
-		prg->edition_mode = false;
-		mlx_mouse_hide();
-	}
-	else
-	{
-		mlx_string_put(prg->win.mlx, prg->win.win, 1000, 900, RED, "TEST");
-		printf("wrong map\n");
-		prg->edition_mode = true;
-	}
+	mlx_destroy_window(prg->win.mlx, prg->win.win);
+	exit(1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 08:29:52 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/05 11:13:32 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/06 08:53:32 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,13 @@ void	rotation_matrix(t_prg *prg, double rad)
 		- prg->player.y_plane * sin(rad);
 	prg->player.y_plane = old_x_plane * sin(rad)
 		+ prg->player.y_plane * cos(rad);
+}
+
+int	time_diff(struct timeval start)
+{
+	struct timeval	end;
+
+	gettimeofday(&end, NULL);
+	return ((end.tv_sec - start.tv_sec) * 1000
+		+ 1e-3 * (end.tv_usec - start.tv_usec));
 }
