@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   alias.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 10:00:41 by bbischof          #+#    #+#             */
 /*   Updated: 2022/05/05 15:49:39 by tarchimb         ###   ########.fr       */
@@ -27,6 +27,14 @@
 # define TERM_BCKG_MAGENTA "\x1b[45m"
 # define TERM_BCKG_CYAN "\x1b[46m"
 # define TERM_BCKG_WHITE "\x1b[47m"
+
+//Keyboard tab corresponding Key
+# define KEY_W_TAB 0
+# define KEY_S_TAB 1
+# define KEY_A_TAB 2
+# define KEY_D_TAB 3
+# define KEY_LEFT_TAB 4
+# define KEY_RIGHT_TAB 5
 
 // Keycode
 // Mac
@@ -77,7 +85,7 @@
 
 // Palyer mouvment
 # define SAFE_COL 0.2
-# define MOVE_SPEED 0.15
-# define ROT_SPEED 0.0698132
+# define MOVE_SPEED 5
+# define ROT_SPEED M_PI
 
 #endif
