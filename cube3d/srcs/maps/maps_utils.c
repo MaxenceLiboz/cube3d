@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maps_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 10:36:12 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 12:05:56 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/07 00:35:09 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	position_point(t_prg *prg, t_point *index)
 	}
 }
 
-static void	get_circle_position(t_prg *prg, t_edition_map *map, int x_map)
+void	get_circle_position(t_prg *prg, t_edition_map *map, int x_map)
 {
 	t_point	pt1;
 

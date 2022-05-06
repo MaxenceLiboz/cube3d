@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mini_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 11:43:01 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 11:43:19 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/06 23:31:21 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_mini_map(t_prg *prg)
 {
-	prg->m_map.cell_size = 10;
+	prg->e_map.cell_size = 10;
 	prg->m_map.x_map = prg->player.x_pos - (prg->e_map.max_cell_width / 2);
 	if (prg->m_map.x_map < 0)
 		prg->m_map.x_map = 0;

@@ -36,6 +36,7 @@ SRCS		=	main.c											\
 				srcs/parsing/file/file.c 						\
 				srcs/parsing/file/background_file_utils.c		\
 				srcs/parsing/file/texture_file_utils.c 			\
+				srcs/parsing/file/help_textures.c	 			\
 																\
 				srcs/parsing/init/init_mlx.c 					\
 				srcs/parsing/init/init_main_map.c				\

@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:22:54 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/06 17:12:33 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/07 00:30:39 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static int	parse_line(char *line, t_prg *prg, int len)
 		free(line);
 	if (len > prg->parser.width)
 			prg->parser.width = len;
-	prg->parser.height += 1;
 	return (1);
 }
 
@@ -62,8 +61,6 @@ static bool	loop_parse_file(t_prg *prg, int fd)
 	t_list	*tmp;
 
 	line = get_next_line(fd);
-	if (line == NULL)
-		return (false);
 	while (line)
 	{
 		tmp = ft_lstnew(line);
@@ -72,14 +69,14 @@ static bool	loop_parse_file(t_prg *prg, int fd)
 		prg->parser.start += 1;
 		parse_line_result = parse_line(tmp->content, prg, tmp->len);
 		if (parse_line_result == 1)
-			ft_lstadd_back(&prg->lst, tmp);
-		else if (parse_line_result == -1)
 		{
-			ft_lstdelone(tmp, free);
-			return (false);
+			ft_lstadd_back(&prg->lst, tmp);
+			prg->parser.height += 1;
 		}
-		else
+		else if (parse_line_result != 1)
 			ft_lstdelone(tmp, free);
+		if (parse_line_result == -1)
+			return (false);
 		line = get_next_line(fd);
 	}
 	return (true);
@@ -99,7 +96,7 @@ bool	parse_file(char *file_path, t_prg *prg)
 	if (result == false)
 		return (false);
 	if (!help_texture(prg))
-		return (false);
+		return (ft_error(false, 1, "Can't open texture file"));
 	if (check_texture_and_color_init(prg->texture, prg->draw) == false)
 	{
 		ft_lstclear(&prg->lst, free);

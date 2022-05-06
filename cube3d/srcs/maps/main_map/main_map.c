@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 10:40:10 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 10:58:12 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/06 23:19:21 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void	create_main_map(t_prg *prg, int **world_map)
 		x++;
 	}
 	draw_cross(prg);
+	create_mini_map(prg);
 }

@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_background.c                                  :+:      :+:    :+:   */
+/*   background_file_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 11:11:21 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 11:12:23 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/07 00:15:39 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cube3d.h>
-
 
 int	fill_background(char *line, t_prg *prg)
 {
@@ -19,9 +18,7 @@ int	fill_background(char *line, t_prg *prg)
 	int		value[3];
 
 	tmp = ft_split(line + 1, ',');
-	if (!tmp)
-		return (ft_free(ft_error(-1, 1, "ft_split not working"), 1, line));
-	if (!tmp || !tmp[1] || !tmp[2] || is_color_num(tmp) == false)
+	if (!tmp || !tmp[1] || !tmp[2] || is_color_num(tmp) == false || tmp[3])
 	{
 		free_2d_tab(tmp);
 		return (ft_free(ft_error(-1, 1, "Wrong color format"), 1, line));

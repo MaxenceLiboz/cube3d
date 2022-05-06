@@ -37,9 +37,9 @@ static void	get_mini_map_pos(t_prg *prg, t_point *index)
 static void	draw_mini_map_position(t_prg *prg)
 {
 	prg->m_map.pt1.x = (prg->player.x_pos - prg->m_map.x_map)
-		* prg->m_map.cell_size;
+		* prg->e_map.cell_size;
 	prg->m_map.pt1.y = (prg->player.y_pos - prg->m_map.y_map)
-		* prg->m_map.cell_size;
+		* prg->e_map.cell_size;
 	draw_circle(&prg->img, prg->m_map.pt1);
 }
 

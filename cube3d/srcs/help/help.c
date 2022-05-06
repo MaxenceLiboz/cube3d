@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 15:48:20 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/06 19:06:55 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/06 23:32:48 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@ static void	help_mode_str(t_prg *prg)
 {
 	if (prg->h_map.is_printable == true)
 	{
-		mlx_string_put(prg->win.mlx, prg->win.win, 150, 50 , BLACK,
+		mlx_string_put(prg->win.mlx, prg->win.win, 150, 50, BLACK,
 			"===HELP MENU===");
-		mlx_string_put(prg->win.mlx, prg->win.win, 230, 130 , BLACK,
+		mlx_string_put(prg->win.mlx, prg->win.win, 230, 130, BLACK,
 			"= Move Forward");
-		mlx_string_put(prg->win.mlx, prg->win.win, 230, 275 , BLACK,
+		mlx_string_put(prg->win.mlx, prg->win.win, 230, 275, BLACK,
 			"= Move Backward");
-		mlx_string_put(prg->win.mlx, prg->win.win, 230, 425 , BLACK,
+		mlx_string_put(prg->win.mlx, prg->win.win, 230, 425, BLACK,
 			"= Move Left");
-		mlx_string_put(prg->win.mlx, prg->win.win, 230, 575 , BLACK,
+		mlx_string_put(prg->win.mlx, prg->win.win, 230, 575, BLACK,
 			"= Move Right");
-		mlx_string_put(prg->win.mlx, prg->win.win, 230, 725 , BLACK,
+		mlx_string_put(prg->win.mlx, prg->win.win, 230, 725, BLACK,
 			"= View Left");
-		mlx_string_put(prg->win.mlx, prg->win.win, 230, 875 , BLACK,
-			"= View Right");	
+		mlx_string_put(prg->win.mlx, prg->win.win, 230, 875, BLACK,
+			"= View Right");
 	}
 	else if (prg->edition_mode == false)
 	{
@@ -78,7 +78,7 @@ void	print_help_map(t_prg *prg)
 		index.x = 0;
 		while (index.x <= prg->h_map.max_size)
 		{
-			my_mlx_pixel_put(&prg->img, index.x, index.y, DARKLY_GRAY + index.y * index.x);
+			my_mlx_pixel_put(&prg->img, index.x, index.y, BLUE);
 			index.x++;
 		}
 		index.y++;
