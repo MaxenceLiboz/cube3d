@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 12:17:10 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 19:21:40 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/06 23:21:20 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,6 @@ typedef struct s_edition_map
 
 typedef struct s_mini_map
 {
-	int		cell_size;
 	t_point	center;
 	t_point	pt1;
 	t_point	pt2;

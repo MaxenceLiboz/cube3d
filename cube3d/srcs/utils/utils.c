@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 08:29:52 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 12:23:22 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/07 00:15:22 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	free_2d_tab(char **tab)
 	int		i;
 
 	i = 0;
+	if (!*tab)
+		return ;
 	while (tab[i])
 	{
 		free(tab[i]);

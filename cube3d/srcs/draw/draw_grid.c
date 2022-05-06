@@ -6,13 +6,13 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:16:35 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/06 19:55:08 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/06 23:33:06 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-static void	draw_line(t_data *data, t_point p1, t_point p2, int color)
+void	draw_line(t_data *data, t_point p1, t_point p2, int color)
 {
 	float	i;
 	int		x;
@@ -88,7 +88,7 @@ void	draw_horizontal_line_grid(t_prg *prg)
 void	grid_for_unit_cell(t_prg *prg, t_point pt1)
 {
 	t_point	pt2;
-	
+
 	pt2.x = pt1.x + prg->e_map.cell_size;
 	pt2.y = pt1.y;
 	draw_line(&prg->img, pt1, pt2, WHITE);
