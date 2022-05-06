@@ -3,105 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/03 11:47:59 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/04 14:28:33 by tarchimb         ###   ########.fr       */
+/*   Created: 2022/04/26 12:49:09 by tarchimb          #+#    #+#             */
+/*   Updated: 2022/05/06 12:23:38 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cube3d.h>
+#include "cube3d.h"
 
-static bool	fill_world_map(t_prg *prg)
+int	position_player(char position, int x, int y, t_prg *prg)
 {
-	int		x;
-	int		y;
-	t_list	*tmp;
-
-	y = 0;
-	while (y < prg->parser.height)
-	{
-		x = 0;
-		while (prg->lst->len--)
-		{
-			if (prg->lst->content[x] == '1' || prg->lst->content[x] == '0')
-				prg->world_map[y][x] = prg->lst->content[x] - '0';
-			else if (prg->lst->content[x] == ' ')
-				prg->world_map[y][x] = 2;
-			else
-				prg->world_map[y][x] = prg->lst->content[x];
-			x++;
-		}
-		fill_with_2(prg, y, x);
-		tmp = prg->lst;
-		prg->lst = prg->lst->next;
-		ft_lstdelone(tmp, free);
-		y++;
-	}
+	prg->player.x_dir = 0;
+	prg->player.y_dir = -1;
+	prg->player.x_plane = 0.66;
+	prg->player.y_plane = 0;
+	if (position == 'E')
+		rotation_matrix(prg, M_PI / 2);
+	if (position == 'S')
+		rotation_matrix(prg, M_PI);
+	if (position == 'W')
+		rotation_matrix(prg, -M_PI / 2);
+	prg->player.x_pos = x + 0.5;
+	prg->player.y_pos = y + 0.5;
 	return (true);
 }
 
-static bool	check_pos(t_prg *prg, int y, int *x, int player_check)
+void	free_world_map(int **world_map, int size)
 {
-	if (is_valid_position(prg, *x, y) == false)
-		return (ft_error(false, 1, "Map not surrended by wall"));
-	if (prg->world_map[y][*x] != 1 && prg->world_map[y][*x] != 0
-		&& prg->world_map[y][*x] != 2 && player_check == 1)
+	int		i;
+
+	i = 0;
+	while (i < size)
 	{
-		if (position_player(prg->world_map[y][*x], *x, y, prg) == false)
-			return (ft_error(false, 1,
-					"Map invalid use: 0, 1, ' ', N, S, W, E"));
-		prg->parser.pos_player += 1;
-		prg->world_map[y][*x] = 0;
+		free(world_map[i]);
+		i++;
 	}
-	*x += 1;
-	return (true);
+	free(world_map);
 }
 
-bool	is_valid_map(t_prg *prg, int player_check)
+int	is_valid_position(t_prg *prg, int x, int y)
 {
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < prg->parser.height)
+	if (prg->world_map[y][x] == 0)
 	{
-		x = 0;
-		while (x < prg->parser.width)
-			if (check_pos(prg, y, &x, player_check) == false)
-				return (false);
-		y++;
-	}
-	if ((prg->parser.pos_player > 1
-			|| prg->parser.pos_player == 0) && player_check == 1)
-		return (ft_error(false, 1, "Wrong player position"));
-	return (true);
-}
-
-bool	init_map(t_prg *prg)
-{
-	int		x;
-
-	x = 0;
-	prg->world_map = malloc(sizeof(int *) * prg->parser.height);
-	if (!prg->world_map)
-		return (false);
-	while (x < prg->parser.height)
-	{
-		prg->world_map[x] = malloc(sizeof(int) * prg->parser.width);
-		if (prg->world_map[x] == NULL)
-		{
-			free_world_map(prg->world_map, x);
+		if (x == 0 || x == prg->parser.width - 1 || y == 0
+			|| y == prg->parser.height - 1)
 			return (false);
-		}
-		x++;
+		if (prg->world_map[y - 1][x] == 2 || prg->world_map[y + 1][x] == 2
+			|| prg->world_map[y][x - 1] == 2 || prg->world_map[y][x + 1] == 2)
+			return (false);
 	}
-	if (fill_world_map(prg) == false)
+	return (true);
+}
+
+bool	parsing(t_prg *prg, char **argv, int argc)
+{
+	prg->parser.height = 0;
+	prg->parser.pos_player = 0;
+	prg->parser.start = 0;
+	prg->parser.width = 0;
+	if (argc != 2)
+		return (ft_error(false, 1, "Use: ./cube [MAP_PATH]"));
+	if (cub_extension(argv[1]) == false)
+		return (ft_error(false, 1, "Wrong map extension"));
+	if (parse_file(argv[1], prg) == false)
 		return (false);
-	if (is_valid_map(prg, 1) == false)
+	if (init_map(prg) == false)
 		return (false);
-	init_map_variable(prg);
-	init_map_variable2(prg);
-	get_map_pos_init(prg);
 	return (true);
 }

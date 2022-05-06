@@ -5,41 +5,64 @@ PURPLE		=	\033[35m
 BLUE		= 	\033[0;34m
 
 SRCS		=	main.c											\
-				srcs/error/error_utils.c 						\
-				srcs/raycasting/dda.c 							\
-				srcs/raycasting/raycasting.c 					\
-				srcs/raycasting/init_draw.c 					\
-				srcs/parsing/parsing.c 							\
-				srcs/parsing/parse_file.c 						\
-				srcs/parsing/parse_file_utils.c 				\
-				srcs/parsing/init_mlx.c 						\
-				srcs/parsing/valid_new_map.c					\
-				srcs/parsing/parsing_map.c						\
-				srcs/parsing/parsing_map_utils.c				\
-				srcs/parsing/parsing_map_utils2.c				\
-				srcs/raycasting/draw.c 							\
-				srcs/edition/draw_grid.c						\
-				srcs/edition/draw_utils.c						\
-				srcs/edition/mini_map.c							\
-				srcs/edition/edition_map.c						\
-				srcs/utils/utils.c								\
-				srcs/hooks/exit_cube.c 							\
+				srcs/draw/draw_grid.c							\
+				srcs/draw/draw_utils.c							\
+																\
+				srcs/hooks/keys/exit_cube.c 					\
+				srcs/hooks/keys/keys_mouvements.c 				\
+				srcs/hooks/keys/keys_pressed.c 					\
+				srcs/hooks/keys/keys_released.c 				\
+																\
+				srcs/hooks/mouse/mouse_pressed.c 				\
+				srcs/hooks/mouse/mouse_released.c 				\
+				srcs/hooks/mouse/update_mouse_pos.c 			\
+				srcs/hooks/mouse/mouse_mouvements.c 			\
+																\
 				srcs/hooks/hooks_management.c 					\
-				srcs/hooks/refresh_map.c 						\
-				srcs/hooks/refresh_edition.c 					\
-				srcs/hooks/player/keys_mouvements.c 			\
-				srcs/hooks/player/keys_pressed.c 				\
-				srcs/hooks/player/keys_released.c 				\
-				srcs/hooks/player/mouse_mouvements.c 			\
-				srcs/hooks/edition/mouse_pressed.c 				\
-				srcs/hooks/edition/mouse_released.c 			\
-				srcs/hooks/edition/update_mouse_pos.c 			\
+				srcs/hooks/refresh.c 							\
+																\
+				srcs/maps/edition_map/edition_map_utils.c		\
+				srcs/maps/edition_map/edition_map.c				\
+																\
+				srcs/maps/main_map/main_map_utils.c				\
+				srcs/maps/main_map/main_map.c					\
+																\
+				srcs/maps/mini_map/mini_map.c					\
+																\
+				srcs/maps/maps_utils.c							\
+																\
+				srcs/parsing/file/file.c 						\
+				srcs/parsing/file/background_file_utils.c		\
+				srcs/parsing/file/texture_file_utils.c 			\
+																\
+				srcs/init/init_mlx.c 							\
+				srcs/init/init_main_map.c						\
+				srcs/init/init_edition_map.c					\
+				srcs/init/init_mini_map.c						\
+																\
+				srcs/parsing/parsing_map.c 						\
+																\
+				srcs/raycasting/dda.c 							\
+				srcs/raycasting/init_draw.c 					\
+																\
+				srcs/utils/utils.c								\
 
 OBJS		=	$(addprefix ${OBJS_DIR}/, ${SRCS:.c=.o})
 OBJS_DIR	=	objects
 MKDIR		=	mkdir -p
 
-INCLUDES	=	includes/cube3d.h includes/alias.h libft/includes/libft.h
+INCLUDES	=	includes/cube3d.h								\
+				includes/alias.h								\
+				libft/includes/libft.h							\
+				includes/draw.h									\
+				includes/hooks.h								\
+				includes/init.h									\
+				includes/maps.h									\
+				includes/parsing.h								\
+				includes/raycasting.h							\
+				includes/utils.h								\
+				includes/structure.h							\
+
 
 CC			= 	gcc
 
