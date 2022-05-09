@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 10:00:41 by bbischof          #+#    #+#             */
-/*   Updated: 2022/05/06 19:22:39 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/09 14:17:10 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,10 @@
 # define LIGHT_BLUE 0x00AAAAFF
 # define BACKGROUND 0xC0000000
 # define TRANS 0xFF000000
-# define DARKLY_GRAY 0x002C3E50
+# define GRAY 0x002C3E50
 # define LIGHT_GRAY 0x00D5DBDB 
+# define COLOR_1 0x0000529F
+# define COLOR_2 0x00B7C2CC
 
 // Palyer mouvment
 # define SAFE_COL 0.2

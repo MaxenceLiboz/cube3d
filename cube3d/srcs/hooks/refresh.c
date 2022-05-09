@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 08:55:38 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 23:30:41 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/09 14:13:03 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int	refresh_map(t_prg *prg)
 		keys_mouvements(prg);
 		mouse_mouvements(prg);
 		create_main_map(prg, prg->world_map);
-		if (prg->h_map.help_mode == true)
+		if (prg->h_map.help_mode == true && prg->h_map.is_printable == false)
 			print_help_map(prg);
-		else
+		else if (prg->h_map.help_mode == false)
 			hide_help_map(prg);
 		mlx_put_image_to_window(prg->win.mlx, prg->win.win, prg->img.img, 0, 0);
 		draw_help_to_image(prg);

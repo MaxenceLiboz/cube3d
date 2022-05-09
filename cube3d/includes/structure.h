@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 12:17:10 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 23:21:20 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/09 13:21:54 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,10 @@ typedef struct s_parse
 
 typedef struct s_mouse
 {
-	int			mouse_pressed;
-	int			mouse_button;
-    t_point		mouse_position;
-    int			mouse_keycode;
+	int		mouse_pressed;
+	int		mouse_button;
+	t_point	mouse_position;
+	int		mouse_keycode;
 }	t_mouse;
 
 typedef struct s_edition_map

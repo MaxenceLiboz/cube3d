@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 11:50:38 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 12:18:52 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/09 13:21:16 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define INIT_H
 
 # include "structure.h"
-
 
 void	init_edition_map_var(t_prg *prg);
 void	init_edition_map_var2(t_prg *prg);

@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 11:50:04 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/07 00:32:54 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/09 13:18:00 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
 void	grid_for_unit_cell(t_prg *prg, t_point pt1);
 void	draw_line(t_data *data, t_point p1, t_point p2, int color);
 void	get_circle_position(t_prg *prg, t_edition_map *map, int x_map);
+int		color_lerp(int color1, int color2, float timestamp);
+float	ft_inv_lerp_d(int min, int max, int curr);
 
 #endif

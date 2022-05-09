@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 10:37:58 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 22:50:09 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/09 14:17:16 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,29 @@ void	draw_cross(t_prg *prg)
 
 void	draw_background(int x, t_prg *prg)
 {
+	t_point	pt1;
+	t_point	pt2;
 	int		y;
 
+	(void)x;
+	pt1.x = x;
+	pt2.x = prg->win.width;
 	y = 0;
-	while (y < prg->draw.draw_start_pixel)
+	while (y < prg->win.height / 2)
 	{
-		my_mlx_pixel_put(&prg->img, x, y, prg->draw.sky_color);
+		pt1.y = y;
+		pt2.y = y;
+		draw_line(&prg->img, pt1, pt2, color_lerp(GRAY,
+				prg->draw.sky_color, ft_inv_lerp_d(0, prg->win.height / 2, y)));
 		y++;
 	}
-	y = prg->draw.draw_end_pixel;
+	y = prg->win.height / 2;
 	while (y < prg->win.height)
 	{
-		my_mlx_pixel_put(&prg->img, x, y, prg->draw.floor_color);
+		pt1.y = y;
+		pt2.y = y;
+		draw_line(&prg->img, pt1, pt2, color_lerp(prg->draw.floor_color,
+				GRAY, ft_inv_lerp_d(prg->win.height / 2, prg->win.height, y)));
 		y++;
 	}
 }

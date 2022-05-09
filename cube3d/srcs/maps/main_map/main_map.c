@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 10:40:10 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 23:19:21 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/09 14:16:08 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,19 @@ void	create_main_map(t_prg *prg, int **world_map)
 {
 	int		x;
 
-	x = 0;
+	if (prg->h_map.help_mode == true)
+		x = prg->h_map.max_size;
+	else
+		x = 0;
+	draw_background(x, prg);
 	while (x < prg->win.width)
 	{
 		init_dda(&prg->player, prg->win, &prg->dda, x);
 		perform_dda(prg, &prg->dda, world_map);
 		draw_wall(prg, x);
-		draw_background(x, prg);
 		x++;
 	}
 	draw_cross(prg);
-	create_mini_map(prg);
+	if (prg->h_map.help_mode == false)
+		create_mini_map(prg);
 }

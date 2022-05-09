@@ -7,6 +7,7 @@ BLUE		= 	\033[0;34m
 SRCS		=	main.c											\
 				srcs/draw/draw_grid.c							\
 				srcs/draw/draw_utils.c							\
+				srcs/draw/degraded_color.c						\
 																\
 				srcs/help/help.c								\
 																\
@@ -106,7 +107,7 @@ $(LIBS):	${INCLUDES}
 			@printf "\n$(BLUE)[ LIBFT COMPILATION DONE ]$(END)\n\n"
 
 norm:
-	norminette -R CheckForbiddenSourceHeader srcs main.c includes/cube3d.h libft
+	norminette -R CheckForbiddenSourceHeader srcs main.c includes/ libft
 
 parsing:	all
 	@printf "${BLUE}[ Testing extension ]${END}\n"
