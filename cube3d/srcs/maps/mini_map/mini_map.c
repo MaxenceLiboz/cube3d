@@ -34,12 +34,30 @@ static void	get_mini_map_pos(t_prg *prg, t_point *index)
 	index->y = prg->m_map.y_map;
 }
 
+static void	print_ray_view(t_prg *prg, t_point pt1, int cell_size)
+{
+	int		x;
+	t_point	pt2;
+
+	x = 0;
+	while (x < prg->win.width)
+	{
+		pt2.x = prg->m_map.pt1.x + (prg->dda.ray_dir_table[x][0]
+				* ((prg->dda.ray_table[x]) * cell_size));
+		pt2.y = prg->m_map.pt1.y + (prg->dda.ray_dir_table[x][1]
+				* ((prg->dda.ray_table[x]) * cell_size));
+		draw_rayline(&prg->img, pt1, pt2, RED);
+		x++;
+	}
+}
+
 static void	draw_mini_map_position(t_prg *prg)
 {
 	prg->m_map.pt1.x = (prg->player.x_pos - prg->m_map.x_map)
 		* prg->e_map.cell_size;
 	prg->m_map.pt1.y = (prg->player.y_pos - prg->m_map.y_map)
 		* prg->e_map.cell_size;
+	print_ray_view(prg, prg->m_map.pt1, prg->e_map.cell_size);
 	draw_circle(&prg->img, prg->m_map.pt1);
 }
 

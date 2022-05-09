@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 15:48:20 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/09 14:10:06 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/09 14:21:11 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,9 @@ void	print_help_map(t_prg *prg)
 		index.x = 0;
 		while (index.x <= prg->h_map.max_size)
 		{
-			my_mlx_pixel_put(&prg->img, index.x, index.y, color_lerp(COLOR_1,
-					COLOR_2, ft_inv_lerp_d(0, prg->win.height, index.y)));
+			my_mlx_pixel_put(&prg->img, index.x, index.y,
+				color_lerp(prg->draw.floor_color, prg->draw.sky_color,
+					ft_inv_lerp_d(0, prg->win.height, index.y)));
 			index.x++;
 		}
 		index.y++;

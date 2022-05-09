@@ -6,26 +6,33 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:16:35 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/06 23:33:06 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/09 16:22:10 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void	draw_line(t_data *data, t_point p1, t_point p2, int color)
+void	draw_line(t_data *data, t_point p0, t_point p1, int color)
 {
-	float	i;
-	int		x;
-	int		y;
+	double	dx;
+	double	dy;
+	double	x;
+	double	y;
+	int		pixels;
 
-	i = 0.0f;
-	while (i < 1.0f)
+	x = p0.x;
+	y = p0.y;
+	dx = p1.x - p0.x;
+	dy = p1.y - p0.y;
+	pixels = sqrt((dx * dx) + (dy * dy));
+	dx /= pixels;
+	dy /= pixels;
+	while (pixels)
 	{
-		x = p1.x + (p2.x - p1.x) * i;
-		y = p1.y + (p2.y - p1.y) * i;
-		if (!(x < 0 || x >= 1920 || y < 0 || y >= 1080))
-			my_mlx_pixel_put(data, x, y, color);
-		i += .0005f;
+		my_mlx_pixel_put(data, x, y, color);
+		x += dx;
+		y += dy;
+		pixels--;
 	}
 }
 

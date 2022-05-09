@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 12:17:10 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/09 13:21:54 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/09 16:20:00 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ typedef struct s_dda
 	double	x_side_delta_ray_dist;
 	double	y_side_delta_ray_dist;
 	double	wall_dist;
+	double	ray_table[1920];
+	double	ray_dir_table[1920][2];
 }	t_dda;
 
 typedef struct s_draw
