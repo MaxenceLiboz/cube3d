@@ -39,10 +39,11 @@ SRCS		=	main.c											\
 				srcs/parsing/file/texture_file_utils.c 			\
 				srcs/parsing/file/help_textures.c	 			\
 																\
-				srcs/parsing/init/init_mlx.c 					\
-				srcs/parsing/init/init_main_map.c				\
-				srcs/parsing/init/init_edition_map.c			\
-				srcs/parsing/init/init_mini_map.c				\
+				srcs/init/init_mlx.c 							\
+				srcs/init/init_main_map.c						\
+				srcs/init/init_main_map_utils.c					\
+				srcs/init/init_edition_map.c					\
+				srcs/init/init_mini_map.c						\
 																\
 				srcs/parsing/parsing_map.c 						\
 																\
@@ -141,6 +142,10 @@ parsing:	all
 	@leaks -atExit -q -- ./${EXEC} maps/file8.cub
 	@printf "${BLUE}maps/file9.cub => ${END}"
 	@leaks -atExit -q -- ./${EXEC} maps/file9.cub
+	@printf "${BLUE}maps/file10.cub => ${END}"
+	@leaks -atExit -q -- ./${EXEC} maps/file10.cub
+	@printf "${BLUE}maps/file11.cub => ${END}"
+	@leaks -atExit -q -- ./${EXEC} maps/file11.cub
 
 clean:
 			@${RM} ${OBJS}
