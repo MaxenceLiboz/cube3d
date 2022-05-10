@@ -80,7 +80,7 @@ LIBS		=	libft/libft.a minilibx/libmlx.a # minilibx/libmlx.a
 
 NAME		=	main
 
-EXEC		= 	cube
+EXEC		= 	cub3D
 
 RM			=	rm -rf	
 
