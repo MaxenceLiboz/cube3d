@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:49:09 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/06 23:31:04 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/10 07:30:35 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ void	free_world_map(int **world_map, int size)
 
 int	is_valid_position(t_prg *prg, int x, int y)
 {
-	if (prg->world_map[y][x] == 0)
+	if (prg->world_map[y][x] == 0 || prg->world_map[y][x] == 'N'
+		|| prg->world_map[y][x] == 'E' || prg->world_map[y][x] == 'S'
+		|| prg->world_map[y][x] == 'W')
 	{
 		if (x == 0 || x == prg->parser.width - 1 || y == 0
 			|| y == prg->parser.height - 1)

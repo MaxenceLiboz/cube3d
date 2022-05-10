@@ -12,6 +12,20 @@
 
 #include "cube3d.h"
 
+static void	get_mini_map_pos2(t_prg *prg, t_point *index)
+{
+	if (index->x < prg->e_map.max_cell_width / 2 && index->x > 0)
+	{
+		prg->m_map.x_map = 0;
+		index->x = 0;
+	}
+	if (index->y < prg->e_map.max_cell_height / 2 && index->y > 0)
+	{
+		prg->m_map.y_map = 0;
+		index->y = 0;
+	}
+}
+
 static void	get_mini_map_pos(t_prg *prg, t_point *index)
 {
 	if ((int)prg->player.x_pos
@@ -32,6 +46,7 @@ static void	get_mini_map_pos(t_prg *prg, t_point *index)
 		&& prg->m_map.y_map - (prg->e_map.max_cell_height / 2) >= 0)
 		prg->m_map.y_map -= (prg->e_map.max_cell_height / 2);
 	index->y = prg->m_map.y_map;
+	get_mini_map_pos2(prg, index);
 }
 
 static void	print_ray_view(t_prg *prg, t_point pt1, int cell_size)
