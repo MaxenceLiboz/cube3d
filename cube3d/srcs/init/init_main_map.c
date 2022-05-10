@@ -6,7 +6,7 @@
 /*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:47:59 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/10 09:00:58 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/10 09:14:34 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ static bool	check_pos(t_prg *prg, int y, int *x, int player_check)
 		if (is_valid_map_char(prg->world_map[y][*x]) == false)
 			return (ft_error(false, 1,
 					"Map invalid use: 0, 1, ' ', N, S, W, E"));
+		else
+			position_player(prg->world_map[y][*x], *x, y, prg);
 		prg->parser.pos_player += 1;
 		prg->world_map[y][*x] = 0;
 	}
