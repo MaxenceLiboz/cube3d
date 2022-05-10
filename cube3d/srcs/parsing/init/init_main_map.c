@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_main_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:47:59 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/10 10:49:32 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/10 11:14:03 by mliboz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static bool	check_pos(t_prg *prg, int y, int *x, int player_check)
 		prg->world_map[y][*x] = 0;
 	}
 	if (is_valid_position(prg, *x, y) == false)
-			return (ft_error(false, 1, "Map not surrended by wall"));
+		return (ft_error(false, 1, "Map not surrended by wall"));
 	*x += 1;
 	return (true);
 }

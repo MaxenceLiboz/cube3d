@@ -73,20 +73,16 @@ B			=	1
 all:		${LIBNAME}
 
 %.o : 		%.c ${INCLUDES}
-			@${CC} ${CFLAGS} -I includes -c $< -o $@
-			@printf "\r\033[K\tCompilation of $(GREEN)$ $< ==> $ $@\$(END)"
+			${CC} ${CFLAGS} -I includes -c $< -o $@
 
 $(LIBNAME):	${OBJS} ${INCLUDES}
-			@printf "\r\033[K\tCompilation :.c=.o $(GREEN)done\$(END)"
-			@ar rcs ${LIBNAME} ${OBJS}
-			@printf "\n\tCreating $(GREEN)$ $(LIBNAME) \$(END)\n"
+			ar rcs ${LIBNAME} ${OBJS}
 
 clean:
-			@${RM} ${OBJS}
+			${RM} ${OBJS}
 
 fclean:		clean
-			@${RM} ${LIBNAME}
-			@printf "\tDeleting $(RED)$ ${LIBNAME} \$(END)\n"
+			${RM} ${LIBNAME}
 
 re:			fclean all
 

@@ -58,7 +58,6 @@ MKDIR		=	mkdir -p
 
 INCLUDES	=	includes/cube3d.h								\
 				includes/alias.h								\
-				libft/includes/libft.h							\
 				includes/draw.h									\
 				includes/hooks.h								\
 				includes/maps.h									\
@@ -66,17 +65,18 @@ INCLUDES	=	includes/cube3d.h								\
 				includes/raycasting.h							\
 				includes/utils.h								\
 				includes/structure.h							\
-
+				includes/help.h									\
+				libft/includes/libft.h							\
 
 CC			= 	gcc
 
-CFLAGS		= 	-Wall -Wextra -Werror #-O3 #-g #-fsanitize=address
+CFLAGS		= 	-Wall -Wextra -Werror
 
 LIBINCLUDES	=	-Iincludes -Iminilibx -Ilibft/includes
 
 LIBFLAGS	=	-framework OpenGL -framework AppKit
 
-LIBS		=	libft/libft.a minilibx/libmlx.a # minilibx/libmlx.a
+LIBS		=	libft/libft.a minilibx/libmlx.a
 
 NAME		=	main
 
@@ -84,27 +84,18 @@ EXEC		= 	cub3D
 
 RM			=	rm -rf	
 
-all:	 	${LIBS} ${EXEC}
+all:	 	libs ${EXEC}
 
-${OBJS_DIR}/%.o: 	%.c $(OBJDIRS) ${INCLUDES} Makefile
-			@${MKDIR} $(@D) $(DMPDIR)$(@D)
-			@${CC} ${CFLAGS} ${LIBINCLUDES} -c $< -o $@
-			@printf "\r\033[K\tCompilation of $(GREEN)$ $< ==> $ $@\$(END)"
+${OBJS_DIR}/%.o: 	%.c $(OBJDIRS) ${INCLUDES} Makefile ${LIBS}
+			${MKDIR} $(@D) $(DMPDIR)$(@D)
+			${CC} ${CFLAGS} ${LIBINCLUDES} -c $< -o $@
 
-${EXEC}:	${NAME}.c ${OBJS}
-			@printf "\r\033[K\tCompilation :.c=.o $(GREEN)done\$(END)"
-			@$(CC) ${CFLAGS} ${OBJS} ${LIBS} ${LIBFLAGS} -o ${EXEC}
-			@printf "\n\tCreating $(GREEN) ${EXEC} $(END)\n"
+${EXEC}: 	${NAME}.c ${OBJS} ${LIBS}
+			$(CC) ${CFLAGS} ${OBJS} ${LIBS} ${LIBFLAGS} -o ${EXEC}
 			
-$(LIBS):	${INCLUDES}
-			@printf "\n$(BLUE)[ MLX COMPILATION START ]$(END)\n\n"
-			@printf "\tCompilation of: $(GREEN)minilibx\$(END)"
-			@make -C minilibx &>/dev/null
-			@printf "\r\033[K\tCompilation MLX: $(GREEN)done\$(END)\n"
-			@printf "\n$(BLUE)[ MLX COMPILATION DONE ]$(END)\n"
-			@printf "\n$(BLUE)[ LIBFT COMPILATION START ]$(END)\n\n"
-			@make -C libft
-			@printf "\n$(BLUE)[ LIBFT COMPILATION DONE ]$(END)\n\n"
+libs:		${INCLUDES}
+			make -C minilibx
+			make -C libft
 
 norm:
 	norminette -R CheckForbiddenSourceHeader srcs main.c includes/ libft
@@ -147,17 +138,13 @@ parsing:	all
 	@leaks -atExit -q -- ./${EXEC} maps/file11.cub
 
 clean:
-			@${RM} ${OBJS}
-			@printf "\tDeleting $(RED)$ objetcs \$(END)\n"
+			${RM} ${OBJS}
 
 fclean:		clean
-			@${RM} ${EXEC} ${LIBS}
-			@printf "\tDeleting $(RED)$ ${EXEC} \$(END)\n"
-			@make clean -C minilibx
-			@make clean -C libft
-			@printf "\tDeleting $(RED)$ ${LIBS} \$(END)\n"
-			@${RM} objects/
-			@printf "\tDeleting $(RED)$ objetcs/ \$(END)\n"
+			${RM} ${EXEC} ${LIBS}
+			make clean -C minilibx
+			make clean -C libft
+			${RM} objects/
 
 re:			fclean all
 
