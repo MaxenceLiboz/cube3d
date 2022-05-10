@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_main_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliboz <mliboz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:47:59 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/10 09:14:34 by mliboz           ###   ########.fr       */
+/*   Updated: 2022/05/10 10:49:32 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,15 @@ static void	fill_with_2(t_prg *prg, int y, int x)
 	}
 }
 
-static bool	fill_world_map(t_prg *prg)
+static bool	fill_world_map(t_prg *prg, int x, int y)
 {
-	int		x;
-	int		y;
 	t_list	*tmp;
 
-	y = 0;
 	while (y < prg->parser.height)
 	{
 		x = 0;
+		if (prg->lst->len == 0)
+			return (ft_error(false, 1, "Empty line in map"));
 		while (prg->lst->len--)
 		{
 			if (prg->lst->content[x] == '1' || prg->lst->content[x] == '0')
@@ -52,8 +51,6 @@ static bool	fill_world_map(t_prg *prg)
 
 static bool	check_pos(t_prg *prg, int y, int *x, int player_check)
 {
-	if (is_valid_position(prg, *x, y) == false)
-		return (ft_error(false, 1, "Map not surrended by wall"));
 	if (prg->world_map[y][*x] != 1 && prg->world_map[y][*x] != 0
 		&& prg->world_map[y][*x] != 2 && player_check == 1)
 	{
@@ -62,9 +59,13 @@ static bool	check_pos(t_prg *prg, int y, int *x, int player_check)
 					"Map invalid use: 0, 1, ' ', N, S, W, E"));
 		else
 			position_player(prg->world_map[y][*x], *x, y, prg);
+		if (is_valid_position(prg, *x, y) == false)
+			return (ft_error(false, 1, "Wrong player position"));
 		prg->parser.pos_player += 1;
 		prg->world_map[y][*x] = 0;
 	}
+	if (is_valid_position(prg, *x, y) == false)
+			return (ft_error(false, 1, "Map not surrended by wall"));
 	*x += 1;
 	return (true);
 }
@@ -108,7 +109,7 @@ bool	init_map(t_prg *prg)
 		}
 		x++;
 	}
-	if (fill_world_map(prg) == false)
+	if (fill_world_map(prg, 0, 0) == false)
 		return (false);
 	if (is_valid_map(prg, 1) == false)
 		return (false);

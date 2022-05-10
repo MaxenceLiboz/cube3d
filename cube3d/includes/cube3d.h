@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:58:44 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 23:32:09 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/10 10:41:40 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <alias.h>
 # include "draw.h"
 # include "hooks.h"
-# include "init.h"
 # include "maps.h"
 # include "parsing.h"
 # include "raycasting.h"

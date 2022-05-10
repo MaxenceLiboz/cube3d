@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 11:50:47 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/06 17:12:12 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/10 10:40:57 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,15 @@ bool	check_texture_and_color_init(t_texture *texture, t_draw draw);
 bool	is_texture(char *line);
 bool	init_texture(t_win window, t_texture *texture, char *filename);
 bool	help_texture(t_prg *prg);
+
+/***************** INIT ***********************/
+void	init_edition_map_var(t_prg *prg);
+void	init_edition_map_var2(t_prg *prg);
+bool	is_valid_map(t_prg *prg, int player_check);
+bool	init_map(t_prg *prg);
+void	init_mini_map(t_prg *prg);
+bool	window_init(t_win *window);
+bool	img_init(t_win window, t_data *img);
+bool	is_valid_map_char(int position);
 
 #endif

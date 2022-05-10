@@ -1,13 +1,13 @@
 EA ./pics/eagle.xpm
 NO ./pics/bluestone.xpm
 SO ./pics/mossy.xpm
-WE ./pics/bluestone.xpm
+WE ./pics/tarchimb.xpm
 
 F 120,120,120
 C 120,120,230
 
-1111111111
-1E00000001
+111111111
+1N00000001
 1111000001
 1000000001
 1000001001

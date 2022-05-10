@@ -39,11 +39,11 @@ SRCS		=	main.c											\
 				srcs/parsing/file/texture_file_utils.c 			\
 				srcs/parsing/file/help_textures.c	 			\
 																\
-				srcs/init/init_mlx.c 							\
-				srcs/init/init_main_map.c						\
-				srcs/init/init_main_map_utils.c					\
-				srcs/init/init_edition_map.c					\
-				srcs/init/init_mini_map.c						\
+				srcs/parsing/init/init_mlx.c 					\
+				srcs/parsing/init/init_main_map.c				\
+				srcs/parsing/init/init_main_map_utils.c			\
+				srcs/parsing/init/init_edition_map.c			\
+				srcs/parsing/init/init_mini_map.c				\
 																\
 				srcs/parsing/parsing_map.c 						\
 																\
@@ -61,7 +61,6 @@ INCLUDES	=	includes/cube3d.h								\
 				libft/includes/libft.h							\
 				includes/draw.h									\
 				includes/hooks.h								\
-				includes/init.h									\
 				includes/maps.h									\
 				includes/parsing.h								\
 				includes/raycasting.h							\

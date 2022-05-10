@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:49:09 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/10 07:30:35 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/10 10:45:12 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,16 @@ int	is_valid_position(t_prg *prg, int x, int y)
 
 bool	parsing(t_prg *prg, char **argv, int argc)
 {
-	prg->parser.height = 0;
-	prg->parser.pos_player = 0;
-	prg->parser.start = 0;
-	prg->parser.width = 0;
 	if (argc != 2)
-		return (ft_error(false, 1, "Use: ./cube [MAP_PATH]"));
+		return (ft_error(false, 1, "Use: ./cub3D [MAP_PATH]"));
 	if (cub_extension(argv[1]) == false)
 		return (ft_error(false, 1, "Wrong map extension"));
 	if (parse_file(argv[1], prg) == false)
 		return (false);
 	if (init_map(prg) == false)
+	{
+		free_world_map(prg->world_map, prg->parser.height);
 		return (false);
+	}
 	return (true);
 }

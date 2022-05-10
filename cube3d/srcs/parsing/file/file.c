@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:22:54 by tarchimb          #+#    #+#             */
-/*   Updated: 2022/05/07 00:30:39 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/10 10:30:26 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,27 @@ static int	parse_line(char *line, t_prg *prg, int len)
 	int		i;
 
 	i = 0;
-	while (line[i] == ' ')
-		i++;
-	if (!line || line[i] == '\0' || line[0] == '\n')
-		return (0);
-	line = ft_strtrim(line, " ");
-	if (is_background(line) == true)
-		return (fill_background(line, prg));
-	if (is_texture(line) == true)
+	if (prg->parser.is_map == false)
 	{
-		if (fill_texture(line, prg) == false)
+		while (line[i] == ' ')
+			i++;
+		if (!line || line[i] == '\0' || line[0] == '\n')
+			return (0);
+		line = ft_strtrim(line, " ");
+		if (is_background(line) == true)
+			return (fill_background(line, prg));
+		if (is_texture(line) == true)
 		{
-			ft_error(-1, 2, "Wrong texture path: ", line);
-			free(line);
-			return (-1);
+			if (fill_texture(line, prg) == false)
+				return (-1);
+			return (0);
 		}
-		return (0);
+		else
+			free(line);
 	}
-	else
-		free(line);
 	if (len > prg->parser.width)
 			prg->parser.width = len;
+	prg->parser.is_map = true;
 	return (1);
 }
 
@@ -66,7 +66,6 @@ static bool	loop_parse_file(t_prg *prg, int fd)
 		tmp = ft_lstnew(line);
 		if (tmp == NULL)
 			return (false);
-		prg->parser.start += 1;
 		parse_line_result = parse_line(tmp->content, prg, tmp->len);
 		if (parse_line_result == 1)
 		{

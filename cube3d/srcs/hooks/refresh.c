@@ -6,11 +6,20 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 08:55:38 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/09 16:17:50 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/10 10:11:03 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cube3d.h>
+
+static int	time_diff(struct timeval start)
+{
+	struct timeval	end;
+
+	gettimeofday(&end, NULL);
+	return ((end.tv_sec - start.tv_sec) * 1000
+		+ 1e-3 * (end.tv_usec - start.tv_usec));
+}
 
 static char	*get_fps(t_prg *prg, struct timeval start)
 {

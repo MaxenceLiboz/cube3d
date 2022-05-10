@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 07:36:27 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/09 13:12:42 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/10 10:23:36 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ int	main(int argc, char **argv)
 	t_prg	prg;
 
 	ft_bzero(&prg, sizeof(t_prg));
-	prg.h_map.help_mode = 0;
-	prg.h_map.max_size = 0;
-	prg.h_map.help_mode = 0;
 	window_init(&prg.win);
 	init_textures_color(&prg);
 	if (parsing(&prg, argv, argc) == false)

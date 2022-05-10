@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 11:09:37 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/07 00:26:38 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/10 09:56:27 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@ bool	fill_texture(char *line, t_prg *prg)
 	if (!tmp)
 		return (ft_free(false, 1, tmp));
 	if (open(tmp, O_RDONLY) == -1)
-		return (ft_free(false, 2, tmp, tmp1));
-	if (line[0] == 'N')
+	{
+		ft_error(false, 2, "Wrong texture path: ", line);
+		return (ft_free(false, 3, tmp, tmp1, line));
+	}
+	if (line[0] == 'W')
 		result = init_texture(prg->win, &prg->texture[0], tmp);
-	else if (line[0] == 'S')
-		result = init_texture(prg->win, &prg->texture[1], tmp);
-	else if (line[0] == 'W')
-		result = init_texture(prg->win, &prg->texture[2], tmp);
 	else if (line[0] == 'E')
+		result = init_texture(prg->win, &prg->texture[1], tmp);
+	else if (line[0] == 'S')
+		result = init_texture(prg->win, &prg->texture[2], tmp);
+	else if (line[0] == 'N')
 		result = init_texture(prg->win, &prg->texture[3], tmp);
-	ft_free(0, 2, tmp1, line);
-	if (result == false)
-		return (ft_error(false, 1, "MLX xpm to file error"));
-	return (true);
+	return (ft_free(result, 3, tmp, tmp1, line));
 }
 
 bool	check_texture_and_color_init(t_texture *texture, t_draw draw)
@@ -72,11 +72,13 @@ bool	is_texture(char *line)
 
 bool	init_texture(t_win window, t_texture *texture, char *filename)
 {
+	if (texture->relative_path != NULL)
+		return (ft_error(false, 1, "Multiple side texture path"));
 	texture->relative_path = filename;
 	texture->img = mlx_xpm_file_to_image(window.mlx, texture->relative_path,
 			&texture->width, &texture->height);
 	if (texture->img == NULL)
-		return (false);
+		return (ft_error(false, 1, "mlx_xpm_file_to_image error"));
 	texture->addr = mlx_get_data_addr(texture->img, &texture->bits_per_pixel,
 			&texture->line_length, &texture->endian);
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: tarchimb <tarchimb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 12:17:10 by mliboz            #+#    #+#             */
-/*   Updated: 2022/05/09 16:20:00 by tarchimb         ###   ########.fr       */
+/*   Updated: 2022/05/10 10:25:22 by tarchimb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ typedef struct s_parse
 	int		height;
 	int		width;
 	int		pos_player;
-	int		start;
+	bool	is_map;
 }	t_parse;
 
 typedef struct s_mouse
