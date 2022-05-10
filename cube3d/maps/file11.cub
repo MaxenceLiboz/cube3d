@@ -1,0 +1,7 @@
+EA ./pics/bbischof.xpm
+NO ./pics/bbischof.xpm
+SO ./pics/bbischof.xpm
+WE ./pics/bbischof.xpm
+
+F 120,120,120
+C 120,120,230
